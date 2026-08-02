@@ -1,0 +1,49 @@
+{
+ "backend": "ibm_kingston",
+ "WIN_s": 4e-05,
+ "shots": 8192,
+ "reps": 2,
+ "pairs": [
+  {
+   "victim": 91,
+   "d1": 90,
+   "d2": 89,
+   "rerr_v": 0.0015,
+   "rerr_d1": 0.0061,
+   "rerr_d2": 0.0027
+  },
+  {
+   "victim": 148,
+   "d1": 149,
+   "d2": 150,
+   "rerr_v": 0.002,
+   "rerr_d1": 0.0044,
+   "rerr_d2": 0.0042
+  },
+  {
+   "victim": 15,
+   "d1": 19,
+   "d2": 13,
+   "rerr_v": 0.0029,
+   "rerr_d1": 0.0129,
+   "rerr_d2": 0.0056
+  },
+  {
+   "victim": 50,
+   "d1": 49,
+   "d2": 58,
+   "rerr_v": 0.0032,
+   "rerr_d1": 0.0059,
+   "rerr_d2": 0.0159
+  },
+  {
+   "victim": 104,
+   "d1": 105,
+   "d2": 117,
+   "rerr_v": 0.0032,
+   "rerr_d1": 0.0066,
+   "rerr_d2": 0.0039
+  }
+ ],
+ "selection": "calibration-only, outcome-independent"
+}

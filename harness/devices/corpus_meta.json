@@ -1,0 +1,406 @@
+[
+ {
+  "slug": "lagos",
+  "kernel_checked": true,
+  "name": "FakeLagosV2",
+  "nq": 7,
+  "F": [
+   0,
+   1,
+   2
+  ],
+  "seed": 1,
+  "degree": 3,
+  "adj_pair": [
+   3,
+   5
+  ],
+  "far_pair": [
+   4,
+   5
+  ],
+  "deep_pair": null,
+  "n_ring1": 1,
+  "n_ring2": 1,
+  "n_ring3": 2,
+  "adj_dist": [
+   1,
+   2
+  ],
+  "far_dist": [
+   3,
+   2
+  ],
+  "n_edges": 6
+ },
+ {
+  "slug": "guadalupe",
+  "kernel_checked": true,
+  "name": "FakeGuadalupeV2",
+  "nq": 16,
+  "F": [
+   4,
+   6,
+   7
+  ],
+  "seed": 7,
+  "degree": 3,
+  "adj_pair": [
+   1,
+   0
+  ],
+  "far_pair": [
+   2,
+   3
+  ],
+  "deep_pair": [
+   3,
+   5
+  ],
+  "n_ring1": 2,
+  "n_ring2": 3,
+  "n_ring3": 8,
+  "adj_dist": [
+   1,
+   2
+  ],
+  "far_dist": [
+   2,
+   3
+  ],
+  "n_edges": 16
+ },
+ {
+  "slug": "hanoi",
+  "kernel_checked": true,
+  "name": "FakeHanoiV2",
+  "nq": 27,
+  "F": [
+   10,
+   12,
+   13
+  ],
+  "seed": 12,
+  "degree": 3,
+  "adj_pair": [
+   7,
+   4
+  ],
+  "far_pair": [
+   0,
+   1
+  ],
+  "deep_pair": [
+   0,
+   1
+  ],
+  "n_ring1": 3,
+  "n_ring2": 5,
+  "n_ring3": 16,
+  "adj_dist": [
+   1,
+   2
+  ],
+  "far_dist": [
+   4,
+   3
+  ],
+  "n_edges": 28
+ },
+ {
+  "slug": "brooklyn",
+  "kernel_checked": true,
+  "name": "FakeBrooklynV2",
+  "nq": 65,
+  "F": [
+   11,
+   16,
+   17
+  ],
+  "seed": 17,
+  "degree": 3,
+  "adj_pair": [
+   4,
+   3
+  ],
+  "far_pair": [
+   0,
+   1
+  ],
+  "deep_pair": [
+   0,
+   1
+  ],
+  "n_ring1": 3,
+  "n_ring2": 5,
+  "n_ring3": 26,
+  "adj_dist": [
+   1,
+   2
+  ],
+  "far_dist": [
+   5,
+   4
+  ],
+  "n_edges": 72
+ },
+ {
+  "slug": "nighthawk",
+  "kernel_checked": true,
+  "name": "FakeNighthawk",
+  "nq": 120,
+  "F": [
+   23,
+   32,
+   33
+  ],
+  "seed": 33,
+  "degree": 4,
+  "adj_pair": [
+   13,
+   3
+  ],
+  "far_pair": [
+   0,
+   1
+  ],
+  "deep_pair": [
+   0,
+   1
+  ],
+  "n_ring1": 7,
+  "n_ring2": 11,
+  "n_ring3": 52,
+  "adj_dist": [
+   1,
+   2
+  ],
+  "far_dist": [
+   5,
+   4
+  ],
+  "n_edges": 218
+ },
+ {
+  "slug": "sherbrooke",
+  "kernel_checked": true,
+  "name": "FakeSherbrooke",
+  "nq": 127,
+  "F": [
+   15,
+   21,
+   22
+  ],
+  "seed": 22,
+  "degree": 3,
+  "adj_pair": [
+   4,
+   3
+  ],
+  "far_pair": [
+   0,
+   1
+  ],
+  "deep_pair": [
+   0,
+   1
+  ],
+  "n_ring1": 3,
+  "n_ring2": 5,
+  "n_ring3": 26,
+  "adj_dist": [
+   1,
+   2
+  ],
+  "far_dist": [
+   5,
+   4
+  ],
+  "n_edges": 144
+ },
+ {
+  "slug": "washington",
+  "kernel_checked": true,
+  "name": "FakeWashingtonV2",
+  "nq": 127,
+  "F": [
+   15,
+   21,
+   22
+  ],
+  "seed": 22,
+  "degree": 3,
+  "adj_pair": [
+   4,
+   3
+  ],
+  "far_pair": [
+   0,
+   1
+  ],
+  "deep_pair": [
+   0,
+   1
+  ],
+  "n_ring1": 3,
+  "n_ring2": 5,
+  "n_ring3": 25,
+  "adj_dist": [
+   1,
+   2
+  ],
+  "far_dist": [
+   5,
+   4
+  ],
+  "n_edges": 142
+ },
+ {
+  "slug": "torino",
+  "kernel_checked": true,
+  "name": "FakeTorino",
+  "nq": 133,
+  "F": [
+   16,
+   22,
+   23
+  ],
+  "seed": 23,
+  "degree": 3,
+  "adj_pair": [
+   4,
+   3
+  ],
+  "far_pair": [
+   0,
+   1
+  ],
+  "deep_pair": [
+   0,
+   1
+  ],
+  "n_ring1": 3,
+  "n_ring2": 5,
+  "n_ring3": 26,
+  "adj_dist": [
+   1,
+   2
+  ],
+  "far_dist": [
+   5,
+   4
+  ],
+  "n_edges": 150
+ },
+ {
+  "slug": "marrakesh",
+  "kernel_checked": true,
+  "name": "FakeMarrakesh",
+  "nq": 156,
+  "F": [
+   16,
+   22,
+   23
+  ],
+  "seed": 23,
+  "degree": 3,
+  "adj_pair": [
+   3,
+   2
+  ],
+  "far_pair": [
+   0,
+   1
+  ],
+  "deep_pair": [
+   0,
+   1
+  ],
+  "n_ring1": 3,
+  "n_ring2": 5,
+  "n_ring3": 21,
+  "adj_dist": [
+   1,
+   2
+  ],
+  "far_dist": [
+   4,
+   3
+  ],
+  "n_edges": 176
+ },
+ {
+  "slug": "fez",
+  "kernel_checked": true,
+  "name": "FakeFez",
+  "nq": 156,
+  "F": [
+   16,
+   22,
+   23
+  ],
+  "seed": 23,
+  "degree": 3,
+  "adj_pair": [
+   3,
+   2
+  ],
+  "far_pair": [
+   0,
+   1
+  ],
+  "deep_pair": [
+   0,
+   1
+  ],
+  "n_ring1": 3,
+  "n_ring2": 5,
+  "n_ring3": 21,
+  "adj_dist": [
+   1,
+   2
+  ],
+  "far_dist": [
+   4,
+   3
+  ],
+  "n_edges": 176
+ },
+ {
+  "slug": "kingston",
+  "kernel_checked": true,
+  "name": "FakeKingston",
+  "nq": 156,
+  "F": [
+   16,
+   22,
+   23
+  ],
+  "seed": 23,
+  "degree": 3,
+  "adj_pair": [
+   3,
+   2
+  ],
+  "far_pair": [
+   0,
+   1
+  ],
+  "deep_pair": [
+   0,
+   1
+  ],
+  "n_ring1": 3,
+  "n_ring2": 5,
+  "n_ring3": 21,
+  "adj_dist": [
+   1,
+   2
+  ],
+  "far_dist": [
+   4,
+   3
+  ],
+  "n_edges": 176
+ }
+]

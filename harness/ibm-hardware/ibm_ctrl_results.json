@@ -1,0 +1,256 @@
+{
+ "meta": {
+  "backend": "ibm_marrakesh",
+  "job_id": "d9k1i90ii2cc73efhco0",
+  "victim": 98,
+  "probes": {
+   "1": 91,
+   "2": 112,
+   "3": 109,
+   "far": 6
+  },
+  "dist": {
+   "91": 1,
+   "112": 2,
+   "109": 3,
+   "6": 18
+  },
+  "T2": {
+   "98": 8.411781568340757e-05,
+   "91": 8.463979530499699e-05,
+   "112": 0.00018781366644832244,
+   "109": 0.00011638607223731682,
+   "6": 0.00020544020817967054
+  },
+  "rerr": {
+   "98": 0.001708984375,
+   "91": 0.004638671875,
+   "112": 0.0078125,
+   "109": 0.00341796875,
+   "6": 0.001953125
+  },
+  "tau_s": 3.9996e-05,
+  "M": 1111,
+  "dur_x": 3.6e-08,
+  "shots": 8192,
+  "reps": 2,
+  "labels": [
+   {
+    "rep": 0,
+    "d": "1",
+    "probe": 91,
+    "cond": "idle0"
+   },
+   {
+    "rep": 0,
+    "d": "1",
+    "probe": 91,
+    "cond": "static1"
+   },
+   {
+    "rep": 0,
+    "d": "1",
+    "probe": 91,
+    "cond": "driven0"
+   },
+   {
+    "rep": 0,
+    "d": "2",
+    "probe": 112,
+    "cond": "idle0"
+   },
+   {
+    "rep": 0,
+    "d": "2",
+    "probe": 112,
+    "cond": "static1"
+   },
+   {
+    "rep": 0,
+    "d": "2",
+    "probe": 112,
+    "cond": "driven0"
+   },
+   {
+    "rep": 0,
+    "d": "3",
+    "probe": 109,
+    "cond": "idle0"
+   },
+   {
+    "rep": 0,
+    "d": "3",
+    "probe": 109,
+    "cond": "static1"
+   },
+   {
+    "rep": 0,
+    "d": "3",
+    "probe": 109,
+    "cond": "driven0"
+   },
+   {
+    "rep": 0,
+    "d": "far",
+    "probe": 6,
+    "cond": "idle0"
+   },
+   {
+    "rep": 0,
+    "d": "far",
+    "probe": 6,
+    "cond": "static1"
+   },
+   {
+    "rep": 0,
+    "d": "far",
+    "probe": 6,
+    "cond": "driven0"
+   },
+   {
+    "rep": 1,
+    "d": "1",
+    "probe": 91,
+    "cond": "idle0"
+   },
+   {
+    "rep": 1,
+    "d": "1",
+    "probe": 91,
+    "cond": "static1"
+   },
+   {
+    "rep": 1,
+    "d": "1",
+    "probe": 91,
+    "cond": "driven0"
+   },
+   {
+    "rep": 1,
+    "d": "2",
+    "probe": 112,
+    "cond": "idle0"
+   },
+   {
+    "rep": 1,
+    "d": "2",
+    "probe": 112,
+    "cond": "static1"
+   },
+   {
+    "rep": 1,
+    "d": "2",
+    "probe": 112,
+    "cond": "driven0"
+   },
+   {
+    "rep": 1,
+    "d": "3",
+    "probe": 109,
+    "cond": "idle0"
+   },
+   {
+    "rep": 1,
+    "d": "3",
+    "probe": 109,
+    "cond": "static1"
+   },
+   {
+    "rep": 1,
+    "d": "3",
+    "probe": 109,
+    "cond": "driven0"
+   },
+   {
+    "rep": 1,
+    "d": "far",
+    "probe": 6,
+    "cond": "idle0"
+   },
+   {
+    "rep": 1,
+    "d": "far",
+    "probe": 6,
+    "cond": "static1"
+   },
+   {
+    "rep": 1,
+    "d": "far",
+    "probe": 6,
+    "cond": "driven0"
+   }
+  ],
+  "coupling_local": {
+   "98": [
+    91,
+    111
+   ],
+   "91": [
+    90,
+    92,
+    98
+   ],
+   "112": [
+    111,
+    113
+   ],
+   "109": [
+    108,
+    110,
+    118
+   ],
+   "6": [
+    5,
+    7
+   ]
+  },
+  "Me": 1110,
+  "kind": "control"
+ },
+ "results": [
+  {
+   "d": "1",
+   "probe": 91,
+   "P1_idle": 0.886,
+   "P1_static1": 0.506,
+   "P1_driven0": 0.8803,
+   "static_dP": 0.38,
+   "static_z": 82.11,
+   "drive_dP": 0.0057,
+   "drive_z": 1.62
+  },
+  {
+   "d": "2",
+   "probe": 112,
+   "P1_idle": 0.2539,
+   "P1_static1": 0.2601,
+   "P1_driven0": 0.2558,
+   "static_dP": 0.0062,
+   "static_z": 1.29,
+   "drive_dP": 0.0019,
+   "drive_z": 0.39
+  },
+  {
+   "d": "3",
+   "probe": 109,
+   "P1_idle": 0.3098,
+   "P1_static1": 0.306,
+   "P1_driven0": 0.3071,
+   "static_dP": 0.0038,
+   "static_z": 0.74,
+   "drive_dP": 0.0026,
+   "drive_z": 0.51
+  },
+  {
+   "d": "far",
+   "probe": 6,
+   "P1_idle": 0.8546,
+   "P1_static1": 0.8519,
+   "P1_driven0": 0.857,
+   "static_dP": 0.0027,
+   "static_z": 0.69,
+   "drive_dP": 0.0024,
+   "drive_z": 0.61
+  }
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "WIN_s": 4e-05,
+ "shots": 8192,
+ "reps": 2,
+ "devices": {
+  "ibm_marrakesh": {
+   "pairs": [
+    {
+     "victim": 98,
+     "d1": 91,
+     "d2": 112,
+     "rerr_v": 0.0017,
+     "rerr_d1": 0.0046,
+     "rerr_d2": 0.0078
+    },
+    {
+     "victim": 6,
+     "d1": 7,
+     "d2": 8,
+     "rerr_v": 0.002,
+     "rerr_d1": 0.0073,
+     "rerr_d2": 0.0044
+    },
+    {
+     "victim": 141,
+     "d1": 140,
+     "d2": 143,
+     "rerr_v": 0.0029,
+     "rerr_d1": 0.0134,
+     "rerr_d2": 0.0071
+    },
+    {
+     "victim": 146,
+     "d1": 147,
+     "d2": 148,
+     "rerr_v": 0.0029,
+     "rerr_d1": 0.0029,
+     "rerr_d2": 0.0081
+    },
+    {
+     "victim": 10,
+     "d1": 11,
+     "d2": 12,
+     "rerr_v": 0.0034,
+     "rerr_d1": 0.0083,
+     "rerr_d2": 0.0034
+    }
+   ],
+   "ncirc": 40,
+   "processor": "{'family': 'Heron', 'revision': '2'}"
+  },
+  "ibm_fez": {
+   "pairs": [
+    {
+     "victim": 50,
+     "d1": 51,
+     "d2": 58,
+     "rerr_v": 0.0028,
+     "rerr_d1": 0.0211,
+     "rerr_d2": 0.0056
+    },
+    {
+     "victim": 23,
+     "d1": 22,
+     "d2": 25,
+     "rerr_v": 0.0031,
+     "rerr_d1": 0.0042,
+     "rerr_d2": 0.0056
+    },
+    {
+     "victim": 114,
+     "d1": 115,
+     "d2": 112,
+     "rerr_v": 0.0032,
+     "rerr_d1": 0.0056,
+     "rerr_d2": 0.0073
+    }
+   ],
+   "ncirc": 24,
+   "processor": "{'family': 'Heron', 'revision': '2'}"
+  }
+ }
+}

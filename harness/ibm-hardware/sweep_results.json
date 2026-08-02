@@ -1,0 +1,118 @@
+{
+ "agree": 7,
+ "total": 8,
+ "pairs": [
+  {
+   "device": "ibm_marrakesh",
+   "pair": 0,
+   "d1": {
+    "dP": 0.3663,
+    "z": 77.0
+   },
+   "d2": {
+    "dP": 0.0014,
+    "z": 0.3
+   },
+   "prediction_holds": true,
+   "note": "OK"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "pair": 1,
+   "d1": {
+    "dP": 0.2408,
+    "z": 46.9
+   },
+   "d2": {
+    "dP": 0.0034,
+    "z": 0.6
+   },
+   "prediction_holds": true,
+   "note": "OK"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "pair": 2,
+   "d1": {
+    "dP": 0.0508,
+    "z": 9.5
+   },
+   "d2": {
+    "dP": 0.0041,
+    "z": 0.8
+   },
+   "prediction_holds": true,
+   "note": "OK"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "pair": 3,
+   "d1": {
+    "dP": 0.2995,
+    "z": 59.5
+   },
+   "d2": {
+    "dP": 0.0012,
+    "z": 0.2
+   },
+   "prediction_holds": true,
+   "note": "OK"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "pair": 4,
+   "d1": {
+    "dP": 0.2653,
+    "z": 57.1
+   },
+   "d2": {
+    "dP": 0.0049,
+    "z": 1.0
+   },
+   "prediction_holds": true,
+   "note": "OK"
+  },
+  {
+   "device": "ibm_fez",
+   "pair": 0,
+   "d1": {
+    "dP": 0.0002,
+    "z": 0.0
+   },
+   "d2": {
+    "dP": 0.0067,
+    "z": 1.8
+   },
+   "prediction_holds": false,
+   "note": "d1 no-leak (certifier still REJECTs=safe-conservative)"
+  },
+  {
+   "device": "ibm_fez",
+   "pair": 1,
+   "d1": {
+    "dP": 0.1727,
+    "z": 33.2
+   },
+   "d2": {
+    "dP": 0.0022,
+    "z": 0.4
+   },
+   "prediction_holds": true,
+   "note": "OK"
+  },
+  {
+   "device": "ibm_fez",
+   "pair": 2,
+   "d1": {
+    "dP": 0.197,
+    "z": 41.7
+   },
+   "d2": {
+    "dP": 0.0021,
+    "z": 0.4
+   },
+   "prediction_holds": true,
+   "note": "OK"
+  }
+ ]
+}

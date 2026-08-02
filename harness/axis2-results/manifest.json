@@ -1,0 +1,425 @@
+[
+ {
+  "name": "adder_n10",
+  "nq": 10,
+  "B": {
+   "cov_recog": 424,
+   "cov_total": 424
+  }
+ },
+ {
+  "name": "adder_n4",
+  "nq": 4,
+  "B": {
+   "cov_recog": 77,
+   "cov_total": 77
+  },
+  "A": {
+   "cov_recog": 77,
+   "cov_total": 77
+  }
+ },
+ {
+  "name": "basis_change_n3",
+  "nq": 3,
+  "B": {
+   "cov_recog": 93,
+   "cov_total": 93
+  },
+  "A": {
+   "cov_recog": 93,
+   "cov_total": 93
+  }
+ },
+ {
+  "name": "basis_trotter_n4",
+  "nq": 4,
+  "B": {
+   "cov_recog": 1391,
+   "cov_total": 1391
+  },
+  "A": {
+   "cov_recog": 1391,
+   "cov_total": 1391
+  }
+ },
+ {
+  "name": "bb84_n8",
+  "nq": 8,
+  "B": {
+   "cov_recog": 13,
+   "cov_total": 13
+  }
+ },
+ {
+  "name": "bell_n4",
+  "nq": 4,
+  "B": {
+   "cov_recog": 43,
+   "cov_total": 43
+  },
+  "A": {
+   "cov_recog": 43,
+   "cov_total": 43
+  }
+ },
+ {
+  "name": "cat_state_n4",
+  "nq": 4,
+  "B": {
+   "cov_recog": 21,
+   "cov_total": 21
+  },
+  "A": {
+   "cov_recog": 21,
+   "cov_total": 21
+  }
+ },
+ {
+  "name": "deutsch_n2",
+  "nq": 2,
+  "B": {
+   "cov_recog": 10,
+   "cov_total": 10
+  },
+  "A": {
+   "cov_recog": 8,
+   "cov_total": 8
+  }
+ },
+ {
+  "name": "dnn_n2",
+  "nq": 2,
+  "B": {
+   "cov_recog": 32,
+   "cov_total": 32
+  },
+  "A": {
+   "cov_recog": 32,
+   "cov_total": 32
+  }
+ },
+ {
+  "name": "dnn_n8",
+  "nq": 8,
+  "B": {
+   "cov_recog": 701,
+   "cov_total": 701
+  }
+ },
+ {
+  "name": "error_correctiond3_n5",
+  "nq": 5,
+  "B": {
+   "cov_recog": 210,
+   "cov_total": 210
+  },
+  "A": {
+   "cov_recog": 211,
+   "cov_total": 211
+  }
+ },
+ {
+  "name": "fredkin_n3",
+  "nq": 3,
+  "B": {
+   "cov_recog": 62,
+   "cov_total": 62
+  },
+  "A": {
+   "cov_recog": 62,
+   "cov_total": 62
+  }
+ },
+ {
+  "name": "grover_n2",
+  "nq": 2,
+  "B": {
+   "cov_recog": 12,
+   "cov_total": 12
+  },
+  "A": {
+   "cov_recog": 13,
+   "cov_total": 13
+  }
+ },
+ {
+  "name": "hhl_n10",
+  "error": "QASM2ParseError: \"hhl_n10.qasm:186801,8: 'q' is not defined in this scope\""
+ },
+ {
+  "name": "hhl_n7",
+  "nq": 7,
+  "B": {
+   "cov_recog": 995,
+   "cov_total": 995
+  }
+ },
+ {
+  "name": "hs4_n4",
+  "nq": 4,
+  "B": {
+   "cov_recog": 26,
+   "cov_total": 26
+  },
+  "A": {
+   "cov_recog": 26,
+   "cov_total": 26
+  }
+ },
+ {
+  "name": "inverseqft_n4",
+  "nq": 4,
+  "error": "KeyError: <Qubit register=(4, \"q\"), index=1>"
+ },
+ {
+  "name": "ipea_n2",
+  "nq": 2,
+  "error": "KeyError: <Qubit register=(2, \"q\"), index=0>"
+ },
+ {
+  "name": "ising_n10",
+  "nq": 10,
+  "B": {
+   "cov_recog": 583,
+   "cov_total": 583
+  }
+ },
+ {
+  "name": "iswap_n2",
+  "nq": 2,
+  "B": {
+   "cov_recog": 13,
+   "cov_total": 13
+  },
+  "A": {
+   "cov_recog": 13,
+   "cov_total": 13
+  }
+ },
+ {
+  "name": "linearsolver_n3",
+  "nq": 3,
+  "B": {
+   "cov_recog": 27,
+   "cov_total": 27
+  },
+  "A": {
+   "cov_recog": 27,
+   "cov_total": 27
+  }
+ },
+ {
+  "name": "lpn_n5",
+  "nq": 5,
+  "B": {
+   "cov_recog": 15,
+   "cov_total": 15
+  },
+  "A": {
+   "cov_recog": 15,
+   "cov_total": 15
+  }
+ },
+ {
+  "name": "pea_n5",
+  "nq": 5,
+  "B": {
+   "cov_recog": 137,
+   "cov_total": 137
+  },
+  "A": {
+   "cov_recog": 137,
+   "cov_total": 137
+  }
+ },
+ {
+  "name": "qaoa_n3",
+  "nq": 3,
+  "B": {
+   "cov_recog": 50,
+   "cov_total": 50
+  },
+  "A": {
+   "cov_recog": 50,
+   "cov_total": 50
+  }
+ },
+ {
+  "name": "qaoa_n6",
+  "nq": 6,
+  "B": {
+   "cov_recog": 405,
+   "cov_total": 405
+  },
+  "A": {
+   "cov_recog": 396,
+   "cov_total": 396
+  }
+ },
+ {
+  "name": "qec_en_n5",
+  "nq": 5,
+  "B": {
+   "cov_recog": 96,
+   "cov_total": 96
+  },
+  "A": {
+   "cov_recog": 95,
+   "cov_total": 95
+  }
+ },
+ {
+  "name": "qec_sm_n5",
+  "nq": 5,
+  "error": "KeyError: <Qubit register=(3, \"q\"), index=0>"
+ },
+ {
+  "name": "qft_n4",
+  "nq": 4,
+  "B": {
+   "cov_recog": 90,
+   "cov_total": 90
+  },
+  "A": {
+   "cov_recog": 93,
+   "cov_total": 93
+  }
+ },
+ {
+  "name": "qpe_n9",
+  "nq": 9,
+  "B": {
+   "cov_recog": 412,
+   "cov_total": 412
+  }
+ },
+ {
+  "name": "qrng_n4",
+  "nq": 4,
+  "B": {
+   "cov_recog": 12,
+   "cov_total": 12
+  },
+  "A": {
+   "cov_recog": 12,
+   "cov_total": 12
+  }
+ },
+ {
+  "name": "quantumwalks_n2",
+  "nq": 2,
+  "B": {
+   "cov_recog": 33,
+   "cov_total": 33
+  },
+  "A": {
+   "cov_recog": 33,
+   "cov_total": 33
+  }
+ },
+ {
+  "name": "sat_n7",
+  "nq": 7,
+  "B": {
+   "cov_recog": 532,
+   "cov_total": 532
+  }
+ },
+ {
+  "name": "shor_n5",
+  "nq": 5,
+  "B": {
+   "cov_recog": 200,
+   "cov_total": 204
+  },
+  "A": {
+   "cov_recog": 201,
+   "cov_total": 205
+  }
+ },
+ {
+  "name": "simon_n6",
+  "nq": 6,
+  "B": {
+   "cov_recog": 116,
+   "cov_total": 116
+  },
+  "A": {
+   "cov_recog": 110,
+   "cov_total": 110
+  }
+ },
+ {
+  "name": "teleportation_n3",
+  "nq": 3,
+  "B": {
+   "cov_recog": 18,
+   "cov_total": 18
+  },
+  "A": {
+   "cov_recog": 18,
+   "cov_total": 18
+  }
+ },
+ {
+  "name": "toffoli_n3",
+  "nq": 3,
+  "B": {
+   "cov_recog": 39,
+   "cov_total": 39
+  },
+  "A": {
+   "cov_recog": 34,
+   "cov_total": 34
+  }
+ },
+ {
+  "name": "variational_n4",
+  "nq": 4,
+  "B": {
+   "cov_recog": 76,
+   "cov_total": 76
+  },
+  "A": {
+   "cov_recog": 76,
+   "cov_total": 76
+  }
+ },
+ {
+  "name": "vqe_n4",
+  "nq": 4,
+  "B": {
+   "cov_recog": 88,
+   "cov_total": 88
+  },
+  "A": {
+   "cov_recog": 88,
+   "cov_total": 88
+  }
+ },
+ {
+  "name": "vqe_uccsd_n4",
+  "error": "QASM2ParseError: \"vqe_uccsd_n4.qasm:225,8: 'q' is not defined in this scope\""
+ },
+ {
+  "name": "vqe_uccsd_n6",
+  "error": "QASM2ParseError: \"vqe_uccsd_n6.qasm:2286,8: 'q' is not defined in this scope\""
+ },
+ {
+  "name": "vqe_uccsd_n8",
+  "error": "QASM2ParseError: \"vqe_uccsd_n8.qasm:10813,8: 'q' is not defined in this scope\""
+ },
+ {
+  "name": "wstate_n3",
+  "nq": 3,
+  "B": {
+   "cov_recog": 52,
+   "cov_total": 52
+  },
+  "A": {
+   "cov_recog": 53,
+   "cov_total": 53
+  }
+ }
+]

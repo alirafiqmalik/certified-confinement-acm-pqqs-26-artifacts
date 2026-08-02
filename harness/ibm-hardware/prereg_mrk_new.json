@@ -1,0 +1,49 @@
+{
+ "backend": "ibm_marrakesh",
+ "WIN_s": 4e-05,
+ "shots": 8192,
+ "reps": 2,
+ "pairs": [
+  {
+   "victim": 5,
+   "d1": 4,
+   "d2": 3,
+   "rerr_v": 0.0028,
+   "rerr_d1": 0.0061,
+   "rerr_d2": 0.0062
+  },
+  {
+   "victim": 14,
+   "d1": 13,
+   "d2": 19,
+   "rerr_v": 0.0028,
+   "rerr_d1": 0.0105,
+   "rerr_d2": 0.0039
+  },
+  {
+   "victim": 75,
+   "d1": 59,
+   "d2": 55,
+   "rerr_v": 0.0029,
+   "rerr_d1": 0.014,
+   "rerr_d2": 0.0098
+  },
+  {
+   "victim": 34,
+   "d1": 35,
+   "d2": 32,
+   "rerr_v": 0.0037,
+   "rerr_d1": 0.0054,
+   "rerr_d2": 0.009
+  },
+  {
+   "victim": 21,
+   "d1": 20,
+   "d2": 41,
+   "rerr_v": 0.0038,
+   "rerr_d1": 0.0067,
+   "rerr_d2": 0.0132
+  }
+ ],
+ "selection": "calibration-only, outcome-independent"
+}

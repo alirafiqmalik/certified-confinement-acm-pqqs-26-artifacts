@@ -1,0 +1,41 @@
+[
+ {
+  "circuit": "adder_n10",
+  "equivalence": "EquivalenceCriterion.not_equivalent",
+  "qcec_s": 0.1092
+ },
+ {
+  "circuit": "adder_n4",
+  "equivalence": "EquivalenceCriterion.not_equivalent",
+  "qcec_s": 0.0757
+ },
+ {
+  "circuit": "basis_change_n3",
+  "equivalence": "EquivalenceCriterion.not_equivalent",
+  "qcec_s": 0.0205
+ },
+ {
+  "circuit": "basis_trotter_n4",
+  "equivalence": "EquivalenceCriterion.not_equivalent",
+  "qcec_s": 0.0546
+ },
+ {
+  "circuit": "bb84_n8",
+  "error": "One of the circuits contains mid-circuit non-unitary primitives. To ve"
+ },
+ {
+  "circuit": "bell_n4",
+  "equivalence": "EquivalenceCriterion.not_equivalent",
+  "qcec_s": 0.0164
+ },
+ {
+  "circuit": "cat_state_n4",
+  "equivalence": "EquivalenceCriterion.not_equivalent",
+  "qcec_s": 0.0118
+ },
+ {
+  "circuit": "deutsch_n2",
+  "equivalence": "EquivalenceCriterion.equivalent_up_to_global_phase",
+  "qcec_s": 0.0181
+ }
+]

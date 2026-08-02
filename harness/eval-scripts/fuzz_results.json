@@ -1,0 +1,21 @@
+{
+ "old": {
+  "n": 1120,
+  "false_accepts": 269,
+  "caught": 851,
+  "examples_fa": [
+   "adder_n4_cond_0.qasm",
+   "adder_n4_cond_12.qasm",
+   "adder_n4_cond_18.qasm",
+   "adder_n4_cond_22.qasm",
+   "adder_n4_cond_35.qasm"
+  ]
+ },
+ "new": {
+  "n": 1120,
+  "false_accepts": 0,
+  "caught": 1120,
+  "examples_fa": []
+ },
+ "total_mutants": 1120
+}

@@ -1,0 +1,1528 @@
+{
+ "prior_hz": [
+  100.0,
+  5000.0
+ ],
+ "tau_s": 4e-05,
+ "shots_total": 16384,
+ "leak_z": 5.0,
+ "predictions": {
+  "98": [
+   {
+    "probe": 91,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 111,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 90,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 92,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 110,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 112,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 89,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 93,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 109,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 113,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 78,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 79,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 88,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 94,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 108,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 114,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 118,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 119,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   }
+  ],
+  "6": [
+   {
+    "probe": 5,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 7,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 4,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 8,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 17,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 3,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 9,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 27,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 2,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 10,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 16,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 26,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 28,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   }
+  ],
+  "141": [
+   {
+    "probe": 140,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 142,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 143,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 136,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 144,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 123,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 145,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   }
+  ],
+  "146": [
+   {
+    "probe": 145,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 147,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 137,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 144,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 148,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 127,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 143,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 149,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 126,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 128,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 136,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 142,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 150,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   }
+  ],
+  "5": [
+   {
+    "probe": 4,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 6,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 3,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 7,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 2,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 8,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 16,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 17,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 1,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 9,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 23,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 27,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   }
+  ],
+  "14": [
+   {
+    "probe": 13,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 15,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 12,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 19,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 11,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 35,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 10,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 18,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 34,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   }
+  ],
+  "75": [
+   {
+    "probe": 59,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 74,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 55,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 73,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 54,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 72,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 79,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 53,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 71,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 93,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   }
+  ],
+  "34": [
+   {
+    "probe": 33,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 35,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 19,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 32,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 39,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 15,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 31,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 53,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 14,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 18,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 30,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 52,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 54,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   }
+  ],
+  "21": [
+   {
+    "probe": 20,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 22,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 36,
+    "graph_distance": 1,
+    "predicted_leak": true,
+    "predicted_dP_band": [
+     0.02513009544333748,
+     0.9510565162951536
+    ],
+    "predicted_z_band": [
+     4.549033190361366,
+     172.1596190627731
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 23,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 41,
+    "graph_distance": 2,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 16,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 24,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 40,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 42,
+    "graph_distance": 3,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 3,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 25,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   },
+   {
+    "probe": 43,
+    "graph_distance": 4,
+    "predicted_leak": false,
+    "predicted_dP_band": [
+     0.0,
+     0.0
+    ],
+    "predicted_z_band": [
+     0.0,
+     0.0
+    ],
+    "detectable": false
+   }
+  ]
+ },
+ "rule": "leak iff graph_distance == 1 (documented NN residual-ZZ mechanism, fixed in Buffer.lean 2026-07-23, before the 2026-07-28 measurement)"
+}

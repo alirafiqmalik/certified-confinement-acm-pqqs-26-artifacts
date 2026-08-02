@@ -1,0 +1,47 @@
+[
+ {
+  "name": "T1 injected leak detected",
+  "passed": true,
+  "detail": "dP=0.3858 z=75.7 (need z>=5.0)"
+ },
+ {
+  "name": "T2 zero coupling -> null",
+  "passed": true,
+  "detail": "dP=0.0123 z=2.2 (need z<5.0)"
+ },
+ {
+  "name": "T3 closure within 0.02 for every pair",
+  "passed": true,
+  "detail": "worst |sim-measured| = 0.0101 across 13 pairs"
+ },
+ {
+  "name": "T4 plain basis blind, Y basis sees it",
+  "passed": true,
+  "detail": "Y: dP=0.3858 z=75.7  |  plain: dP=0.0019 z=0.9"
+ },
+ {
+  "name": "T5 dP follows |sin| across sweep",
+  "passed": true,
+  "detail": "all 5 points within 0.03"
+ },
+ {
+  "name": "T6 aliases all reproduce the same dP",
+  "passed": true,
+  "detail": "zeta in {1624, 26624, 51624} Hz all give dP=0.397 -> tau-sweep required to disambiguate (documented limitation)"
+ },
+ {
+  "name": "T7 fitted zeta within 0.1-100 kHz",
+  "passed": true,
+  "detail": "range 219-1666 Hz (0.22-1.67 kHz) over 13 pairs"
+ },
+ {
+  "name": "T8 kernel-checked certifier verdicts",
+  "passed": true,
+  "detail": "d=1 accepted by support-only, REJECTED by bufferF, distant region still accepted"
+ },
+ {
+  "name": "T9 blind prediction: zero missed leaks",
+  "passed": true,
+  "detail": "n=46 tp=22 tn=23 fp=1 fn=0 (97.8% agreement, safety-critical PASS)"
+ }
+]

@@ -1,0 +1,426 @@
+{
+ "n": 46,
+ "tp": 22,
+ "tn": 23,
+ "fp": 1,
+ "fn": 0,
+ "accuracy": 0.9782608695652174,
+ "safety_critical_pass": true,
+ "rule": "leak iff graph_distance == 1 (documented NN residual-ZZ mechanism, fixed in Buffer.lean 2026-07-23, before the 2026-07-28 measurement)",
+ "observations": [
+  {
+   "device": "ibm_marrakesh",
+   "victim": 98,
+   "probe": 91,
+   "dist": 1,
+   "z": 77.0,
+   "leaked": true,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 98,
+   "probe": 112,
+   "dist": 2,
+   "z": 0.3,
+   "leaked": false,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 6,
+   "probe": 7,
+   "dist": 1,
+   "z": 46.9,
+   "leaked": true,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 6,
+   "probe": 8,
+   "dist": 2,
+   "z": 0.6,
+   "leaked": false,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 141,
+   "probe": 140,
+   "dist": 1,
+   "z": 9.5,
+   "leaked": true,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 141,
+   "probe": 143,
+   "dist": 2,
+   "z": 0.8,
+   "leaked": false,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 146,
+   "probe": 147,
+   "dist": 1,
+   "z": 59.5,
+   "leaked": true,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 146,
+   "probe": 148,
+   "dist": 2,
+   "z": 0.2,
+   "leaked": false,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 10,
+   "probe": 11,
+   "dist": 1,
+   "z": 57.1,
+   "leaked": true,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 10,
+   "probe": 12,
+   "dist": 2,
+   "z": 1.0,
+   "leaked": false,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_fez",
+   "victim": 50,
+   "probe": 51,
+   "dist": 1,
+   "z": 0.0,
+   "leaked": false,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_fez",
+   "victim": 50,
+   "probe": 58,
+   "dist": 2,
+   "z": 1.8,
+   "leaked": false,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_fez",
+   "victim": 23,
+   "probe": 22,
+   "dist": 1,
+   "z": 33.2,
+   "leaked": true,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_fez",
+   "victim": 23,
+   "probe": 25,
+   "dist": 2,
+   "z": 0.4,
+   "leaked": false,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_fez",
+   "victim": 114,
+   "probe": 115,
+   "dist": 1,
+   "z": 41.7,
+   "leaked": true,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_fez",
+   "victim": 114,
+   "probe": 112,
+   "dist": 2,
+   "z": 0.4,
+   "leaked": false,
+   "src": "snap1"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 98,
+   "probe": 91,
+   "dist": 1,
+   "z": 82.3,
+   "leaked": true,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 98,
+   "probe": 112,
+   "dist": 2,
+   "z": 0.5,
+   "leaked": false,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 6,
+   "probe": 7,
+   "dist": 1,
+   "z": 56.0,
+   "leaked": true,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 6,
+   "probe": 8,
+   "dist": 2,
+   "z": 0.2,
+   "leaked": false,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 141,
+   "probe": 140,
+   "dist": 1,
+   "z": 23.8,
+   "leaked": true,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 141,
+   "probe": 143,
+   "dist": 2,
+   "z": 0.4,
+   "leaked": false,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 146,
+   "probe": 147,
+   "dist": 1,
+   "z": 22.7,
+   "leaked": true,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 146,
+   "probe": 148,
+   "dist": 2,
+   "z": 0.7,
+   "leaked": false,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 10,
+   "probe": 11,
+   "dist": 1,
+   "z": 66.5,
+   "leaked": true,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 10,
+   "probe": 12,
+   "dist": 2,
+   "z": 1.8,
+   "leaked": false,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_fez",
+   "victim": 50,
+   "probe": 51,
+   "dist": 1,
+   "z": 22.4,
+   "leaked": true,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_fez",
+   "victim": 50,
+   "probe": 58,
+   "dist": 2,
+   "z": 0.3,
+   "leaked": false,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_fez",
+   "victim": 23,
+   "probe": 22,
+   "dist": 1,
+   "z": 37.8,
+   "leaked": true,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_fez",
+   "victim": 23,
+   "probe": 25,
+   "dist": 2,
+   "z": 0.1,
+   "leaked": false,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_fez",
+   "victim": 114,
+   "probe": 115,
+   "dist": 1,
+   "z": 51.2,
+   "leaked": true,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_fez",
+   "victim": 114,
+   "probe": 112,
+   "dist": 2,
+   "z": 0.2,
+   "leaked": false,
+   "src": "snap2"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 98,
+   "probe": 91,
+   "dist": 1,
+   "z": 55.2,
+   "leaked": true,
+   "src": "snap3"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 98,
+   "probe": 112,
+   "dist": 2,
+   "z": 0.6,
+   "leaked": false,
+   "src": "snap3"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 6,
+   "probe": 7,
+   "dist": 1,
+   "z": 72.6,
+   "leaked": true,
+   "src": "snap3"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 6,
+   "probe": 8,
+   "dist": 2,
+   "z": 0.9,
+   "leaked": false,
+   "src": "snap3"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 5,
+   "probe": 4,
+   "dist": 1,
+   "z": 23.7,
+   "leaked": true,
+   "src": "new"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 5,
+   "probe": 3,
+   "dist": 2,
+   "z": 1.1,
+   "leaked": false,
+   "src": "new"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 14,
+   "probe": 13,
+   "dist": 1,
+   "z": 14.0,
+   "leaked": true,
+   "src": "new"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 14,
+   "probe": 19,
+   "dist": 2,
+   "z": 1.3,
+   "leaked": false,
+   "src": "new"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 75,
+   "probe": 59,
+   "dist": 1,
+   "z": 30.3,
+   "leaked": true,
+   "src": "new"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 75,
+   "probe": 55,
+   "dist": 2,
+   "z": 0.6,
+   "leaked": false,
+   "src": "new"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 34,
+   "probe": 35,
+   "dist": 1,
+   "z": 68.1,
+   "leaked": true,
+   "src": "new"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 34,
+   "probe": 32,
+   "dist": 2,
+   "z": 1.6,
+   "leaked": false,
+   "src": "new"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 21,
+   "probe": 20,
+   "dist": 1,
+   "z": 52.8,
+   "leaked": true,
+   "src": "new"
+  },
+  {
+   "device": "ibm_marrakesh",
+   "victim": 21,
+   "probe": 41,
+   "dist": 2,
+   "z": 0.2,
+   "leaked": false,
+   "src": "new"
+  }
+ ]
+}
