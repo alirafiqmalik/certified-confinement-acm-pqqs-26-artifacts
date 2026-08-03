@@ -1,0 +1,6 @@
+{
+  "name": "local-test-key",
+  "description": "IBM Quantum Platform API key. Create one at https://quantum.ibm.com/ under Account settings. The hardware harness in pipeline/paper-final/artifact/harness/ibm-hardware/ reads this file at run time.",
+  "createdAt": "YYYY-MM-DDTHH:MM:SS.000Z",
+  "apikey": "PASTE_YOUR_IBM_QUANTUM_API_KEY_HERE"
+}
