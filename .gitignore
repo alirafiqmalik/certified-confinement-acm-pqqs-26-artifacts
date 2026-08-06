@@ -4,4 +4,7 @@ build/
 .venv/
 __pycache__/
 *.pyc
-apikey.json
+# Match every credential variant, not just the canonical name: a suffixed key file
+# was previously untracked AND unignored, i.e. one `git add -A` from being published.
+apikey*.json
+!apikey.json.example
