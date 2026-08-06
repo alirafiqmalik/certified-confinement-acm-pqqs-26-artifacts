@@ -46,4 +46,18 @@ for bf in BASE:
         name=f"{os.path.basename(bf)[:-5]}_{typ}_{k}.qasm"
         open(f"{MUT}/{name}","w").write(txt); MUTS.append(dict(name=name,should_reject=gt,reason=reason))
 json.dump(MUTS,open(f"{MUT}/ground_truth.json","w"),indent=1)
+# Corpus diversity. Four operators over 28 bases give 1120 files, but `reloc` and
+# `alias` can rewrite a line to the qubit it already names, and `boundary` appends a
+# fixed line, so mutants collide. Reporting the distinct-content count keeps the
+# headline corpus size from overstating how much of the input space is explored.
+import hashlib
+digests={}
+for m in MUTS:
+    d=hashlib.sha256(open(f"{MUT}/{m['name']}","rb").read()).hexdigest()
+    digests.setdefault(d,[]).append(m["name"])
+distinct=len(digests)
+json.dump({"mutants":len(MUTS),"content_distinct":distinct,
+           "duplicate_groups":sum(1 for v in digests.values() if len(v)>1)},
+          open(f"{MUT}/corpus_diversity.json","w"),indent=1)
 print(f"generated {len(MUTS)} mutants ({sum(m['should_reject'] for m in MUTS)} should-reject by ground truth)")
+print(f"content-distinct: {distinct}/{len(MUTS)}")

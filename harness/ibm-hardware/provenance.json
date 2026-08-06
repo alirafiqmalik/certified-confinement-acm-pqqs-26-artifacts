@@ -1,0 +1,2255 @@
+[
+ {
+  "job_id": "d9ojaefa5u8s73e2rup0",
+  "backend": "ibm_fez",
+  "status": "DONE",
+  "created": "2026-08-03 20:41:29.712813-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 1.239934789
+  },
+  "n_pubs": 2,
+  "shots": 256,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "11": 126,
+     "00": 124,
+     "10": 5,
+     "01": 1
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "00": 136,
+     "11": 110,
+     "10": 7,
+     "01": 3
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9ojacva5u8s73e2rung",
+  "backend": "ibm_fez",
+  "status": "DONE",
+  "created": "2026-08-03 20:41:23.872144-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": null
+  },
+  "n_pubs": 2,
+  "shots": 256,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "01": 5,
+     "00": 123,
+     "11": 119,
+     "10": 9
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "00": 114,
+     "11": 123,
+     "01": 7,
+     "10": 12
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9ojabfa5u8s73e2rul0",
+  "backend": "ibm_fez",
+  "status": "DONE",
+  "created": "2026-08-03 20:41:17.864962-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": null
+  },
+  "n_pubs": 2,
+  "shots": 256,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "00": 114,
+     "11": 131,
+     "10": 8,
+     "01": 3
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "11": 116,
+     "00": 127,
+     "10": 7,
+     "01": 6
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9oja9rvt76s73cq75c0",
+  "backend": "ibm_fez",
+  "status": "DONE",
+  "created": "2026-08-03 20:41:11.931896-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 1.239934789
+  },
+  "n_pubs": 2,
+  "shots": 256,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "11": 106,
+     "00": 133,
+     "10": 6,
+     "01": 11
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "01": 7,
+     "11": 122,
+     "10": 7,
+     "00": 120
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9oja8bvt76s73cq75a0",
+  "backend": "ibm_fez",
+  "status": "DONE",
+  "created": "2026-08-03 20:41:05.851393-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": null
+  },
+  "n_pubs": 2,
+  "shots": 256,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "00": 120,
+     "11": 119,
+     "10": 10,
+     "01": 7
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "11": 119,
+     "00": 122,
+     "10": 8,
+     "01": 7
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9oja6va5u8s73e2rugg",
+  "backend": "ibm_fez",
+  "status": "DONE",
+  "created": "2026-08-03 20:40:59.932988-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 1.239934789
+  },
+  "n_pubs": 2,
+  "shots": 256,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "00": 125,
+     "11": 120,
+     "01": 4,
+     "10": 7
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "11": 114,
+     "00": 135,
+     "01": 5,
+     "10": 2
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9oja5bvt76s73cq756g",
+  "backend": "ibm_fez",
+  "status": "DONE",
+  "created": "2026-08-03 20:40:53.821830-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 1.239934789
+  },
+  "n_pubs": 2,
+  "shots": 256,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "00": 125,
+     "11": 121,
+     "10": 8,
+     "01": 2
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "00": 128,
+     "11": 116,
+     "01": 5,
+     "10": 7
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9oja3toh1qc73bc1u90",
+  "backend": "ibm_fez",
+  "status": "DONE",
+  "created": "2026-08-03 20:40:47.431413-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 1.239934789
+  },
+  "n_pubs": 2,
+  "shots": 256,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "11": 106,
+     "00": 140,
+     "10": 4,
+     "01": 6
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "11": 122,
+     "00": 121,
+     "01": 8,
+     "10": 5
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9oja2doh1qc73bc1u70",
+  "backend": "ibm_fez",
+  "status": "DONE",
+  "created": "2026-08-03 20:40:41.236106-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 1.239934789
+  },
+  "n_pubs": 2,
+  "shots": 256,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "00": 118,
+     "11": 125,
+     "10": 11,
+     "01": 2
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 256,
+    "counts": {
+     "11": 121,
+     "00": 125,
+     "01": 4,
+     "10": 6
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9o3c34sfqic73arlk8g",
+  "backend": "ibm_marrakesh",
+  "status": "CANCELLED",
+  "created": "2026-08-03 02:32:44.691871-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 36.103086875
+  },
+  "n_pubs": 16,
+  "shots": 8192
+ },
+ {
+  "job_id": "d9kuj2ibr2fc73e7toog",
+  "backend": "ibm_marrakesh",
+  "status": "DONE",
+  "created": "2026-07-29 07:52:42.234996-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 106.946086125
+  },
+  "n_pubs": 40,
+  "shots": 8192,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4333,
+     "0": 3859
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 3890,
+     "1": 4302
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3254,
+     "0": 4938
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3257,
+     "0": 4935
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6772,
+     "0": 1420
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 1408,
+     "1": 6784
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6732,
+     "0": 1460
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6745,
+     "0": 1447
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 7183,
+     "1": 1009
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 7179,
+     "1": 1013
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 1447,
+     "0": 6745
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6714,
+     "1": 1478
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5224,
+     "0": 2968
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2944,
+     "1": 5248
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5297,
+     "0": 2895
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2906,
+     "1": 5286
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 3291,
+     "1": 4901
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 3332,
+     "1": 4860
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6170,
+     "0": 2022
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6132,
+     "0": 2060
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4289,
+     "0": 3903
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4190,
+     "0": 4002
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4231,
+     "0": 3961
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 3889,
+     "1": 4303
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7433,
+     "0": 759
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7436,
+     "0": 756
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4952,
+     "0": 3240
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4966,
+     "0": 3226
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4967,
+     "1": 3225
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4967,
+     "1": 3225
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3186,
+     "0": 5006
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5067,
+     "1": 3125
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7037,
+     "0": 1155
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7019,
+     "0": 1173
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5001,
+     "0": 3191
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5002,
+     "0": 3190
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4565,
+     "1": 3627
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3570,
+     "0": 4622
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4588,
+     "1": 3604
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3615,
+     "0": 4577
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9khifrhdfks73cjm760",
+  "backend": "ibm_marrakesh",
+  "status": "DONE",
+  "created": "2026-07-28 17:03:59.197383-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 41.242514122
+  },
+  "n_pubs": 16,
+  "shots": 8192,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6665,
+     "0": 1527
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 1526,
+     "1": 6666
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4451,
+     "0": 3741
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 3781,
+     "1": 4411
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6854,
+     "1": 1338
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6874,
+     "1": 1318
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6837,
+     "1": 1355
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6848,
+     "1": 1344
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6749,
+     "1": 1443
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6776,
+     "1": 1416
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 3851,
+     "1": 4341
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4342,
+     "0": 3850
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3420,
+     "0": 4772
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3383,
+     "0": 4809
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4788,
+     "1": 3404
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4869,
+     "1": 3323
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9khid3jf64c739i79jg",
+  "backend": "ibm_kingston",
+  "status": "CANCELLED",
+  "created": "2026-07-28 17:03:48.524064-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 101.349404399
+  },
+  "n_pubs": 40,
+  "shots": 8192
+ },
+ {
+  "job_id": "d9k5um0ii2cc73efn7l0",
+  "backend": "ibm_fez",
+  "status": "DONE",
+  "created": "2026-07-28 03:50:49.066319-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": null
+  },
+  "n_pubs": 24,
+  "shots": 8192,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2601,
+     "1": 5591
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2500,
+     "1": 5692
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4647,
+     "0": 3545
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4696,
+     "0": 3496
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6886,
+     "0": 1306
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 1283,
+     "1": 6909
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6901,
+     "0": 1291
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6872,
+     "0": 1320
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6690,
+     "0": 1502
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6645,
+     "0": 1547
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5108,
+     "0": 3084
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5229,
+     "0": 2963
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4312,
+     "0": 3880
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 3863,
+     "1": 4329
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4332,
+     "0": 3860
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4296,
+     "0": 3896
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5186,
+     "1": 3006
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5240,
+     "1": 2952
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 3005,
+     "1": 5187
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2965,
+     "1": 5227
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5395,
+     "0": 2797
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5440,
+     "0": 2752
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5395,
+     "0": 2797
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2769,
+     "1": 5423
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9k5uljjf64c739hn19g",
+  "backend": "ibm_marrakesh",
+  "status": "DONE",
+  "created": "2026-07-28 03:50:46.381072-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 106.946086125
+  },
+  "n_pubs": 40,
+  "shots": 8192,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4965,
+     "0": 3227
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5031,
+     "0": 3161
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6534,
+     "1": 1658
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6516,
+     "1": 1676
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3823,
+     "0": 4369
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4322,
+     "1": 3870
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3830,
+     "0": 4362
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3907,
+     "0": 4285
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6876,
+     "1": 1316
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6893,
+     "1": 1299
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3536,
+     "0": 4656
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3496,
+     "0": 4696
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6651,
+     "0": 1541
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 1507,
+     "1": 6685
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6638,
+     "0": 1554
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6710,
+     "0": 1482
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4740,
+     "0": 3452
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4763,
+     "0": 3429
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2429,
+     "1": 5763
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2405,
+     "1": 5787
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4377,
+     "1": 3815
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3776,
+     "0": 4416
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4436,
+     "1": 3756
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4397,
+     "1": 3795
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3449,
+     "0": 4743
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4757,
+     "1": 3435
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 3717,
+     "1": 4475
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 3743,
+     "1": 4449
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3447,
+     "0": 4745
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3415,
+     "0": 4777
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4682,
+     "1": 3510
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3418,
+     "0": 4774
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5906,
+     "0": 2286
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2245,
+     "1": 5947
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5122,
+     "1": 3070
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3163,
+     "0": 5029
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6156,
+     "0": 2036
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2036,
+     "1": 6156
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 1976,
+     "1": 6216
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6235,
+     "0": 1957
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9k2983jf64c739hhu80",
+  "backend": "ibm_fez",
+  "status": "DONE",
+  "created": "2026-07-27 23:40:16.362960-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 46.873454214
+  },
+  "n_pubs": 24,
+  "shots": 8192,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 3043,
+     "1": 5149
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5094,
+     "0": 3098
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5112,
+     "0": 3080
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5134,
+     "0": 3058
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7069,
+     "0": 1123
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 1079,
+     "1": 7113
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 1097,
+     "1": 7095
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6977,
+     "0": 1215
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5981,
+     "1": 2211
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5987,
+     "1": 2205
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3618,
+     "0": 4574
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3628,
+     "0": 4564
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2926,
+     "1": 5266
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5279,
+     "0": 2913
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2931,
+     "1": 5261
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2872,
+     "1": 5320
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6867,
+     "1": 1325
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6858,
+     "1": 1334
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 2957,
+     "0": 5235
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5262,
+     "1": 2930
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5797,
+     "0": 2395
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 2441,
+     "1": 5751
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5743,
+     "0": 2449
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5770,
+     "0": 2422
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9k297jjf64c739hhu70",
+  "backend": "ibm_marrakesh",
+  "status": "DONE",
+  "created": "2026-07-27 23:40:14.881887-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 106.946086125
+  },
+  "n_pubs": 40,
+  "shots": 8192,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7048,
+     "0": 1144
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7042,
+     "0": 1150
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4075,
+     "0": 4117
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4014,
+     "0": 4178
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 2421,
+     "0": 5771
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5754,
+     "1": 2438
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5772,
+     "1": 2420
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5730,
+     "1": 2462
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6217,
+     "1": 1975
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 1948,
+     "0": 6244
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3929,
+     "0": 4263
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3940,
+     "0": 4252
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3391,
+     "0": 4801
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3335,
+     "0": 4857
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4902,
+     "1": 3290
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 3381,
+     "0": 4811
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4921,
+     "0": 3271
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4924,
+     "0": 3268
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5348,
+     "0": 2844
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5329,
+     "0": 2863
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5296,
+     "1": 2896
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5360,
+     "1": 2832
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5303,
+     "1": 2889
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 2906,
+     "0": 5286
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6470,
+     "0": 1722
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 1712,
+     "1": 6480
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4033,
+     "0": 4159
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4010,
+     "0": 4182
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 2660,
+     "0": 5532
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 2693,
+     "0": 5499
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5528,
+     "1": 2664
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5483,
+     "1": 2709
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7106,
+     "0": 1086
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 1070,
+     "1": 7122
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 3256,
+     "1": 4936
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 3246,
+     "1": 4946
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5873,
+     "0": 2319
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5795,
+     "0": 2397
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5768,
+     "0": 2424
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 5819,
+     "0": 2373
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9k1i90ii2cc73efhco0",
+  "backend": "ibm_marrakesh",
+  "status": "DONE",
+  "created": "2026-07-27 22:51:16.721607-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 44.031276574
+  },
+  "n_pubs": 24,
+  "shots": 8192,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7272,
+     "0": 920
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4174,
+     "0": 4018
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7175,
+     "0": 1017
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6099,
+     "1": 2093
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 2137,
+     "0": 6055
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6088,
+     "1": 2104
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5670,
+     "1": 2522
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5668,
+     "1": 2524
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5689,
+     "1": 2503
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 1195,
+     "1": 6997
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6968,
+     "0": 1224
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6999,
+     "0": 1193
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7245,
+     "0": 947
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4075,
+     "1": 4117
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7248,
+     "0": 944
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6125,
+     "1": 2067
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6067,
+     "1": 2125
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6105,
+     "1": 2087
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 2553,
+     "0": 5639
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5703,
+     "1": 2489
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5663,
+     "1": 2529
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7005,
+     "0": 1187
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6990,
+     "0": 1202
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7042,
+     "0": 1150
+    }
+   }
+  ]
+ },
+ {
+  "job_id": "d9k1gu3jf64c739hh0p0",
+  "backend": "ibm_marrakesh",
+  "status": "DONE",
+  "created": "2026-07-27 22:48:24.594001-04:00",
+  "program": "sampler",
+  "tags": [],
+  "usage_s": {
+   "quantum_seconds": 36.103086875
+  },
+  "n_pubs": 16,
+  "shots": 8192,
+  "pubs": [
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7312,
+     "0": 880
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 4042,
+     "0": 4150
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6268,
+     "1": 1924
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 1946,
+     "0": 6246
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 2591,
+     "0": 5601
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5613,
+     "1": 2579
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6876,
+     "0": 1316
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6899,
+     "0": 1293
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 7303,
+     "0": 889
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 4129,
+     "1": 4063
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 6231,
+     "1": 1961
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 1905,
+     "0": 6287
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5593,
+     "1": 2599
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 5605,
+     "1": 2587
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "0": 1351,
+     "1": 6841
+    }
+   },
+   {
+    "creg": "c",
+    "num_shots": 8192,
+    "counts": {
+     "1": 6869,
+     "0": 1323
+    }
+   }
+  ]
+ }
+]

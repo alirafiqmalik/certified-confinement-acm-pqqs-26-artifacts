@@ -1,0 +1,640 @@
+{
+ "sweep": {
+  "rows": [
+   {
+    "device": "ibm_marrakesh",
+    "pair": 0,
+    "job_id": "d9k297jjf64c739hhu70",
+    "victim": 98,
+    "d1_qubit": 91,
+    "d2_qubit": 112,
+    "d1": {
+     "dP": 0.3663,
+     "z": 77.0,
+     "p1_vbit0": 0.85999,
+     "p1_vbit1": 0.49371,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 69
+    },
+    "d2": {
+     "dP": 0.0014,
+     "z": 0.3,
+     "p1_vbit0": 0.29657,
+     "p1_vbit1": 0.29797,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 5300224
+    },
+    "published": {
+     "d1": {
+      "dP": 0.3663,
+      "z": 77.0
+     },
+     "d2": {
+      "dP": 0.0014,
+      "z": 0.3
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_marrakesh",
+    "pair": 1,
+    "job_id": "d9k297jjf64c739hhu70",
+    "victim": 6,
+    "d1_qubit": 7,
+    "d2_qubit": 8,
+    "d1": {
+     "dP": 0.2408,
+     "z": 46.9,
+     "p1_vbit0": 0.23944,
+     "p1_vbit1": 0.48029,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 186
+    },
+    "d2": {
+     "dP": 0.0034,
+     "z": 0.6,
+     "p1_vbit0": 0.41052,
+     "p1_vbit1": 0.40717,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 1072356
+    },
+    "published": {
+     "d1": {
+      "dP": 0.2408,
+      "z": 46.9
+     },
+     "d2": {
+      "dP": 0.0034,
+      "z": 0.6
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_marrakesh",
+    "pair": 2,
+    "job_id": "d9k297jjf64c739hhu70",
+    "victim": 141,
+    "d1_qubit": 140,
+    "d2_qubit": 143,
+    "d1": {
+     "dP": 0.0508,
+     "z": 9.5,
+     "p1_vbit0": 0.60089,
+     "p1_vbit1": 0.65167,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 4526
+    },
+    "d2": {
+     "dP": 0.0041,
+     "z": 0.8,
+     "p1_vbit0": 0.34961,
+     "p1_vbit1": 0.3537,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 681671
+    },
+    "published": {
+     "d1": {
+      "dP": 0.0508,
+      "z": 9.5
+     },
+     "d2": {
+      "dP": 0.0041,
+      "z": 0.8
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_marrakesh",
+    "pair": 3,
+    "job_id": "d9k297jjf64c739hhu70",
+    "victim": 146,
+    "d1_qubit": 147,
+    "d2_qubit": 148,
+    "d1": {
+     "dP": 0.2995,
+     "z": 59.5,
+     "p1_vbit0": 0.79041,
+     "p1_vbit1": 0.49091,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 116
+    },
+    "d2": {
+     "dP": 0.0012,
+     "z": 0.2,
+     "p1_vbit0": 0.32672,
+     "p1_vbit1": 0.32794,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 7388190
+    },
+    "published": {
+     "d1": {
+      "dP": 0.2995,
+      "z": 59.5
+     },
+     "d2": {
+      "dP": 0.0012,
+      "z": 0.2
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_marrakesh",
+    "pair": 4,
+    "job_id": "d9k297jjf64c739hhu70",
+    "victim": 10,
+    "d1_qubit": 11,
+    "d2_qubit": 12,
+    "d1": {
+     "dP": 0.2653,
+     "z": 57.1,
+     "p1_vbit0": 0.86841,
+     "p1_vbit1": 0.60315,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 126
+    },
+    "d2": {
+     "dP": 0.0049,
+     "z": 1.0,
+     "p1_vbit0": 0.71216,
+     "p1_vbit1": 0.70721,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 421464
+    },
+    "published": {
+     "d1": {
+      "dP": 0.2653,
+      "z": 57.1
+     },
+     "d2": {
+      "dP": 0.0049,
+      "z": 1.0
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_fez",
+    "pair": 0,
+    "job_id": "d9k2983jf64c739hhu80",
+    "victim": 50,
+    "d1_qubit": 51,
+    "d2_qubit": 58,
+    "d1": {
+     "dP": 0.0002,
+     "z": 0.0,
+     "p1_vbit0": 0.62518,
+     "p1_vbit1": 0.62537,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 349422808
+    },
+    "d2": {
+     "dP": 0.0067,
+     "z": 1.8,
+     "p1_vbit0": 0.8656,
+     "p1_vbit1": 0.85889,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 131742
+    },
+    "published": {
+     "d1": {
+      "dP": 0.0002,
+      "z": 0.0
+     },
+     "d2": {
+      "dP": 0.0067,
+      "z": 1.8
+     }
+    },
+    "match": true,
+    "leak_d1": false,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_fez",
+    "pair": 1,
+    "job_id": "d9k2983jf64c739hhu80",
+    "victim": 23,
+    "d1_qubit": 22,
+    "d2_qubit": 25,
+    "d1": {
+     "dP": 0.1727,
+     "z": 33.2,
+     "p1_vbit0": 0.26953,
+     "p1_vbit1": 0.44226,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 372
+    },
+    "d2": {
+     "dP": 0.0022,
+     "z": 0.4,
+     "p1_vbit0": 0.64362,
+     "p1_vbit1": 0.64581,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 2372180
+    },
+    "published": {
+     "d1": {
+      "dP": 0.1727,
+      "z": 33.2
+     },
+     "d2": {
+      "dP": 0.0022,
+      "z": 0.4
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_fez",
+    "pair": 2,
+    "job_id": "d9k2983jf64c739hhu80",
+    "victim": 114,
+    "d1_qubit": 115,
+    "d2_qubit": 112,
+    "d1": {
+     "dP": 0.197,
+     "z": 41.7,
+     "p1_vbit0": 0.16229,
+     "p1_vbit1": 0.35931,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 236
+    },
+    "d2": {
+     "dP": 0.0021,
+     "z": 0.4,
+     "p1_vbit0": 0.70483,
+     "p1_vbit1": 0.7027,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 2284203
+    },
+    "published": {
+     "d1": {
+      "dP": 0.197,
+      "z": 41.7
+     },
+     "d2": {
+      "dP": 0.0021,
+      "z": 0.4
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   }
+  ],
+  "matched": 8,
+  "checked": 8,
+  "d1_leaking": 7,
+  "d1_total": 8,
+  "d2_leaking": 0,
+  "d2_total": 8,
+  "shots_1bit_min": 69,
+  "shots_1bit_median": 186,
+  "shots_1bit_max": 4526
+ },
+ "repeat": {
+  "rows": [
+   {
+    "device": "ibm_marrakesh",
+    "pair": 0,
+    "job_id": "d9k5uljjf64c739hn19g",
+    "victim": 98,
+    "d1_qubit": 91,
+    "d2_qubit": 112,
+    "d1": {
+     "dP": 0.4066,
+     "z": 82.3,
+     "p1_vbit0": 0.61011,
+     "p1_vbit1": 0.20349,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 60
+    },
+    "d2": {
+     "dP": 0.0027,
+     "z": 0.5,
+     "p1_vbit0": 0.46954,
+     "p1_vbit1": 0.47223,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 1727295
+    },
+    "published": {
+     "d1": {
+      "dP": 0.4066,
+      "z": 82.3
+     },
+     "d2": {
+      "dP": 0.0027,
+      "z": 0.5
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_marrakesh",
+    "pair": 1,
+    "job_id": "d9k5uljjf64c739hn19g",
+    "victim": 6,
+    "d1_qubit": 7,
+    "d2_qubit": 8,
+    "d1": {
+     "dP": 0.2696,
+     "z": 56.0,
+     "p1_vbit0": 0.15961,
+     "p1_vbit1": 0.4292,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 130
+    },
+    "d2": {
+     "dP": 0.0007,
+     "z": 0.2,
+     "p1_vbit0": 0.81396,
+     "p1_vbit1": 0.8147,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 14092475
+    },
+    "published": {
+     "d1": {
+      "dP": 0.2696,
+      "z": 56.0
+     },
+     "d2": {
+      "dP": 0.0007,
+      "z": 0.2
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_marrakesh",
+    "pair": 2,
+    "job_id": "d9k5uljjf64c739hn19g",
+    "victim": 141,
+    "d1_qubit": 140,
+    "d2_qubit": 143,
+    "d1": {
+     "dP": 0.1249,
+     "z": 23.8,
+     "p1_vbit0": 0.58002,
+     "p1_vbit1": 0.70496,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 723
+    },
+    "d2": {
+     "dP": 0.0024,
+     "z": 0.4,
+     "p1_vbit0": 0.46332,
+     "p1_vbit1": 0.46088,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 2085088
+    },
+    "published": {
+     "d1": {
+      "dP": 0.1249,
+      "z": 23.8
+     },
+     "d2": {
+      "dP": 0.0024,
+      "z": 0.4
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_marrakesh",
+    "pair": 3,
+    "job_id": "d9k5uljjf64c739hn19g",
+    "victim": 146,
+    "d1_qubit": 147,
+    "d2_qubit": 148,
+    "d1": {
+     "dP": 0.1245,
+     "z": 22.7,
+     "p1_vbit0": 0.42017,
+     "p1_vbit1": 0.54468,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 793
+    },
+    "d2": {
+     "dP": 0.004,
+     "z": 0.7,
+     "p1_vbit0": 0.41882,
+     "p1_vbit1": 0.42285,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 750982
+    },
+    "published": {
+     "d1": {
+      "dP": 0.1245,
+      "z": 22.7
+     },
+     "d2": {
+      "dP": 0.004,
+      "z": 0.7
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_marrakesh",
+    "pair": 4,
+    "job_id": "d9k5uljjf64c739hn19g",
+    "victim": 10,
+    "d1_qubit": 11,
+    "d2_qubit": 12,
+    "d1": {
+     "dP": 0.343,
+     "z": 66.5,
+     "p1_vbit0": 0.72345,
+     "p1_vbit1": 0.38043,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 93
+    },
+    "d2": {
+     "dP": 0.0085,
+     "z": 1.8,
+     "p1_vbit0": 0.75146,
+     "p1_vbit1": 0.75995,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 128234
+    },
+    "published": {
+     "d1": {
+      "dP": 0.343,
+      "z": 66.5
+     },
+     "d2": {
+      "dP": 0.0085,
+      "z": 1.8
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_fez",
+    "pair": 0,
+    "job_id": "d9k5um0ii2cc73efn7l0",
+    "victim": 50,
+    "d1_qubit": 51,
+    "d2_qubit": 58,
+    "d1": {
+     "dP": 0.1184,
+     "z": 22.4,
+     "p1_vbit0": 0.68866,
+     "p1_vbit1": 0.57025,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 819
+    },
+    "d2": {
+     "dP": 0.0013,
+     "z": 0.3,
+     "p1_vbit0": 0.84198,
+     "p1_vbit1": 0.84064,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 3702302
+    },
+    "published": {
+     "d1": {
+      "dP": 0.1184,
+      "z": 22.4
+     },
+     "d2": {
+      "dP": 0.0013,
+      "z": 0.3
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_fez",
+    "pair": 1,
+    "job_id": "d9k5um0ii2cc73efn7l0",
+    "victim": 23,
+    "d1_qubit": 22,
+    "d2_qubit": 25,
+    "d1": {
+     "dP": 0.183,
+     "z": 37.8,
+     "p1_vbit0": 0.8139,
+     "p1_vbit1": 0.63092,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 287
+    },
+    "d2": {
+     "dP": 0.0008,
+     "z": 0.1,
+     "p1_vbit0": 0.5274,
+     "p1_vbit1": 0.52661,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 19796750
+    },
+    "published": {
+     "d1": {
+      "dP": 0.183,
+      "z": 37.8
+     },
+     "d2": {
+      "dP": 0.0008,
+      "z": 0.1
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   },
+   {
+    "device": "ibm_fez",
+    "pair": 2,
+    "job_id": "d9k5um0ii2cc73efn7l0",
+    "victim": 114,
+    "d1_qubit": 115,
+    "d2_qubit": 112,
+    "d1": {
+     "dP": 0.272,
+     "z": 51.2,
+     "p1_vbit0": 0.36365,
+     "p1_vbit1": 0.63562,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 156
+    },
+    "d2": {
+     "dP": 0.001,
+     "z": 0.2,
+     "p1_vbit0": 0.66132,
+     "p1_vbit1": 0.66028,
+     "shots_per_arm": 16384,
+     "shots_for_1bit_at_5sigma": 10409723
+    },
+    "published": {
+     "d1": {
+      "dP": 0.272,
+      "z": 51.2
+     },
+     "d2": {
+      "dP": 0.001,
+      "z": 0.2
+     }
+    },
+    "match": true,
+    "leak_d1": true,
+    "leak_d2": false
+   }
+  ],
+  "matched": 8,
+  "checked": 8,
+  "d1_leaking": 8,
+  "d1_total": 8,
+  "d2_leaking": 0,
+  "d2_total": 8,
+  "shots_1bit_min": 60,
+  "shots_1bit_median": 287,
+  "shots_1bit_max": 819
+ },
+ "unreported_arms": [
+  {
+   "job_id": "d9o3c34sfqic73arlk8g",
+   "backend": "ibm_marrakesh",
+   "status": "CANCELLED",
+   "created": "2026-08-03 02:32:44.691871-04:00",
+   "n_pubs": 16,
+   "shots": 8192,
+   "note": "submitted but returned no data; excluded from all reported results"
+  },
+  {
+   "job_id": "d9khid3jf64c739i79jg",
+   "backend": "ibm_kingston",
+   "status": "CANCELLED",
+   "created": "2026-07-28 17:03:48.524064-04:00",
+   "n_pubs": 40,
+   "shots": 8192,
+   "note": "submitted but returned no data; excluded from all reported results"
+  }
+ ]
+}
