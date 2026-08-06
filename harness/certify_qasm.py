@@ -24,7 +24,12 @@ import argparse, glob, os, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 # The project root is one level above harness/ (the Artifact directory).
 ROOT = os.path.abspath(os.path.join(HERE, ".."))
-LEAN_ENTRY = os.path.relpath(os.path.join(HERE, "CertifyQASM.lean"), ROOT)
+# Use the SOUND lexer. `CertifyQASM.lean` drives `parseQASM`, which silently skips
+# unrecognized tokens and therefore accepts circuits whose support it never saw
+# (e.g. a classically-conditioned `if(c==1) cz q[5],q[6];` on forbidden qubits).
+# `CertifyQASMSafe.lean` drives `parseQASMSafe`, which rejects any unrecognized
+# support-bearing statement outright (REJECT-PARSE).
+LEAN_ENTRY = os.path.relpath(os.path.join(HERE, "CertifyQASMSafe.lean"), ROOT)
 LEAN = os.path.expanduser("~/.elan/bin/lean")
 LAKE = os.path.expanduser("~/.elan/bin/lake")
 
