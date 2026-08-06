@@ -1,0 +1,118 @@
+{
+ "k0": {
+  "allowed": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "n_allowed": 6,
+  "circuits_fitting": 31,
+  "circuits_too_large": 7,
+  "summary": {
+   "opt0": {
+    "n": 31,
+    "accept": 29,
+    "reject": 0,
+    "reject_parse": 2
+   },
+   "opt1": {
+    "n": 31,
+    "accept": 29,
+    "reject": 0,
+    "reject_parse": 2
+   },
+   "opt2": {
+    "n": 31,
+    "accept": 29,
+    "reject": 0,
+    "reject_parse": 2
+   },
+   "opt3": {
+    "n": 31,
+    "accept": 29,
+    "reject": 0,
+    "reject_parse": 2
+   }
+  }
+ },
+ "k1": {
+  "allowed": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "n_allowed": 4,
+  "circuits_fitting": 23,
+  "circuits_too_large": 15,
+  "summary": {
+   "opt0": {
+    "n": 23,
+    "accept": 23,
+    "reject": 0,
+    "reject_parse": 0
+   },
+   "opt1": {
+    "n": 23,
+    "accept": 23,
+    "reject": 0,
+    "reject_parse": 0
+   },
+   "opt2": {
+    "n": 23,
+    "accept": 23,
+    "reject": 0,
+    "reject_parse": 0
+   },
+   "opt3": {
+    "n": 23,
+    "accept": 23,
+    "reject": 0,
+    "reject_parse": 0
+   }
+  }
+ },
+ "k2": {
+  "allowed": [
+   2,
+   3
+  ],
+  "n_allowed": 2,
+  "circuits_fitting": 6,
+  "circuits_too_large": 32,
+  "summary": {
+   "opt0": {
+    "n": 6,
+    "accept": 6,
+    "reject": 0,
+    "reject_parse": 0
+   },
+   "opt1": {
+    "n": 6,
+    "accept": 6,
+    "reject": 0,
+    "reject_parse": 0
+   },
+   "opt2": {
+    "n": 6,
+    "accept": 6,
+    "reject": 0,
+    "reject_parse": 0
+   },
+   "opt3": {
+    "n": 6,
+    "accept": 6,
+    "reject": 0,
+    "reject_parse": 0
+   }
+  }
+ },
+ "k3": {
+  "allowed": [],
+  "n_allowed": 0,
+  "note": "ring fully sterilised; no allocation possible"
+ }
+}
