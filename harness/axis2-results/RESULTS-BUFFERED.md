@@ -99,15 +99,26 @@ the paper should say so rather than presenting k as freely tunable.
 `harness/TimingBuffered.lean` -> `timing_buffered.csv`. Device `dev_marrakesh`
 (n = 156, 176 edges), F = {16, 22, 23}. Accept path (must scan every gate).
 
-Wall-clock, g = 10000 gates:
+Wall-clock, g = 10000 gates (values below are from the shipped
+`timing_buffered.csv`; wall-clock at the millisecond level is noisy, so the
+memoised/plain ratio wanders across runs — see the note after the table):
 
 | region | wall | vs plain |
 |---|---:|---:|
-| plain `F_marrakesh` | 5.78 ms | 1.0x |
-| `bufferK … 1` (unmemoised) | 928 ms | **161x** |
-| `bufferMemo … (bufferArrK … 1)` | 6.89 ms | **1.19x** |
-| `bufferK … 2` (unmemoised) | 137.6 **s** | **23,800x** |
-| `bufferMemo … (bufferArrK … 2)` | 14.1 ms | **2.44x** |
+| plain `F_marrakesh` | 5.88 ms | 1.0x |
+| `bufferK … 1` (unmemoised) | 858 ms | **146x** |
+| `bufferMemo … (bufferArrK … 1)` | 5.67 ms | **~1x** |
+| `bufferK … 2` (unmemoised) | 142.2 **s** | **24,180x** |
+| `bufferMemo … (bufferArrK … 2)` | 5.71 ms | **~1x** |
+
+**On the memoised ratio.** Across four runs the plain check measured
+5.8–11.4 ms, `bufferArrK1` 5.7–9.4 ms, and `bufferArrK2` 5.7–12.9 ms at
+g = 10000 — fully overlapping. The memoised buffered check is therefore the
+**same cost as the plain check within measurement noise** (observed ratios
+0.96x–2.4x); do not report a fixed small-constant overhead, because there
+isn't one. What is robust and reproducible: the *naive* buffer is ~150x at
+k = 1 and ~24,000x at k = 2, the memoised buffer is one plain check, and the
+memoised cost is flat in k.
 
 Memoised, at g = 1000, the buffer depth is essentially free:
 

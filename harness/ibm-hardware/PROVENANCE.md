@@ -39,7 +39,11 @@ marked.
 | 2026-08-03 02:32 | marrakesh | `d9o3c34sfqic73arlk8g` | 16 | 8192 | **CANCELLED** | no data |
 | 2026-08-03 20:40–20:41 | fez | 9 jobs | 2 each | **256** | DONE | separate low-shot runs, not part of the pre-registered campaign |
 
-Total shots across DONE jobs: 1,507,328.
+Total shots across the pre-registered 8192-shot campaign jobs: 1,835,008
+(1,839,616 including the nine 256-shot fez runs, which are separate low-shot
+experiments and not part of the pre-registered campaign). An earlier figure of
+1,507,328 here was wrong: it dropped the 40-pub `mrk_new` job that the campaign
+does report.
 
 ## Reconciliation result
 
