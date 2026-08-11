@@ -1,4 +1,4 @@
-# Certified Confinement — artifact
+# Certified Confinement: artifact
 
 A tenant-side **validator** for untrusted quantum-cloud transpiler output, with a
 kernel-checked soundness proof in Lean 4.
