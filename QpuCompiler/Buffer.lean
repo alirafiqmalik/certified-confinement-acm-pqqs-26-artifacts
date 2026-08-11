@@ -5,19 +5,20 @@ QpuCompiler/Buffer.lean — neighbour-buffered confinement (the adjacency gap).
 
 `confinedb A c` (Confine.lean) is a pure *gate-support* predicate. It rejects `c`
 only when some gate of `c` acts on a qubit outside `A`. So certifying against the
-complement of a forbidden region `F` catches exactly one thing: the
+complement of a forbidden region `F` catches exactly one thing. It catches the
 transpiler *routing a gate onto* a co-tenant qubit (the `.cz 0 3` money example).
 
-It is **blind to adjacency**. A victim circuit whose support is entirely disjoint
-from `F`, but which sits on a coupling *edge* next to `F`, is ACCEPTED — even
-though that adjacency is exactly the physical precondition for the documented
-nearest-neighbour crosstalk side channel on superconducting hardware.
+It is **blind to adjacency**. Consider a victim circuit whose support is entirely
+disjoint from `F`, but which sits on a coupling *edge* next to `F`. The checker
+ACCEPTS it anyway — even though that adjacency is exactly the physical
+precondition for the documented nearest-neighbour crosstalk side channel on
+superconducting hardware.
 
 ## The fix
 
 `bufferF g F` is `F` together with its 1-hop neighbourhood in the coupling graph
 `g`. Certifying with `certifySecurity g (bufferF g F)` rejects any circuit that
-so much as touches a qubit *adjacent* to the co-tenant region, and this closes the gap.
+touches a qubit *adjacent* to the co-tenant region. This closes the gap.
 `bufferK g F k` iterates this to a `k`-hop buffer.
 
 ## Soundness story (important — read before citing)
@@ -32,8 +33,8 @@ existing theorem, not a new assumption:
 
 Hence **no new soundness theorem is required**, and the trusted base is unchanged
 (`certifySecurity_sound` remains `[propext]`). What the buffered instantiation buys
-is a *stronger conclusion* — support avoids `F` **and** every neighbour of `F` —
-for the same one-call, kernel-checked, Θ(#gates) price.
+is a *stronger conclusion*: support avoids `F` **and** every neighbour of `F`. It
+costs the same one-call, kernel-checked, Θ(#gates) price.
 
 NOTE ON SCOPE: this is a *structural* guarantee (no shared qubit, no shared edge).
 It is not a bound on physical crosstalk magnitude. See HARDWARE-DEMO-PLAN.md.
@@ -46,9 +47,9 @@ namespace QpuCompiler
 /-! ## The buffered region -/
 
 /-- `bufferF g F` = the forbidden region `F` together with every qubit adjacent to
-`F` in the coupling graph `g` (a 1-hop buffer). Decidable and computable: the
-neighbour search ranges over `List.range n`, and `g.edge x y = true → y < n`, so
-no neighbour is missed. -/
+`F` in the coupling graph `g` (a 1-hop buffer). Decidable and computable. The
+neighbour search ranges over `List.range n`. Since `g.edge x y = true → y < n`, no
+neighbour is missed. -/
 def bufferF {n : ℕ} (g : Coupling n) (F : ℕ → Bool) : ℕ → Bool :=
   fun x => F x || (List.range n).any (fun y => F y && g.edge x y)
 
@@ -74,10 +75,10 @@ theorem adj_mem_bufferF {n : ℕ} (g : Coupling n) (F : ℕ → Bool) {x y : ℕ
 
 /-! ## A heavy-hex device patch with genuine degree-3 sites
 
-The patch has one heavy hexagon (the 12-cycle `0..11`: six site qubits and six flag
-qubits), plus two bridge qubits, `12` and `13`, that stub out toward neighbouring
-hexagons. The bridges give qubits `1` and `8` **degree 3** — the distinguishing
-heavy-hex feature that a plain ring (max degree 2) cannot show.
+The patch has one heavy hexagon: the 12-cycle `0..11`, with six site qubits and
+six flag qubits. It also has two bridge qubits, `12` and `13`, that stub out
+toward neighbouring hexagons. The bridges give qubits `1` and `8` **degree 3** —
+the distinguishing heavy-hex feature that a plain ring (max degree 2) cannot show.
 
 The patch is encoded through `EdgeSpec` (`DeviceLib.lean`), so `edge_symm`/`edge_irrefl`/
 `edge_bounds` come from the generic construction instead of three per-device proofs. -/
@@ -104,9 +105,9 @@ example : heronPatch.edge 7 9 = false ∧ heronPatch.edge 7 13 = false := by dec
 /-- Forbidden co-tenant region: the arc `{9, 10, 11}` of the hexagon. -/
 def patchF : ℕ → Bool := fun q => decide (9 ≤ q ∧ q < 12)
 
-/-- Victim placed **adjacent** to the co-tenant region: its support `{7, 8}` is
+/-- Victim placed **adjacent** to the co-tenant region. Its support `{7, 8}` is
 disjoint from `F = {9,10,11}`, but qubit `8` shares the coupling edge `(8,9)` with
-`F` — and `8` is a genuine degree-3 site. -/
+`F`. Also, `8` is a genuine degree-3 site. -/
 def vAdj : UCom 14 := .seq (.app1 .x 7) (.cz 7 8)
 
 /-- Victim placed **far** from the co-tenant region: support `{4, 5}`, ≥ 2 hops
@@ -136,16 +137,16 @@ example : (certifySecurity heronPatch (bufferF heronPatch patchF) vAdj).accepted
 example : (certifySecurity heronPatch (bufferF heronPatch patchF) vFar).accepted = true := by
   decide
 
--- The rejection is on the *policy* check, not hardware legality: the adjacent
+-- The rejection is on the *policy* check, not hardware legality. The adjacent
 -- placement is perfectly hardware-legal (7–8 is a real coupling edge).
 #eval (certifySecurity heronPatch (bufferF heronPatch patchF) vAdj).hardwareLegal
 example : (certifySecurity heronPatch (bufferF heronPatch patchF) vAdj).hardwareLegal = true := by
   decide
 
--- A 2-hop buffer additionally excludes qubit 7, so even `vAdj`'s *other* qubit is
--- covered. `vFar` (support {4,5}) is far enough to survive buffers up to 3 hops, and
--- is only rejected at 4 hops. That is, the policy knob trades isolation against usable
--- area, and on this patch a 4-hop buffer already sterilises most of the device.
+-- A 2-hop buffer also excludes qubit 7, so even `vAdj`'s *other* qubit is
+-- covered. `vFar` (support {4,5}) survives buffers up to 3 hops. It is rejected
+-- only at 4 hops. The policy knob trades isolation against usable area. On this
+-- patch, a 4-hop buffer already sterilises most of the device.
 #eval (List.range 14).filter (bufferK heronPatch patchF 2)  -- [0,1,7,8,9,10,11,13]
 example : (certifySecurity heronPatch (bufferK heronPatch patchF 2) vFar).accepted = true := by
   decide
@@ -162,13 +163,14 @@ pipeline preservation theorems (`route_hh_confine`, `optimize_conf`,
 are already **universally quantified over the region** (`{A F : ℕ → Bool}`), exactly
 like `certifySecurity_sound`. So we obtain the buffered pipeline guarantee by
 *instantiating* them at `A := fun x => !bufferF g F x` and `F := bufferF g F`. This is
-a use of the existing theorems: no new assumption, and no new trusted base.
+a use of the existing theorems. It adds no new assumption and no new trusted base.
 
-The content: if the source satisfies the **buffered** client policy (every gate, and
-every routed `cz`'s `findPath`, avoids `F` *and every qubit adjacent to `F`*), then
-the fully compiled circuit `optimize (route_hh c)` still touches neither `F` nor any
-neighbour of `F`. That is, compilation cannot move a secret into the forbidden region
-*or onto any qubit adjacent to it*, which is the nearest-neighbour ZZ precondition.
+The content: suppose the source satisfies the **buffered** client policy. That is,
+every gate, and every routed `cz`'s `findPath`, avoids `F` *and every qubit
+adjacent to `F`*. Then the fully compiled circuit `optimize (route_hh c)` still
+touches neither `F` nor any neighbour of `F`. That is, compilation cannot move a
+secret into the forbidden region, or onto any qubit adjacent to it. This is the
+nearest-neighbour ZZ precondition.
 -/
 
 /-- Monotonicity of the support predicate in the allowed region. -/
@@ -200,14 +202,15 @@ theorem confinedb_buffered_imp_plain {m n : ℕ} (g : Coupling m) (F : ℕ → B
 and `optimize_conf` are already `∀ (A : ℕ → Bool)`. So the buffered forms are those
 theorems *applied* at `A := fun x => !bufferF g F x`. Write
 `route_hh_confine (A := fun x => !bufferF g F x) hpol` at the use site. If we name
-them, we dress an instantiation up as a result — the opposite of this file's
-argument. Only the composed end-to-end statements below earn names. -/
+them, we treat an instantiation as if it were a new result — the opposite of this
+file's argument. Only the composed end-to-end statements below receive names. -/
 
-/-- **BUFFERED COMPILE-PRESERVATION.** A well-formed source that is routable within
-the *neighbour-buffered* complement of `F` compiles (route + optimize) to a circuit
-that is hardware-legal, equal to the source up to global phase, and touches neither
-`F` **nor any qubit adjacent to `F`**. This is `compile_hh_confine_correct`
-instantiated at the buffered region — no new axioms, no new trusted base. -/
+/-- **BUFFERED COMPILE-PRESERVATION.** A well-formed source, routable within the
+*neighbour-buffered* complement of `F`, compiles (route + optimize) to a circuit
+with three properties. The circuit is hardware-legal. It is equal to the source up
+to global phase. It touches neither `F` **nor any qubit adjacent to `F`**. This is
+`compile_hh_confine_correct` instantiated at the buffered region — no new axioms,
+no new trusted base. -/
 theorem compile_hh_confine_buffered {m : ℕ} (g : Coupling m) (F : ℕ → Bool) {c : UCom 12}
     (h : WF c) (hpol : routableb (fun x => !bufferF g F x) c = true) :
     HWF heavyHex (optimize (route_hh c))
@@ -236,15 +239,15 @@ theorem certify_compile_hh_buffered (F : ℕ → Bool) {c : UCom 12}
 /-! ### Kernel-checked witnesses that the composed statement BITES
 
 The compile pipeline targets `heavyHex : Coupling 12` (the C₁₂ heavy-hex unit cell).
-On qubits `0..11` the demo patch `heronPatch` induces exactly those edges, so the two
-devices give the *same* buffered region for `patchF = {9,10,11}` — namely
-`{0, 8, 9, 10, 11}` (checked below), and both are used interchangeably here.
+On qubits `0..11`, the demo patch `heronPatch` induces exactly those edges. So the
+two devices give the *same* buffered region for `patchF = {9,10,11}` — namely
+`{0, 8, 9, 10, 11}` (checked below). This file uses both devices interchangeably.
 
 CAVEAT (matches the pre-existing note in `EvalWitnesses.lean`): `optimize`/`optFix`
-use well-founded recursion that the kernel `decide` cannot reduce, so *negative*
-verdicts about post-`optimize` circuits stay `#eval` witnesses. Positive post-`optimize`
-verdicts are obtained here from the theorems above with `by decide` hypotheses, which
-IS kernel-checked end to end. -/
+use well-founded recursion that the kernel `decide` cannot reduce. So *negative*
+verdicts about post-`optimize` circuits stay `#eval` witnesses. We obtain positive
+post-`optimize` verdicts here from the theorems above, with `by decide` hypotheses.
+This IS kernel-checked end to end. -/
 
 /-- Source placed ≥ 2 hops from `patchF = {9,10,11}`: support/route `{2,3,4,5}`. -/
 def srcFar : UCom 12 := .seq (.app1 .x 2) (.cz 2 5)
@@ -291,23 +294,23 @@ region queries and O(1) edge queries. So its cost is
   Θ(#gates · (Φ + E))   — with a cheap region (`Φ = O(1)`) this is Θ(#gates).
 
 But `bufferF g F` is `fun x => F x || (List.range n).any (fun y => F y && g.edge x y)`.
-Each *query* allocates `List.range n` and scans it, so `Φ_bufferF = Θ(n · (Φ + E))`,
+Each *query* allocates `List.range n` and scans it. So `Φ_bufferF = Θ(n · (Φ + E))`,
 giving a total of Θ(#gates · n · (Φ + E)). Worse, `bufferK g F (k+1) x` re-evaluates
-`bufferK g F k` at the point `x` **and** at all `n` scanned neighbours, so
+`bufferK g F k` at the point `x` **and** at all `n` scanned neighbours. So
 `Φ_bufferK(k) = Θ(n^k · (Φ + E))` — exponential in `k`, not linear.
-`checkerSteps` counts gates only and never evaluates the region predicate, so it is
+`checkerSteps` counts gates only, and never evaluates the region predicate. So it is
 blind to all of this: it is a *gate-traversal* count, not a cost model.
 
 FIX: build the region once into an `Array Bool` (`bufferArr`) and query it in
-O(1) (`bufferMemo`). Building the table costs Θ(n² · (Φ + E)) edge queries (the
+O(1) (`bufferMemo`). Building the table costs Θ(n² · (Φ + E)) edge queries. The
 `Coupling` interface exposes only `edge : ℕ → ℕ → Bool`, so we must find neighbours
-by scanning — with an adjacency-list device model, the cost is Θ(n · deg)). Total:
+by scanning. With an adjacency-list device model, the cost is Θ(n · deg). Total:
 
   Θ(n² · (Φ + E) + #gates) for k = 1,  Θ(k · n² · (Φ + E) + #gates) for a k-hop buffer.
 
 That is, the per-gate cost is back to O(1), and the `n`-dependence is a one-off
 preprocessing term. `bufferMemo_ext` / `bufferArrK_ext` prove that the memoised region
-is *the same function*, so `certifySecurity_bufferMemo` / `certifySecurity_bufferArrK`
+is *the same function*. So `certifySecurity_bufferMemo` / `certifySecurity_bufferArrK`
 give the identical verdict. The existing `bufferF`/`bufferK` definitions are untouched. -/
 
 /-- Precomputed 1-hop buffer table over the device range `0..n-1`. -/
@@ -355,14 +358,14 @@ MEASURED PITFALL (worth stating in the paper). The obvious recursion
 
   `def bad (g) (F) : ℕ → (ℕ → Bool) | 0 => F | k+1 => let p := bad g F k; bufferMemo p (bufferArr g p)`
 
-is *slower than the unmemoised `bufferK`*. Its result type ends in a function, so the
+is *slower than the unmemoised `bufferK`*. Its result type ends in a function. So the
 compiler eta-expands it, and `bad g F k` becomes a partial application. The whole
-table tower is then rebuilt on **every single query**. Measured on `heronPatch` (n = 14) via
-`#eval`: `bufferK … 4` scanned over `0..13` returns instantly, while the eta-expanded
+table tower is then rebuilt on **every single query**. Measured on `heronPatch` (n = 14)
+via `#eval`: `bufferK … 4`, scanned over `0..13`, returns instantly. The eta-expanded
 "memo" at k = 4 does not finish in 120 s.
 
-The fix is to make the recursion return **data** (`Array Bool`), which cannot be
-eta-expanded, and to hand the finished table to `bufferMemo` at the use site. Then
+The fix is to make the recursion return **data** (`Array Bool`). This data cannot be
+eta-expanded. We hand the finished table to `bufferMemo` at the use site. Then
 k = 200 is instant. -/
 
 theorem bufferMemo_map {n : ℕ} (F A : ℕ → Bool) (x : ℕ) :

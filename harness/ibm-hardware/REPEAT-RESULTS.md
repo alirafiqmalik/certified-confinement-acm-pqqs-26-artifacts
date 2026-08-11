@@ -11,18 +11,20 @@ after ~23 h. The earlier PARTIAL wording is superseded.) We fixed the analysis r
 | `ibm_marrakesh` (Heron r2) | 5 | `d9k5uljjf64c739hn19g` | 106.9 | **DONE** |
 | `ibm_fez` (Heron r2) | 3 | `d9k5um0ii2cc73efn7l0` | ~61 | **DONE** — after ~23 h queued (peaked at ~5000 pending) |
 
-Free-tier budget was **not** the binding constraint (227 s remained of the rolling 600 s/28-day
-window. The fez job needs ~47 s). Queue depth was.
+Free-tier budget was **not** the binding constraint. The rolling 600 s/28-day window had 227 s
+remaining, and the fez job needs about 47 s. Queue depth was the binding constraint.
 
 ## Why this is a genuinely different calibration snapshot
 
-Not asserted from timestamps — checkable in-artifact. **All 24 pre-registered qubits report a
-different readout error** than the value pinned in `sweep_prereg.json`. Examples (marrakesh):
+We do not assert this from timestamps. It is checkable in the artifact. **All 24 pre-registered
+qubits report a different readout error** than the value pinned in `sweep_prereg.json`. Examples
+(marrakesh):
 q98 `0.0017 → 0.0083` (≈5× worse), q6 `0.0020 → 0.0044`, q141 `0.0029 → 0.0037`.
 
 Backend `last_update_date` at submission: marrakesh **2026-07-28 02:44 EDT**, fez **03:37 EDT**.
-Both dates are later than the snapshot-1 run. `repeat_jobs.json` / `repeat_results_partial.json`
-store the full live snapshot (per-qubit readout error + T2) — provenance the first sweep did not record.
+Both dates are later than the snapshot-1 run. `repeat_results.json` stores the full live snapshot
+(per-qubit readout error + T2) under its `calibration` key. The first sweep did not record that
+provenance.
 
 ## Result — `ibm_marrakesh`, same 5 pairs, second snapshot
 
@@ -39,19 +41,19 @@ Combined across both snapshots: **13 pair-observations, 12 leak at d=1, 0 leak a
 
 ## The finding worth reporting beyond "it replicated"
 
-Leak **magnitude is calibration-dependent and unstable**: pair 2 more than doubled (z 9.5 → 23.8)
-while pair 3 more than halved (z 59.5 → 22.7) — same qubits, same protocol, hours apart. The
-**structural boundary did not move at all**: every d=1 pair leaked, no d≥2 pair did, in both
+Leak **magnitude is calibration-dependent and unstable**. Pair 2 more than doubled (z 9.5 → 23.8).
+Pair 3 more than halved (z 59.5 → 22.7), for the same qubits and protocol, hours apart. The
+**structural boundary did not move at all**: every d=1 pair leaked, and no d≥2 pair did, in both
 snapshots.
 
-This is direct empirical support for a design decision the paper had previously justified only on
-principle. The certificate must guarantee **placement** (no shared coupling edge), not bound
-crosstalk **magnitude**. A magnitude-based guarantee calibrated on snapshot 1 is wrong by 2× in
-both directions within hours. The structural guarantee was invariant.
+The paper previously justified this design decision only on principle. This result gives it direct
+empirical support. The certificate must guarantee **placement** (no shared coupling edge), not
+bound crosstalk **magnitude**. A magnitude-based guarantee calibrated on snapshot 1 is wrong by 2×
+in both directions within hours. The structural guarantee was invariant.
 
 ## Third snapshot (`mrk_t3`) — same pairs, ~18 h after snapshot 1
 
-Two `ibm_marrakesh` pairs (0, 1) re-run a third time (job `d9khifrhdfks73cjm760`, 43 QPU-s,
+We ran two `ibm_marrakesh` pairs (0, 1) a third time (job `d9khifrhdfks73cjm760`, 43 QPU-s,
 calibration `2026-07-28 15:47 EDT`, that is, a *third* distinct calibration).
 
 | pair | victim | snap 1 (~05:00Z) | snap 2 (~08:00Z) | snap 3 (~23:21Z) | d≥2, snap 3 |
@@ -99,7 +101,7 @@ The paper described `ibm_fez` pair 0, the **single null** of snapshot 1, as a ca
 It called the rejected placement "a harmless conservative over-block." **On the second
 calibration it leaks at z=22.4.**
 
-That reverses the interpretation, in the direction that favours the design:
+That reverses the interpretation, in the direction that favors the design:
 
 - The certifier correctly rejected that placement. It was **not** an over-block: snapshot 1 did
   not detect the channel at that calibration.
@@ -127,10 +129,10 @@ That reverses the interpretation, in the direction that favours the design:
 
 ## New-pairs run (`mrk_new`) — 5 previously-unmeasured pairs
 
-We submitted this run after we abandoned `ibm_kingston` (see `SCHEDULE.md` decision log). Pairs selected by the
-same calibration-only rule with **every already-measured qubit excluded**
-(`--exclude-measured`, which bars 15 qubits), so these are independent couplers, not a re-run.
-Job `d9kuj2ibr2fc73e7toog`, 103 QPU-s, calibration `2026-07-29 07:22 EDT`.
+We submitted this run after we abandoned `ibm_kingston` (`PROVENANCE.md` records that cancelled
+arm). We selected pairs by the same calibration-only rule and excluded **every already-measured
+qubit** (`--exclude-measured`, which bars 15 qubits). These are independent couplers, not a
+re-run. Job `d9kuj2ibr2fc73e7toog`, 103 QPU-s, calibration `2026-07-29 07:22 EDT`.
 
 | pair | victim | d=1 | d≥2 | verdict |
 |---|---|---|---|---|
@@ -142,10 +144,10 @@ Job `d9kuj2ibr2fc73e7toog`, 103 QPU-s, calibration `2026-07-29 07:22 EDT`.
 
 **leak@d1 5/5 · leak@d≥2 0/5.**
 
-These pairs are systematically *weaker* than the originals (ΔP 0.055–0.30 vs up to 0.41), which is
+These pairs are systematically *weaker* than the originals (ΔP 0.055–0.30 vs up to 0.41). This is
 expected: the original selection took the best-readout qubits, so these are the next tier. Every
-pair leaked at d=1 as well. Across all 13 distinct pairs the d=1 effect spans **ΔP 0.055 → 0.41,
-roughly 8×** — one more reason a magnitude-calibrated policy is the wrong instrument.
+pair leaked at d=1 as well. Across all 13 distinct pairs, the d=1 effect spans **ΔP 0.055 → 0.41,
+roughly 8×**. That is one more reason a magnitude-calibrated policy is the wrong instrument.
 
 ## FINAL TOTALS across every run
 
@@ -169,8 +171,9 @@ roughly 8×** — one more reason a magnitude-calibrated policy is the wrong ins
 - Both snapshots fall on the **same calendar day** (~1–3 h apart, spanning at least one
   recalibration per device). This removes the *single-calibration-snapshot* objection. It does
   **not** establish multi-day, cross-generation, or cross-device-family stability.
-- `ibm_fez` was the device carrying the one null pair in snapshot 1, so the pair most informative
-  about instability is precisely the one not re-measured. Stated plainly rather than glossed.
+- `ibm_fez` was the device carrying the one null pair in snapshot 1. So the pair most informative
+  about instability is precisely the one not re-measured. We state this plainly. We do not gloss
+  over it.
 
 ## Reproduce
 

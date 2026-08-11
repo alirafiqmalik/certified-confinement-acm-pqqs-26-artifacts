@@ -2,24 +2,23 @@
 qpu_sim.py — FORWARD MODEL of the measured nearest-neighbor ZZ leak.
 
 ================================ READ THIS FIRST ================================
-This simulation is **not evidence that the leak exists**. IBM's fake and noise
-backends contain **no crosstalk term at all**. So a leak can appear here only
-because we put it there.
+This simulation does **not prove that the leak exists**. IBM's fake and noise
+backends contain **no crosstalk term at all**. A leak can appear here only
+because we add it ourselves.
 
-This file does the opposite of validation. It takes the leak as a *hypothesis*,
-an always-on residual ZZ between coupled qubits. It encodes this hypothesis
-explicitly. Then it asks whether the hypothesis reproduces the numbers we
-measured on hardware.
+This file does the opposite of validation. It treats the leak as a *hypothesis*:
+an always-on residual ZZ coupling between coupled qubits. It encodes this
+hypothesis explicitly. Then it checks whether the hypothesis reproduces the
+numbers that we measured on hardware.
 
-Legitimate uses (all of them offline, none costs QPU time):
-  1. Regression-test the whole analysis pipeline, end to end, without spending
-     quota.
-  2. Check that the measured ΔP values are consistent with a *physically
-     plausible* residual-ZZ strength for Heron r2, and do not require an
-     implausible one.
-  3. Catch protocol bugs before they reach hardware. This is how we originally
+Legitimate uses (all offline, none costs QPU time):
+  1. Run a regression test on the whole analysis pipeline, end to end, without
+     spending quota.
+  2. Check that the measured ΔP values match a *physically plausible*
+     residual-ZZ strength for Heron r2, and do not need an implausible one.
+  3. Catch protocol bugs before they reach hardware. This is how we first
      found the Y-basis readout requirement. A plain H…H Ramsey measures
-     sin²(θ/2), which is even in θ, and so is blind to a sign-flip secret.
+     sin²(θ/2), which is even in θ. So it cannot detect a sign-flip secret.
 
 Illegitimate use, explicitly out of scope: do not present simulated ΔP as
 independent confirmation of the hardware result. All empirical claims in the
@@ -29,8 +28,8 @@ paper rest on the hardware runs.
 ## Physics encoded
 
 A static, always-on ZZ coupling of strength ζ (Hz), between victim v and probe p,
-generates H_ZZ = π ζ (Z_v ⊗ Z_p). That is, over an idle window τ, the probe
-accumulates a phase whose SIGN depends on the victim's state. This is exactly an
+generates H_ZZ = π ζ (Z_v ⊗ Z_p). Over an idle window τ, the probe accumulates a
+phase. The SIGN of this phase depends on the victim's state. This is exactly an
 RZZ rotation:
 
     θ = 2π ζ τ            and the circuit gets   RZZ(θ) on (v, p)
@@ -42,7 +41,7 @@ So the observable separation between victim=0 and victim=1 is
     ΔP = |sin θ|          (LINEAR in the phase near θ=0)
 
 A plain H…H Ramsey instead gives sin²(θ/2), which is EVEN in θ. Both victim
-states give the same answer, so the channel is invisible. `--basis plain`
+states give the same answer. So the channel stays invisible. `--basis plain`
 reproduces this failure mode on purpose, as a regression test.
 
 Decoherence, gate error, and readout error come from the **real stored
@@ -74,7 +73,7 @@ REPS = 2
 
 # ----------------------------------------------------------------- calibration
 def load_snapshot(tag):
-    """This is the per-qubit {rerr, t2} data, recorded at submission time on real hardware."""
+    """This is the per-qubit {rerr, t2} data. We recorded it at submission time, on real hardware."""
     for fn, key in ((f"results_{tag}.json", "calibration_snapshot"),
                     (f"jobs_{tag}.json", "calibration_snapshot")):
         path = HW + fn
@@ -93,10 +92,10 @@ def load_snapshot(tag):
 
 
 def build_noise(snapshot, victim, probe, t1_over_t2=1.0):
-    """This builds the Aer noise model from the REAL snapshot. Note what is here
-    and what is not: thermal relaxation on the idle delay, and measurement
-    error. There is NO crosstalk or ZZ term, because Aer has none. This is
-    precisely why the script injects the ZZ into the circuit instead."""
+    """This builds the Aer noise model from the REAL snapshot. It adds thermal
+    relaxation on the idle delay, and measurement error. It does NOT add
+    crosstalk or a ZZ term, because Aer has none. This is why the script
+    injects the ZZ term into the circuit instead."""
     nm = NoiseModel()
     qmap = {victim: 0, probe: 1}                 # Maps a physical qubit index to a simulated qubit index.
     for phys, sim_i in qmap.items():
@@ -117,7 +116,7 @@ def build_noise(snapshot, victim, probe, t1_over_t2=1.0):
 def make_circuit(secret_bit, zeta, tau=TAU, basis="y"):
     """The victim holds the secret in its STATE. The probe performs a Ramsey.
 
-    qubit 0 is the victim, qubit 1 is the probe. RZZ(2*pi*zeta*tau) is the
+    Qubit 0 is the victim. Qubit 1 is the probe. RZZ(2*pi*zeta*tau) is the
     injected always-on ZZ. `basis='plain'` swaps the Y-basis readout for a
     plain H. This reproduces the sin^2(theta/2) blindness on purpose.
     """
@@ -173,7 +172,7 @@ def run_pair(zeta, snapshot=None, victim=None, probe=None, tau=TAU,
 # ----------------------------------------------------------------- inversion
 def fit_zz(dP, tau=TAU, n_aliases=3):
     """Inverts ΔP = |sin θ| for ζ. Returns the n=0 branch plus aliases, because a
-    single τ genuinely cannot distinguish between them."""
+    single τ cannot distinguish between them."""
     dP = min(max(dP, 0.0), 0.999999)
     theta0 = math.asin(dP)
     return [(theta0 + 2 * math.pi * n) / (2 * math.pi * tau) for n in range(n_aliases)]

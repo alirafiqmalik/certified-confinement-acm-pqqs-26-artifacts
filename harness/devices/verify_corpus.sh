@@ -3,20 +3,22 @@
 #
 # Two things this does that a plain `lake build` does not:
 #
-#   1. DEFEATS THE REPLAY CACHE. Lake will happily report "Build completed
-#      successfully" while replaying a cached .olean, in which case no `decide` is
-#      re-checked at all. We delete the module's build products first so the kernel
-#      genuinely re-verifies all 44 `by decide` verdicts from scratch.
+#   1. DEFEATS THE REPLAY CACHE. Lake can report "Build completed successfully"
+#      while it replays a cached .olean. In that case, Lake does not re-check
+#      `decide` at all. This script deletes the module's build products first.
+#      Then the kernel genuinely re-verifies all 44 `by decide` verdicts from
+#      scratch.
 #
-#   2. RECOMPUTES EVERY VERDICT OUTSIDE THE GENERATED FILE. The corpus is machine-
-#      generated, so a codegen bug could emit a claim that is vacuous or that asserts
-#      the wrong expected value, and it would prove fine. The IO harness below
-#      recomputes all four verdicts per device and checks the expected
-#      true/false/true/true pattern, so such a bug surfaces as a FAIL.
+#   2. RECOMPUTES EVERY VERDICT OUTSIDE THE GENERATED FILE. The corpus is
+#      machine-generated. A codegen bug can emit a claim that is vacuous, or
+#      that asserts the wrong expected value. Even so, such a claim can still
+#      succeed when Lean checks it. The IO harness below recomputes all four
+#      verdicts per device. It checks the expected true/false/true/true
+#      pattern, so a bug like this surfaces as a FAIL.
 #
 # Usage:  bash verify_corpus.sh          (from anywhere)
 set -uo pipefail
-# Locate the project root relative to this script, so the artifact is portable.
+# Locate the project root relative to this script. This keeps the artifact portable.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 export PATH="$HOME/.elan/bin:$PATH"

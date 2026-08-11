@@ -2,10 +2,10 @@
 CertifyQASMBuffered.lean — Axis-2 ingestion under the *buffered* confinement policy.
 
 `CertifyQASMSafe.lean` certifies against the bare forbidden region `tenantF`. That is
-the policy the checker can enforce, but it is NOT the policy the paper advocates: a
-gate one hop away from a co-tenant qubit is where the measured crosstalk lives, and
-`tenantF` admits it. This entry point closes that gap by certifying against the
-`k`-hop buffered region.
+the policy the checker can enforce. It is NOT the policy the paper recommends. A gate
+one hop from a co-tenant qubit is where the measured crosstalk lives, and `tenantF`
+allows it. This entry point closes that gap by certifying against the `k`-hop buffered
+region.
 
 Region: `bufferMemo tenantF (bufferArrK heavyHex tenantF k)`.
 
@@ -13,12 +13,12 @@ Two facts make this the right way to run it:
 
   * `bufferArrK_ext`            : the tabulated region IS `bufferK heavyHex tenantF k`
                                   (funext, not an approximation).
-  * `certifySecurity_bufferArrK`: therefore the verdict is identical to the one the
-                                  unmemoised `bufferK` would give.
+  * `certifySecurity_bufferArrK`: therefore the verdict matches the verdict that the
+                                  unmemoized `bufferK` gives.
 
 So the numbers this file produces are verdicts for the buffered *policy*, obtained at
-the memoised *cost* (O(1) per region query after a Θ(k·n²) table build). Using
-`bufferK` directly here would be Θ(nᵏ) per query — see the cost note in Buffer.lean.
+the memoized *cost* (O(1) per region query after a Θ(k·n²) table build). Using
+`bufferK` directly here costs Θ(nᵏ) per query — see the cost note in Buffer.lean.
 
 Device: 12-node ring (`heavyHex`). Tenant A = {0..5}, F = {6..11}.
 `k = 0` reproduces `CertifyQASMSafe.lean` exactly, since `bufferK g F 0 = F`.

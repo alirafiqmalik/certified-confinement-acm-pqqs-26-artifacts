@@ -1,5 +1,5 @@
 /-
-Timing.lean — Axis-3 wall-clock timing harness (Fork B/C [NEED] #3).
+Timing.lean — Axis-3 wall-clock timing harness.
 
 This harness gives empirical support for the Θ(#gates) claim. It times `certifySecurity`
 on `genLine g` (a g-gate CZ chain on the degree-3 fragment) for growing values of g.
@@ -8,7 +8,7 @@ step count is the honest proxy, because the checker visits each gate once. The
 wall-clock time confirms that the checker never touches the 2ⁿ state space. Cost tracks
 the gate count, not the qubit count.
 
-Run:  lake env lean --run pipeline/paper-final/artifact/harness/Timing.lean
+Run:  lake env lean --run harness/Timing.lean
 (from the qpu-compiler/ project root, after `lake build`).
 -/
 import QpuCompiler

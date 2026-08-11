@@ -2,24 +2,24 @@
 """run_buffered_alloc.py — is the buffered policy OPERABLE?
 
 `run_buffered.py` certifies the existing axis-2 corpus against the k-hop buffered
-region and rejects essentially everything. That is not a property of the policy; it
-is a property of the *allocation*. Tenant A = {0..5} and the k=1 buffer around
-F = {6..11} both claim qubits 0 and 5, so every circuit that touches the ends of the
-tenant's path is a violation by construction.
+region and rejects almost everything. This is not a property of the policy. It is
+a property of the *allocation*. Tenant A = {0..5} and the k=1 buffer around
+F = {6..11} both claim qubits 0 and 5. So every circuit that touches the ends of
+the tenant's path is a violation by construction.
 
-A buffer only means anything if it is carved out of the DEVICE, not out of the tenant.
-This script models the deployment that makes sense: the provider reserves the k-hop
-halo around the co-tenant as a dead zone, and the tenant is allocated what is left.
+A buffer only means something if the DEVICE carves it out, not the tenant. This
+script models the deployment that makes sense: the provider reserves the k-hop
+halo around the co-tenant as a dead zone, and the tenant gets what is left.
 
   k=0 -> allowed {0,1,2,3,4,5}   (6 qubits, no buffer)
   k=1 -> allowed {1,2,3,4}       (4 qubits, 0 and 5 reserved)
   k=2 -> allowed {2,3}           (2 qubits)
-  k=3 -> allowed {}              (ring is fully sterilised)
+  k=3 -> allowed {}              (ring is fully sterilized)
 
-For each k we hand the transpiler ONLY the induced subgraph on the allowed set --
-this is the "restricted coupling map" discipline that DynQ assumes and does not check
--- and then verify with the Lean certifier whether the transpiler actually stayed
-inside it. Two numbers come out:
+For each k, we give the transpiler ONLY the induced subgraph on the allowed set.
+This is the "restricted coupling map" discipline that DynQ assumes but does not
+check. Then we use the Lean certifier to verify that the transpiler actually
+stayed inside it. Two numbers come out:
 
   * operability : accept rate for circuits that FIT the allowed set. A policy that
                   cannot accept anything is not a policy.

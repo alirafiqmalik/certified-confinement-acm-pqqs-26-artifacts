@@ -1,7 +1,7 @@
 /-
 QpuCompiler/Compile.lean — the full routing pass and the end-to-end compiler
 theorem (iteration 09). This file lifts single-CZ routing (`route1cz`) to a total
-`routeCZ` on any pair, recurses over the UCom tree in `route`, and composes the
+`routeCZ` on any pair. It recurses over the UCom tree in `route`. It composes the
 result with `optimize` to give `compile_correct`: every WF circuit compiles to a
 hardware-legal circuit that is provably equivalent to the source up to a global phase.
 -/

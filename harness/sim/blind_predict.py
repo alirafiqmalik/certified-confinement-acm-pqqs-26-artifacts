@@ -2,9 +2,9 @@
 blind_predict.py — predicts WHERE leaks occur, from PUBLIC device data only.
 
 ===================== THE POINT OF THIS FILE =====================
-The forward model in `qpu_sim.py` is circular. The model receives a measured ΔP,
-fits a coupling ζ to it, and reproduces the same ΔP. This process has zero
-predictive content.
+The forward model in `qpu_sim.py` is circular. The model receives a measured ΔP.
+It fits a coupling ζ to the ΔP. Then it reproduces the same ΔP. This process has
+zero predictive content.
 
 This file is the non-circular counterpart to that model. This script can read
 ONLY data that IBM publishes for any user, before any experiment runs:
@@ -14,21 +14,21 @@ ONLY data that IBM publishes for any user, before any experiment runs:
     * readout error             (per qubit)
     * CZ gate durations/errors  (per edge)
 
-This script is **mechanically forbidden** from reading our own leak results. The
-function `_guard_open` below raises an error on any path that matches a results
-file. So the code enforces the blindness. The blindness is not merely asserted in
-a comment.
+The function `_guard_open`, below, **mechanically forbids** this script from
+reading our own leak results. It raises an error on any path that matches a
+results file. So the code enforces the blindness. We do not merely assert the
+blindness in a comment.
 
 We fix the prediction rule in advance, from the *documented mechanism*. The rule
 is not tuned to our data. Always-on residual ZZ couples only qubits that share a
-coupling edge. So a probe leaks iff it sits at graph distance 1 from the victim.
-We committed this rule in `QpuCompiler/Buffer.lean` on 2026-07-23, five days
-BEFORE the first hardware run on 2026-07-28. The derivation order is checkable
-from the repository. This is what makes "blind" a claim about provenance, and not
-only a claim about this script.
+coupling edge. So a probe leaks if and only if it sits at graph distance 1 from
+the victim. We committed this rule in `QpuCompiler/Buffer.lean` on 2026-07-23,
+five days BEFORE the first hardware run on 2026-07-28. The derivation order is
+checkable from the repository. This is what makes "blind" a claim about
+provenance, and not only a claim about this script.
 
 ===================== WHAT CANNOT BE PREDICTED =====================
-The *magnitude* ζ cannot be predicted. The transmon static-ZZ rate is a function
+We cannot predict the *magnitude* ζ. The transmon static-ZZ rate is a function
 of the qubit-qubit coupling J, the detuning Δ = ω_i − ω_j, and the anharmonicities
 α_i, α_j. For IBM Heron r2, the API returns `frequency = None`. The API exposes no
 anharmonicity.
@@ -41,8 +41,8 @@ publish this calibration detail at all.
 
 So magnitude here is not merely hard to predict. Public data **does not
 determine** the magnitude. We therefore predict a *detectability band* from a
-literature prior on residual ZZ for tunable-coupler transmons. We state plainly
-that this band is a prior, and not a device-specific calculation.
+literature prior on residual ZZ for tunable-coupler transmons. We state that
+this band is a prior, and not a device-specific calculation.
 
 This asymmetry is the empirical case for the paper's design. The certificate is
 structural, because structure is publicly predictable and magnitude is not.

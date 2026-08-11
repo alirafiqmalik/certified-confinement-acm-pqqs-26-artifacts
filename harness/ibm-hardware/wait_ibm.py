@@ -31,7 +31,7 @@ if "DONE" not in st:
 
 res=job.result()
 labels=meta["labels"]; SHOTS=meta["shots"]
-# collect P(1) per (rep,d,driven)
+# Collect P(1) for each (rep, d, driven) combination.
 def p1_of(pub):
     d=pub.data
     reg=list(d.__dict__.keys())[0] if hasattr(d,'__dict__') else 'c'

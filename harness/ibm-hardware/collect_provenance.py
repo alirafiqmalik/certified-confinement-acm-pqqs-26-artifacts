@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """collect_provenance.py — recover per-job provenance for the hardware campaign.
 
-The shipped result files record derived statistics only. `sweep_results.json` and
-`repeat_results.json` store (dP, z) per pair with no job id, no shot counts and no
-baselines, so nothing downstream can be recomputed or audited. This script walks the
-IBM job history and writes the missing record: for every job, its id, backend, status,
-creation time, program, shot count, circuit count and — where the job returned data —
-the raw per-circuit bitstring counts.
+The shipped result files record only derived statistics. `sweep_results.json` and
+`repeat_results.json` store (dP, z) per pair. They give no job id, no shot count, and
+no baseline. So no downstream process can recompute or audit them.
 
-Read-only. It retrieves existing jobs and consumes no QPU time.
+This script reads the IBM job history. For every job, it writes the id, backend,
+status, creation time, program, shot count, and circuit count. Where the job returned
+data, it also writes the raw per-circuit bitstring counts.
+
+This script is read-only. It retrieves existing jobs and uses no QPU time.
 
 Usage (from the Artifact/ root):
     python3 harness/ibm-hardware/collect_provenance.py [--limit 200] [--out provenance.json]
@@ -63,7 +64,7 @@ for j in jobs:
         except Exception as e:
             rec[field] = f"ERR {type(e).__name__}"
 
-    # Inputs carry the pre-registered protocol parameters (shots, circuit count).
+    # The inputs carry the pre-registered protocol parameters: shot count and circuit count.
     try:
         inp = j.inputs or {}
         pubs = inp.get("pubs") or []

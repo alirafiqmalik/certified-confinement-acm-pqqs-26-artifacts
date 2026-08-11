@@ -6,20 +6,20 @@ Purpose: this script removes the paper's "single calibration snapshot" hedge (§
 Design rules (these are the scientific content of this script, not boilerplate):
  1. The script reads the 8 victim/probe pairs VERBATIM from `sweep_prereg.json`. It
     deliberately does NOT re-run `pick_pairs()`. A re-selection from the *new*
-    calibration would silently choose whichever qubits look best today — exactly the
+    calibration silently picks whichever qubits look best today. That is exactly the
     cherry-picking that the pre-registration exists to rule out. Replication means
     the SAME pairs on a DIFFERENT snapshot.
  2. The circuit construction is byte-identical in structure to `submit_sweep.py`:
     Y-basis Ramsey, tau=40us, 8192 shots, 2 reps, asap scheduling.
  3. The script records the live calibration snapshot at submission time: readout
-    error, T2, and the backend's last_update_date. The first sweep did not record
-    this snapshot. That is why the first sweep's chronology could only be argued,
-    and not shown. This run fixes that limitation for itself.
+    error, T2, and last_update_date from the backend. The first sweep did not record
+    this snapshot. So the first sweep's chronology rested on argument alone, with no
+    direct proof. This run fixes that gap for itself.
 
-The script reads the token at runtime from apikey.json. It never prints the token,
-and it never writes the token to any artifact.
+The script reads the token at runtime, from apikey.json. It never prints the token.
+It never writes the token to any artifact.
 """
-import json, pathlib, datetime
+import json, os, pathlib, datetime
 
 BASE = str(pathlib.Path(__file__).resolve().parent) + "/"
 for _p in pathlib.Path(__file__).resolve().parents:
@@ -27,12 +27,18 @@ for _p in pathlib.Path(__file__).resolve().parents:
         break
 else:
     raise FileNotFoundError("apikey.json not found in any parent directory of this script")
-KEY = json.load(open(_p / "apikey.json"))["apikey"]
+_KEYFILE = json.load(open(_p / "apikey.json"))
+KEY = _KEYFILE["apikey"]
+# The instance name belongs to the account, not to the experiment.
+# Set the IBM_INSTANCE environment variable, or add an "instance" field to apikey.json.
+# If both stay unset, the service selects the default instance of the account.
+_INSTANCE = os.environ.get("IBM_INSTANCE") or _KEYFILE.get("instance")
+_INST = {"instance": _INSTANCE} if _INSTANCE else {}
 
 from qiskit import QuantumCircuit, transpile
 from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2
 
-svc = QiskitRuntimeService(channel="ibm_quantum_platform", token=KEY, instance="qos-instance")
+svc = QiskitRuntimeService(channel="ibm_quantum_platform", token=KEY, **_INST)
 
 pre = json.load(open(BASE + "sweep_prereg.json"))
 WIN = pre["WIN_s"]; SHOTS = pre["shots"]; REPS = pre["reps"]
@@ -40,8 +46,9 @@ WIN = pre["WIN_s"]; SHOTS = pre["shots"]; REPS = pre["reps"]
 
 def make(vbit):
     """Identical to submit_sweep.py. The victim holds the secret in its STATE. The probe
-    runs a Y-basis Ramsey, so the readout is linear in the accumulated phase. A plain
-    H..H Ramsey measures sin^2(theta/2), which is even in theta and blind to a sign flip."""
+    runs a Y-basis Ramsey. So the readout is linear in the accumulated phase. A plain
+    H..H Ramsey measures sin^2(theta/2). This value is even in theta, and blind to a
+    sign flip."""
     qc = QuantumCircuit(2, 1)
     if vbit:
         qc.x(0)

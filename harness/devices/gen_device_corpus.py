@@ -4,24 +4,25 @@ gen_device_corpus.py — turn real QPU topologies into Lean `Coupling n` devices
 Purpose: test the certifier against actual hardware graphs, with **no QPU access**.
 `qiskit_ibm_runtime.fake_provider` ships calibration and topology snapshots of about
 68 real IBM devices. None of them need an account, a token, or a second of quota.
-They give us Heron (156q), heavy-hex Eagle (127q), the Nighthawk square lattice
+They include Heron (156q), heavy-hex Eagle (127q), the Nighthawk square lattice
 (120q), and a long tail of smaller machines.
 
-Edge counts: Qiskit reports a DIRECTED coupling map. So Heron is 352 directed pairs,
-which is **176 canonical undirected edges**, and Nighthawk is 436, which is 218.
-Everything downstream of `canon()` uses the canonical undirected count: the emitted
-`EdgeSpec`, the Lean file, and this module's output. Do not quote the directed
-figure as an edge count.
+Edge counts: Qiskit reports a DIRECTED coupling map. Heron is 352 directed pairs,
+which is **176 canonical undirected edges**. Nighthawk is 436 directed pairs,
+which is 218 canonical undirected edges. Everything downstream of `canon()` uses
+the canonical undirected count: the emitted `EdgeSpec`, the Lean file, and this
+module's output. Do not quote the directed figure as an edge count.
 
 For each selected device we emit:
-  * `dev_<name> : EdgeSpec n` — the canonical edge list plus the two finite `by decide`
-    side conditions, from which `DeviceLib` derives a `Coupling n` generically.
+  * `dev_<name> : EdgeSpec n` — the canonical edge list, plus the two finite
+    `by decide` side conditions. `DeviceLib` uses these to derive a `Coupling n`
+    generically.
   * a tenant partition (A, F) chosen structurally, not from any measurement:
       victim  = the highest-degree qubit (worst case for confinement)
-      F       = a co-tenant region placed 3 hops away, so it is genuinely disjoint
+      F       = a co-tenant region placed 3 hops away, so it stays genuinely disjoint
   * two witness circuits:
-      `adj`  — victim acts on itself and a NEIGHBOR of F (support-disjoint from F,
-               that is, exactly the placement plain `confinedb` misses)
+      `adj`  — victim acts on itself and a NEIGHBOR of F. This is support-disjoint
+               from F: exactly the placement that plain `confinedb` misses.
       `far`  — victim acts well away from F
   * `#eval` verdicts for: support-only confinement, `bufferF`, and `hardwareLegal`.
 
@@ -55,10 +56,10 @@ SELECTED = [
 
 # Kernel `decide` now works for EVERY device in this corpus, including the full
 # 156-qubit Heron r2 topology (measured at about 3 s for all four verdicts). The
-# old ~20-30 qubit ceiling was an artifact of one design choice: the edge relation
-# was an explicit disjunction. The `EdgeSpec` list representation removes this
-# limit. The script keeps this value as a knob, so it can re-probe the ceiling if
-# a future device is larger still.
+# old ~20-30 qubit ceiling came from one design choice: the edge relation was an
+# explicit disjunction. The `EdgeSpec` list representation removes this limit. The
+# script keeps this value as a knob. If a future device is even larger, the
+# script can use it to re-probe the ceiling.
 DECIDE_MAX_QUBITS = 100000
 
 
@@ -82,8 +83,8 @@ def build(name):
     nq = b.num_qubits
     raw = [tuple(e) for e in b.coupling_map.get_edges()]
     # get_edges() reports directed pairs on some backends and undirected pairs on
-    # others. Canonicalizing to (lo, hi) normalizes both forms. EdgeSpec requires
-    # this canonical form.
+    # others. This script converts each pair to (lo, hi), which normalizes both
+    # forms. EdgeSpec requires this canonical form.
     canon = sorted({(min(a, c), max(a, c)) for a, c in raw if a != c})
     adj = {i: set() for i in range(nq)}
     for a, c in canon:
@@ -93,8 +94,8 @@ def build(name):
 
     # Put the co-tenant region in the BULK of the device, not at the index boundary.
     # Among the highest-degree qubits, take the one with the largest 3-hop
-    # neighborhood, that is, the most interior qubit. A boundary choice would make
-    # the test trivial.
+    # neighborhood, that is, the most interior qubit. If the region sits at a
+    # boundary qubit, the test becomes trivial.
     def ball(q, r):
         return len(bfs(adj, q, r))
     maxdeg = max(len(adj[q]) for q in range(nq))
@@ -103,8 +104,8 @@ def build(name):
     F = sorted([seed] + sorted(adj[seed])[:2])
     Fset = set(F)
 
-    # This is the distance from the WHOLE region F, from a multi-source BFS. bufferK
-    # uses this distance.
+    # This is the distance from the WHOLE region F, computed by a multi-source
+    # BFS. bufferK uses this distance.
     dfromF = {}
     frontier = deque((f, 0) for f in F)
     seen = set(F)
@@ -119,7 +120,7 @@ def build(name):
                 seen.add(v); dfromF[v] = d + 1; frontier.append((v, d + 1))
 
     ring1 = sorted(q for q, d in dfromF.items() if d == 1)     # bufferF excludes these
-    ring2 = sorted(q for q, d in dfromF.items() if d == 2)     # bufferF allows this ring. bufferK radius 2 blocks it
+    ring2 = sorted(q for q, d in dfromF.items() if d == 2)     # bufferF allows this ring. A radius-2 bufferK blocks it.
     ring3 = sorted(q for q, d in dfromF.items() if d >= 3)
 
     # ADJ witness: support-disjoint from F, but on ring1. Plain confinement accepts
@@ -166,19 +167,19 @@ def emit(dev, slug):
     t, p = dev["adj_pair"]
     fa, fb = dev["far_pair"]
     kernel = n <= DECIDE_MAX_QUBITS
-    # Use `by decide` where the kernel can still cope. Use `#eval` beyond that point,
-    # labeled as such.
+    # Use `by decide` where the kernel can still cope. Use `#eval` beyond that
+    # point, and label it as such.
     #
     # maxRecDepth 100000 here sets the recursion-depth budget for `decide` over the
     # whole-circuit `certifySecurity` fold. This fold checks HWF and confinement, and
     # it walks every gate. This budget is a separate knob from `DECIDE_MAX_QUBITS`
-    # above. That knob picks kernel `decide` versus `#eval` per device. This budget is
-    # Lean's own elaborator limit for the proof term that `decide` builds. Both share
-    # the numeral 100000 by coincidence, not because one derives from the other. Do
-    # not assume that a change to one budget affects the other. This budget was not
-    # tuned to a measured minimum. It is round-number headroom that clears the largest
-    # device tried (156 qubits, 176 edges) with margin, and it has never needed a
-    # raise. If a future device makes `decide` hit this limit here, first check
+    # above. That knob picks kernel `decide` or `#eval` for each device. This budget
+    # is Lean's own elaborator limit for the proof term that `decide` builds. Both
+    # share the numeral 100000 by coincidence, not because one comes from the other.
+    # Do not assume that a change to one budget affects the other. This budget was
+    # not tuned to a measured minimum. It is round-number headroom that clears the
+    # largest device tried (156 qubits, 176 edges) with margin. It has never needed
+    # a raise. If a future device makes `decide` hit this limit, first check
     # whether the recursion grows in proportion to circuit and gate-fold size, as
     # expected. Only then raise the number further.
     def claim(expr, expected, note):
@@ -199,8 +200,8 @@ def emit(dev, slug):
     # DeviceLib.lean). This Bool-fold form is why this budget is much smaller than
     # the 100000 above, which covers the heavier whole-circuit `certifySecurity`
     # fold, not the edge-list check. 8000 is round-number headroom over the largest
-    # edge list in this corpus (176 pairs), not a tuned minimum, and it has never
-    # needed a raise.
+    # edge list in this corpus (176 pairs). It is not a tuned minimum, and it has
+    # never needed a raise.
     L.append(f"set_option maxRecDepth 8000 in")
     L.append(f"def spec_{slug} : EdgeSpec {n} where")
     L.append(f"  edges := {lean_list(es)}")
@@ -233,8 +234,8 @@ def header(meta, skipped):
     over time. It claimed that the per-device verdicts were `#eval`, because kernel
     `decide` was "impractical" at 156 qubits. But every verdict actually emitted was
     `by decide`. The literal also quoted a directed edge count (352) against an
-    undirected encoding (176). It said nothing when a device in SELECTED was
-    dropped. Deriving the header from the results removes all three failure modes.
+    undirected encoding (176). It said nothing when SELECTED dropped a device.
+    Deriving the header from the results removes all three failure modes.
     """
     n_dev = len(meta)
     n_kernel = sum(1 for m in meta if m["kernel_checked"])
@@ -266,7 +267,7 @@ def header(meta, skipped):
         skip_lines += [f'  * {cls} — {why}' for cls, why in skipped]
     return ['/-',
             'QpuCompiler/DeviceCorpus.lean — GENERATED by',
-            'pipeline/paper-final/artifact/harness/devices/gen_device_corpus.py. Do not hand-edit.',
+            'harness/devices/gen_device_corpus.py. Do not hand-edit.',
             '',
             f'{n_dev} real IBM QPU topologies (7–{max_q} qubits) encoded as `Coupling n`, so the',
             'certifier can be exercised against actual hardware graphs with **no QPU access',

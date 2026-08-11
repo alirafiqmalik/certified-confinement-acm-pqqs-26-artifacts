@@ -1,6 +1,6 @@
 {
-  "name": "local-test-key",
-  "description": "IBM Quantum Platform API key. Create one at https://quantum.ibm.com/ under Account settings. The hardware harness in pipeline/paper-final/artifact/harness/ibm-hardware/ reads this file at run time.",
-  "createdAt": "YYYY-MM-DDTHH:MM:SS.000Z",
-  "apikey": "PASTE_YOUR_IBM_QUANTUM_API_KEY_HERE"
+  "name": "artifact-evaluation-key",
+  "description": "IBM Quantum Platform API key. Create one at https://quantum.ibm.com/ under Account settings. Copy this file to apikey.json in the artifact root and paste your key. The scripts in harness/ibm-hardware/ read that file at run time. .gitignore excludes every apikey*.json file, so your key cannot be committed by accident.",
+  "apikey": "PASTE_YOUR_IBM_QUANTUM_API_KEY_HERE",
+  "instance": ""
 }

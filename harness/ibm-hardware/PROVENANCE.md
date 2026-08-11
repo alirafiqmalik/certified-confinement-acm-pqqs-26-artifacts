@@ -1,11 +1,11 @@
 # Hardware campaign provenance
 
-Recovered 2026-08-06. Read-only retrieval of existing IBM jobs; no QPU time consumed.
+Recovered 2026-08-06. This is a read-only retrieval of existing IBM jobs. It uses no QPU time.
 
 The shipped result files recorded derived statistics only. `sweep_results.json` and
 `repeat_results.json` store `(dP, z)` per pair with no job id, no shot counts and no
-baselines, and the `sweep_jobs.json` / `repeat_jobs.json` label maps they were computed
-through are not in the repository. Nothing in the artifact could re-derive them.
+baselines. The `sweep_jobs.json` / `repeat_jobs.json` label maps that produced them are
+not in the repository. The artifact cannot re-derive them.
 
 Two scripts close this:
 
@@ -15,15 +15,15 @@ Two scripts close this:
 - `reconcile_provenance.py` — recomputes every published cell from those raw counts and
   compares. Output: `reconciliation.json`.
 
-The missing label map did not need to be recovered. `submit_sweep.py` emits circuits in
+We did not need to recover the missing label map. `submit_sweep.py` emits circuits in
 a fixed nesting — pair-major, then `dist` in `(d1, d2)`, then `vbit` in `(0, 1)`, then
 `rep` — so 8 circuits per pair. With the pair list from `sweep_prereg.json` and the pub
 ordering from the job, every cell is addressable.
 
 ## Campaign map
 
-19 jobs. Job ids resolve as follows; the four already recorded in result files are
-marked.
+19 jobs. Job ids resolve as follows. The table marks the four job ids already recorded
+in result files.
 
 | created (EDT) | backend | job id | pubs | shots | status | role |
 |---|---|---|--:|--:|---|---|
@@ -75,21 +75,21 @@ Shots to resolve one victim bit at 5 sigma, `n = 25 (p0(1-p0) + p1(1-p1)) / dP^2
 | leaking cells | 15 / 16 | 0 / 16 |
 | shots for 1 bit | **60 – 4,526** (median 186) | 1.3e5 – 1.9e7 |
 
-Three to five orders of magnitude separate the two distances. This is the number that
-answers "is this an attack or a crosstalk characterisation?": at distance 1 a co-tenant
-resolves a victim bit in a few hundred shots, and at distance 2 the same measurement
-needs on the order of a million. The `k = 1` buffer is the difference between a
+Three to five orders of magnitude separate the two distances. This number answers a key
+question: is this an attack, or a crosstalk characterization? At distance 1, a co-tenant
+resolves a victim bit in a few hundred shots. At distance 2, the same measurement needs
+on the order of a million shots. The `k = 1` buffer is the difference between a
 practical and an impractical channel.
 
 Standing caveat, unchanged: victim and probe are qubits 0 and 1 of the same
 `QuantumCircuit(2,1)`, submitted as one job by one user. This measures the physical ZZ
-channel that co-tenancy would expose; it is not a demonstration of one tenant attacking
-another, and no claim beyond that is supported.
+channel that co-tenancy would expose. It is not a demonstration of one tenant attacking
+another, and we support no claim beyond that.
 
 ## Arms submitted that returned no data
 
-Both must be disclosed. Pre-registration is worthless if arms that produced nothing are
-silently dropped.
+We must disclose both. If we silently drop arms that produced nothing, pre-registration is
+worthless.
 
 | backend | job id | submitted | pubs | shots | status |
 |---|---|---|--:|--:|---|
@@ -97,13 +97,13 @@ silently dropped.
 | `ibm_marrakesh` | `d9o3c34sfqic73arlk8g` | 2026-08-03 02:32:44 | 16 | 8192 | CANCELLED |
 
 The kingston arm is the one pre-registered in `prereg_kingston.json` (5 pairs,
-calibration-only outcome-independent selection). It was submitted with the full 40
-circuits at 8192 shots and cancelled before returning results, which is why no
-`results_kingston.json` exists. The correct disclosure is that a third device was
-pre-registered and yielded no data — not silence.
+calibration-only outcome-independent selection). We submitted the full 40 circuits at 8192
+shots, and the job was cancelled before it returned results. This is why no
+`results_kingston.json` exists. We pre-registered a third device, and it yielded no data.
+That is the correct disclosure, not silence.
 
 This also means the campaign covers **two** Heron r2 devices (marrakesh, fez), which is
-what the paper claims. A third was attempted.
+what the paper claims. We attempted a third.
 
 ## Reproduce
 

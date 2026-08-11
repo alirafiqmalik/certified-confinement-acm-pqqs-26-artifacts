@@ -21,7 +21,7 @@ certified each mutant against the ring, with F={6..11}.
 - The **269 false-accepts** under the old lexer are exactly the conditioned-gate mutants
   (`if(c==k) cz q[a],q[b];`). The old parser silently skipped the guarded gate. It then certified
   the confined-looking remainder as an **unsound accept**. This is the soundness hole flagged in
-  the Axis-2 run and by the co-advisor.
+  the Axis-2 run and in review feedback.
 
 - `parseQASMSafe` rejects any unrecognized support-bearing token. The result is **0 false-accepts,
   100% caught**.

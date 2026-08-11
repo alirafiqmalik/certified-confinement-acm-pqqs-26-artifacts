@@ -4,21 +4,21 @@ Generic leak-sweep submitter for a named Heron r2 device. It has a hard quota gu
 Usage:  submit_device.py <backend> <npairs> <tag> [--reuse-prereg]
 
  - <backend>       ibm_fez | ibm_marrakesh | ibm_kingston
- - <npairs>        number of victim/probe triples (victim, d1, d2)
- - <tag>           label. Artifacts land in jobs_<tag>.json.
+ - <npairs>        the number of victim/probe triples (victim, d1, d2)
+ - <tag>           a label. Artifacts land in jobs_<tag>.json.
  - --reuse-prereg  Reuse pairs from sweep_prereg.json, for replication.
                    Omit this flag for a NEW device. Then the script selects pairs
-                   from calibration data only (outcome-independent), and writes
+                   from calibration data only (outcome-independent). It writes
                    them to prereg_<tag>.json.
 
-QUOTA GUARD: this script refuses to submit if the estimated cost exceeds the
+QUOTA GUARD: this script refuses to submit when the estimated cost exceeds the
 remaining free-tier seconds minus RESERVE. The cost model is calibrated on
 observed runs, at about 2.7 QPU-seconds per circuit (40 circuits take 106.9 s
 on marrakesh, and 24 circuits take 46.9 s on fez).
 
 The script reads the token at runtime. It never prints the token.
 """
-import json, pathlib, sys, datetime
+import json, os, pathlib, sys, datetime
 
 BASE = str(pathlib.Path(__file__).resolve().parent) + "/"
 for _p in pathlib.Path(__file__).resolve().parents:
@@ -26,7 +26,13 @@ for _p in pathlib.Path(__file__).resolve().parents:
         break
 else:
     raise FileNotFoundError("apikey.json not found in any parent directory of this script")
-KEY = json.load(open(_p / "apikey.json"))["apikey"]
+_KEYFILE = json.load(open(_p / "apikey.json"))
+KEY = _KEYFILE["apikey"]
+# The instance name belongs to the account, not to the experiment.
+# Set the IBM_INSTANCE environment variable, or add an "instance" field to apikey.json.
+# If both stay unset, the service selects the default instance of the account.
+_INSTANCE = os.environ.get("IBM_INSTANCE") or _KEYFILE.get("instance")
+_INST = {"instance": _INSTANCE} if _INSTANCE else {}
 
 from qiskit import QuantumCircuit, transpile
 from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2
@@ -38,7 +44,7 @@ WIN = 40e-6; SHOTS = 8192; REPS = 2
 backend_name = sys.argv[1]; npairs = int(sys.argv[2]); tag = sys.argv[3]
 reuse = "--reuse-prereg" in sys.argv
 
-svc = QiskitRuntimeService(channel="ibm_quantum_platform", token=KEY, instance="qos-instance")
+svc = QiskitRuntimeService(channel="ibm_quantum_platform", token=KEY, **_INST)
 u = svc.usage(); remaining = u["usage_remaining_seconds"]
 
 
@@ -55,9 +61,9 @@ def pick_pairs(backend, n):
         try: return tgt.qubit_properties[q].t2 or 0
         except Exception: return 0
     used = set()
-    # --exclude-measured: skip every qubit already used in sweep_prereg.json for this
+    # --exclude-measured: skip every qubit that sweep_prereg.json already used for this
     # device. This way, a "new pairs" run adds genuinely independent qubit pairs. It
-    # does not re-measure the same couplers that already have three snapshots.
+    # does not re-measure couplers that already have three snapshots.
     if "--exclude-measured" in sys.argv:
         try:
             pre0 = json.load(open(BASE + "sweep_prereg.json"))

@@ -2,7 +2,7 @@
 
 **Derivation order. This framing is MANDATORY for the paper.** We fixed k=1 on **2026-07-23**,
 which is the file mtime of `QpuCompiler/Buffer.lean`. Two things motivated it: the documented
-nearest-neighbour ZZ threat model (NDSS'25, SWAP'25), and the finding by the reviewer that
+nearest-neighbor ZZ threat model (NDSS'25, SWAP'25), and the finding by the reviewer that
 support-only confinement misses adjacency. Both came **before** the 2026-07-28 hardware run.
 
 The E1 sweep found a leak at d=1 and a null at d≥2, on 8 of 8 pairs. That result is **consistent
@@ -22,8 +22,8 @@ against the ΔP data.
 
 ## Reading
 - **k=1 is the principled minimum.** It is exactly the buffer that removes the shared coupling
-  edge which carries the measured nearest-neighbour ZZ leak. It costs only the 1-hop
-  neighbourhood, which is 4 of 12 qubits here.
+  edge which carries the measured nearest-neighbor ZZ leak. It costs only the 1-hop
+  neighborhood, which is 4 of 12 qubits here.
 
 - **Larger k trades away usable device area fast** — a 4-hop buffer sterilizes all but one qubit
   of this patch. The E1 sweep found **no leak beyond d=1 on any of 8 pairs**, so k=1 is sufficient. On this

@@ -1,6 +1,6 @@
 # E6 — QCEC capability contrast (NOT a speed claim)
 
-According to the A2-FINAL ruling, this is a **capability contrast first**. We show timing only
+The A2-FINAL ruling states that this is a **capability contrast first**. We show timing only
 as context, clearly labelled as a different task. We never show it as "we are faster than
 QCEC".
 
@@ -19,9 +19,9 @@ avoid. It certifies a *decidable structural security property* in linear time.
 ## Timing context only (different task — do NOT frame as a comparison)
 `mqt.qcec 3.7.0` ran equivalence checks over 7 QASMBench-small circuits, against their opt-3
 transpilations. The median was **0.0205 s**. The range was 0.012 to 0.109 s. This only documents
-that the DD engine of QCEC is itself fast on small structured circuits. That is exactly why a
+that the DD engine of QCEC is fast on small structured circuits. That is why a
 "we are faster" curve is a strawman. NOTE: several checks returned `not_equivalent`, because the
-garbage and ancilla qubit counts did not match while partial equivalence stayed off. That is a
+garbage and ancilla qubit counts did not match, and the partial-equivalence setting was off. That is a
 QCEC configuration artifact. We make **no** claim from it.
 
 **Ships as:** the capability row in Table 1, plus one sentence in §8. There is no comparative

@@ -8,3 +8,14 @@ __pycache__/
 # was previously untracked AND unignored, i.e. one `git add -A` from being published.
 apikey*.json
 !apikey.json.example
+
+# Output of run_artifact.sh. The repository ships the results of the run that
+# the paper reports; a new run writes here instead.
+artifact-run/
+
+# Editor and agent settings. These belong to one machine, not to the artifact.
+.claude/
+
+# QASMBench is an external benchmark suite. run_artifact.sh --fetch-benchmarks
+# clones it here.
+harness/QASMBench/

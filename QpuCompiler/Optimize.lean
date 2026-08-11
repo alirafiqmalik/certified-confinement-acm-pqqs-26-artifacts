@@ -57,10 +57,10 @@ theorem fuse_sound {g g' g'' : Gate1} (h : fuse g g' = some g'') :
       rw [hs, Rat.cast_zero, zero_mul, Gate.RZ_zero]
     · rfl
 
-/-- One fusion sweep. On a fusion hit the fused gate is reconsidered against
-the next gate (so chains like `x, x, x` collapse in one sweep). Terminates:
-the list length strictly decreases on the fused branch and the tail shrinks
-otherwise. -/
+/-- One fusion sweep. On a fusion hit, the sweep reconsiders the fused gate
+against the next gate (so chains like `x, x, x` collapse in one sweep).
+Terminates: the list length strictly decreases on the fused branch and the
+tail shrinks otherwise. -/
 def optAdj : List GApp → List GApp
   | [] => []
   | [a] => [a]
@@ -180,8 +180,8 @@ theorem optAdj_wfb {n : ℕ} {l : List GApp} (hl : ∀ a ∈ l, a.wfb n = true) 
     · exact ih (fun y hy => hl y (List.mem_cons_of_mem _ hy)) x hx
 
 /-- Iterate `optAdj` to a fixpoint. Fuel-free: every `optAdj` rewrite strictly
-shrinks the list, so a sweep that changed anything shortened it. Recursion is
-guarded by the length test itself. -/
+shrinks the list, so a sweep that changed anything shortened it. The length
+test itself guards the recursion. -/
 def optFix (l : List GApp) : List GApp :=
   if h : (optAdj l).length < l.length then optFix (optAdj l) else l
 termination_by l.length

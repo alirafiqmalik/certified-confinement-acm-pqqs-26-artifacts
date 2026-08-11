@@ -10,7 +10,7 @@ else:
 KEY=json.load(open(_p / "apikey.json"))["apikey"]
 jobs=json.load(open(BASE / "sweep_jobs.json")); prereg=json.load(open(BASE / "sweep_prereg.json"))
 svc=QiskitRuntimeService(channel="ibm_quantum_platform",token=KEY)
-# status check
+# Check the status of every job.
 for name,info in jobs.items():
     st=str(svc.job(info["job_id"]).status()); print(f"{name} {info['job_id']} status={st}")
     info["_st"]=st

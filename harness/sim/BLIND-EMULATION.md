@@ -35,11 +35,11 @@ just by promise. It replaces `builtins.open` with a guard that raises `Permissio
 matching `results_*`, `sweep_results`, `repeat_results`, `ibm_results`, `RESULTS-*`, and more. It
 cannot read our outcomes even by accident.
 
-**The prediction rule:** a probe leaks iff it sits at **graph distance 1** from the victim. This
-follows from the documented mechanism (always-on residual ZZ acts across a coupling edge). We
-committed it in `QpuCompiler/Buffer.lean` on **2026-07-23** — five days *before* the first hardware
-run on 2026-07-28 began. The derivation order is checkable from the repository, which is what makes
-"blind" a claim about provenance rather than about one script's file handles.
+**The prediction rule:** a probe leaks if and only if it sits at **graph distance 1** from the
+victim. This follows from the documented mechanism: always-on residual ZZ acts across a coupling
+edge. We committed it in `QpuCompiler/Buffer.lean` on **2026-07-23** — five days *before* the first
+hardware run on 2026-07-28 began. The derivation order is checkable from the repository. This is
+what makes "blind" a claim about provenance, not about one script's file handles.
 
 Scoring lives in a **separate** file (`blind_score.py`), which can read both. Nothing feeds back, so
 running the scorer cannot alter a prediction.
@@ -60,24 +60,25 @@ running the scorer cannot alter a prediction.
 ### The single false positive is not a prediction error
 
 It is `ibm_fez` 50→51 in snapshot 1 (z=0.0). The *same pair, same qubits* leaked at **z=22.4** in
-snapshot 2, so the blind structural prediction was correct. The snapshot-1 *measurement* was
-below detection at that calibration. Counted as a false positive because that is what the data said
-at the time. The follow-up shows the predictor was right, and the observation was blind.
+snapshot 2. So the blind structural prediction was correct. The snapshot-1 *measurement* was
+below detection at that calibration. We counted it as a false positive, because that is what the
+data showed at the time. The follow-up shows that the predictor was right, and that the
+observation was blind.
 
-This best illustrates the paper's design choice: a policy built on *measured magnitude* whitelists
-that placement — and is wrong within a day. A policy built on *published structure* flagged it
-correctly both times, before and after the channel became visible.
+This illustrates the paper's design choice best. A policy built on *measured magnitude* whitelists
+that placement, and the policy is wrong within a day. A policy built on *published structure*
+flagged the placement correctly both times, before and after the channel became visible.
 
 ## What this does and does not license
 
 **Does:** a tenant can identify every at-risk placement on an IBM device **before running anything**,
-from public metadata alone. The rule that does it is the same rule the Lean certificate enforces.
-That is the practically important claim — it means the certifier's input requires no privileged data.
+from public metadata alone. The Lean certificate enforces this same rule. That is the practically
+important claim: the certifier's input requires no privileged data.
 
-**Does not:** predict leak strength, guarantee the NN rule holds on other hardware families, or
+**Does not:** predict leak strength, guarantee that the NN rule holds on other hardware families, or
 substitute for the hardware measurements. Non-graph-mediated channels (shared readout resonators,
-control-line crosstalk) are not caught by *any* coupling-map-derived rule at any radius — as
-§9 already discloses.
+control-line crosstalk) are not caught by *any* coupling-map-derived rule, at any radius. §9 already
+discloses this.
 
 ## Reproduce
 

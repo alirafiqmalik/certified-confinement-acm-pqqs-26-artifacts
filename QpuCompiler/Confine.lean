@@ -101,8 +101,8 @@ theorem route_hh_confine {A : ℕ → Bool} :
 
 /-! ## Soundness: confinement to `A` disjoint from `F` ⇒ never touches `F` -/
 
-/-- If `c` is confined to `A` and `A` is disjoint from the forbidden region `F`,
-then `c` touches no qubit in `F` (every gate is confined to the complement of `F`). -/
+/-- If `c` is confined to `A`, and `A` is disjoint from the forbidden region `F`,
+then `c` touches no qubit in `F`. Every gate is confined to the complement of `F`. -/
 theorem confinedb_avoids {A F : ℕ → Bool} {n : ℕ} :
     ∀ {c : UCom n}, confinedb A c = true → (∀ x, A x = true → F x = false) →
       confinedb (fun x => !F x) c = true := by
@@ -282,7 +282,7 @@ theorem compile_hh_confine_correct {A F : ℕ → Bool} {c : UCom 12}
 The security-relevant checks, hardware-legality (`HWF`) and confinement or policy
 (`confinedb`), are decidable structural predicates on the compiled circuit. So they
 certify the output of any external transpiler, per instance, with no 2ⁿ matrix and
-no layout recovery. Functional equivalence is the part that needs `denote`; see the
+no layout recovery. Functional equivalence is the part that needs `denote`. See the
 driver handoff for its scope. A tenant occupies the allowed slot `A = {0..5}`. The
 co-tenant, or forbidden, region is `F = {6..11}`. -/
 
@@ -305,11 +305,11 @@ example : ∀ x, tenantA x = true → tenantF x = false := by
 /-! ## NF-1: one-call security certificate for an externally supplied circuit
 
 `certifySecurity` validates any external transpiler output (a `UCom n`, for example
-ingested from OpenQASM through `ofList`) against a device `g` and a forbidden region
-`F`, in one call. It checks hardware-legality (`HWF`, decidable) and confinement
-(`confinedb`). `certifySecurity_sound` gives the kernel-checked guarantee behind an
-`accepted` verdict: no 2ⁿ check, no layout recovery, and it works on arbitrary
-output. -/
+ingested from OpenQASM through `ofList`). It checks the output against a device `g`
+and a forbidden region `F`, in one call. It checks hardware-legality (`HWF`,
+decidable) and confinement (`confinedb`). `certifySecurity_sound` gives the
+kernel-checked guarantee behind an `accepted` verdict: no 2ⁿ check, no layout
+recovery, and it works on arbitrary output. -/
 
 structure CertResult where
   hardwareLegal : Bool

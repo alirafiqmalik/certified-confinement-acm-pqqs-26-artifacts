@@ -1,8 +1,8 @@
 """
 test_e2e.py — end-to-end test suite for the leak-measurement harness.
 
-This suite runs entirely offline. It exits non-zero if any test fails, so you
-can use it as a pre-flight gate before spending QPU time.
+This suite runs entirely offline. If any test fails, the suite exits non-zero.
+You can use it as a pre-flight gate before spending QPU time.
 
 WHAT EACH TEST IS FOR (and what it is NOT)
   T1 positive control   the pipeline detects an injected leak

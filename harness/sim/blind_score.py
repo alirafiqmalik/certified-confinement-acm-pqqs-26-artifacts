@@ -1,17 +1,18 @@
 """
 blind_score.py — score the blind structural predictions against HELD-OUT hardware.
 
-This file is deliberately separate from `blind_predict.py`. The predictor is
-mechanically barred from reading any results file. This scorer reads both files,
-and never feeds anything back. Running the scorer cannot change a prediction.
+This file is deliberately separate from `blind_predict.py`. A guard mechanically
+blocks the predictor from reading any results file. This scorer reads both
+files. It never feeds anything back to the predictor. Running the scorer
+cannot change a prediction.
 
-Scored quantity: the STRUCTURAL prediction that "a probe leaks iff it sits at
-graph distance 1 from the victim". This prediction is derived from the published
-coupling map and the documented nearest-neighbor residual-ZZ mechanism. It was
-committed in QpuCompiler/Buffer.lean on 2026-07-23, five days before the first
-measurement.
+Scored quantity: the STRUCTURAL prediction that "a probe leaks if and only if
+it sits at graph distance 1 from the victim". We derived this prediction from
+the published coupling map and the documented nearest-neighbor residual-ZZ
+mechanism. We committed it in QpuCompiler/Buffer.lean on 2026-07-23, five days
+before the first measurement.
 
-Two directions are scored separately, because they are not equally important:
+We score two directions separately, because they are not equally important:
 
   SAFETY-CRITICAL  never predict "no leak" for a placement that does leak.
                    A miss here means that the certifier accepts a leaking
@@ -65,7 +66,7 @@ def observations():
 obs = observations()
 print(f"held-out observations: {len(obs)}\n")
 
-# This is the structural rule, restated here only to score it. It is identical to the predictor's rule.
+# This is the structural rule, repeated here only to score it. It matches the predictor's rule exactly.
 def predicted_leak(dist):
     return dist == 1
 

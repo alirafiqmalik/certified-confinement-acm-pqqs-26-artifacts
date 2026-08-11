@@ -1,13 +1,15 @@
 """
-This is a generic collector for a jobs_<tag>.json submission. Its statistics are
-identical to collect_sweep.py and collect_repeat.py: an unpooled two-proportion
-(Wald) z-test over N = shots x reps, with a leak criterion of z >= 5.
+This is a generic collector for a jobs_<tag>.json submission.
+
+Its statistics are identical to collect_sweep.py and collect_repeat.py. It uses an
+unpooled two-proportion (Wald) z-test over N = shots x reps. The leak criterion is
+z >= 5.
 
 Usage: collect_tag.py <tag>
-This script writes results_<tag>.json. It reads the token at runtime, and it
-never prints the token.
+This script writes results_<tag>.json. It reads the token at runtime. It never
+prints the token.
 """
-import json, math, pathlib, sys
+import json, os, math, pathlib, sys
 
 BASE = str(pathlib.Path(__file__).resolve().parent) + "/"
 for _p in pathlib.Path(__file__).resolve().parents:
@@ -15,12 +17,18 @@ for _p in pathlib.Path(__file__).resolve().parents:
         break
 else:
     raise FileNotFoundError("apikey.json not found in any parent directory of this script")
-KEY = json.load(open(_p / "apikey.json"))["apikey"]
+_KEYFILE = json.load(open(_p / "apikey.json"))
+KEY = _KEYFILE["apikey"]
+# The instance name belongs to the account, not to the experiment.
+# Set the IBM_INSTANCE environment variable, or add an "instance" field to apikey.json.
+# If both stay unset, the service selects the default instance of the account.
+_INSTANCE = os.environ.get("IBM_INSTANCE") or _KEYFILE.get("instance")
+_INST = {"instance": _INSTANCE} if _INSTANCE else {}
 from qiskit_ibm_runtime import QiskitRuntimeService
 
 tag = sys.argv[1]
 info = json.load(open(BASE + f"jobs_{tag}.json"))
-svc = QiskitRuntimeService(channel="ibm_quantum_platform", token=KEY, instance="qos-instance")
+svc = QiskitRuntimeService(channel="ibm_quantum_platform", token=KEY, **_INST)
 job = svc.job(info["job_id"])
 st = str(job.status())
 print(f"{tag}: {info['backend']} job {info['job_id']} status={st}")

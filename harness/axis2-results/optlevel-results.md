@@ -1,4 +1,4 @@
-# E5 (+E8) — Violation-rate vs Qiskit optimization level; certification overhead
+# E5 (+E8) — Violation-rate vs Qiskit optimization level — certification overhead
 
 > **RE-VERIFIED 2026-07-30.** We re-ran the evaluation after the `qasmStmts` comment-ordering fix
 > in `Frontend.lean`. All figures below are UNCHANGED (violation rate 18/53/71/71%, 27/28
@@ -35,7 +35,7 @@ at opt0). They contain classically-**conditioned gates**. `parseQASMSafe` now *c
 rejects* these gates instead of silently skipping them.
 
 This is the correct, sound behavior. It
-is also the honest coverage shift, compared with the old parser's headline: the previous "0/28
+is also the honest coverage shift, compared with the old parser's headline. The previous "0/28
 false-reject, 99.9% parse-coverage" (via the unsound `parseQASM`) becomes **27/28 accepted plus 1
 safe parse-rejection** under `parseQASMSafe`. No confined circuit is wrongly rejected on the
 confinement check itself.

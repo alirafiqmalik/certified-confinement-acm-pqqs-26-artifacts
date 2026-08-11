@@ -2,11 +2,11 @@
 
 ## What this is, and what it is not
 
-**It is not validation.** Aer and IBM's fake backends contain **no crosstalk term whatsoever**, so a
+**It is not validation.** Aer and IBM's fake backends contain **no crosstalk term at all**. So a
 leak cannot appear here unless we put it there. This harness takes the leak as a *hypothesis* —
-always-on residual ZZ between coupled qubits — and encodes it explicitly as an `RZZ` rotation. It
-asks whether that hypothesis reproduces what we measured. Every empirical claim in the paper
-continues to rest on the hardware runs.
+always-on residual ZZ between coupled qubits — and encodes the hypothesis explicitly as an `RZZ`
+rotation. It asks whether that hypothesis reproduces what we measured. Every empirical claim in
+the paper still rests on the hardware runs.
 
 **It is useful for three things**, all offline and all costing zero QPU time:
 1. **Regression-testing the whole pipeline** before spending metered quota.
@@ -24,9 +24,9 @@ the Y basis (`sdg; h`):
 P(1 | victim=b) = (1 ∓ sin θ)/2      ⇒      ΔP = |sin θ|      (linear near θ=0)
 ```
 
-A plain H…H Ramsey instead gives `sin²(θ/2)`, which is **even** in θ — both secret values give the
-same answer and the channel is invisible. Decoherence and readout error come from the **real stored
-calibration snapshot** (`2026-07-29 07:22 EDT`), not from guesses.
+A plain H…H Ramsey instead gives `sin²(θ/2)`, which is **even** in θ. Both secret values give the
+same answer, so the channel is invisible. Decoherence and readout error come from the **real
+stored calibration snapshot** (`2026-07-29 07:22 EDT`), not from guesses.
 
 ## End-to-end test suite — 9/9 passing
 
@@ -53,24 +53,24 @@ with no per-pair fudging beyond that one coupling constant. **This is self-consi
 model, not independent evidence.**
 
 ### T7 — the substantive consistency result
-Fitted couplings on the n=0 branch span **0.22–1.67 kHz**. That is squarely the regime expected for
-*residual* ZZ on a tunable-coupler device: Heron's couplers are designed to suppress ZZ, and sub-kHz
-to low-kHz residuals are what survives. The measured ΔP therefore do **not** require an implausible
-coupling — which is a real (if modest) argument that the static-ZZ mechanism is the right one. It
-is independent of the mechanism-control run that ruled out drive-activity leakage.
+Fitted couplings on the n=0 branch span **0.22–1.67 kHz**. That is squarely the regime expected
+for *residual* ZZ on a tunable-coupler device. Heron's couplers are designed to suppress ZZ, and
+sub-kHz to low-kHz residuals are what survives. The measured ΔP therefore do **not** require an
+implausible coupling. This is a real, if modest, argument that the static-ZZ mechanism is the
+right one. It is independent of the mechanism-control run that ruled out drive-activity leakage.
 
 ## NEW LIMITATION this work uncovered
 
-**We cannot state the coupling strength from the existing data.** `ΔP = |sin(2πζτ)|` is periodic, so
+**We cannot state the coupling strength from the existing data.** `ΔP = |sin(2πζτ)|` is periodic. So,
 at the single τ=40 µs used throughout, ζ = 1.62 kHz, 26.62 kHz and 51.62 kHz are *all* exact fits.
-The ambiguity is not pedantic: ~1.6 kHz is the plausible tunable-coupler residual, while ~26.6 kHz is
-typical of *fixed*-coupler devices, and those imply different physics. The paper reports ΔP (an
-observable) and never quotes a ζ, so nothing published is wrong. But any future claim about coupling
-*magnitude* is unsupported without the extra measurement below.
+The ambiguity is not pedantic. ~1.6 kHz is the plausible tunable-coupler residual. ~26.6 kHz is
+typical of *fixed*-coupler devices instead, and the two imply different physics. The paper reports
+ΔP (an observable) and never quotes a ζ, so nothing published is wrong. But any future claim about
+coupling *magnitude* is unsupported without the extra measurement below.
 
-This does not touch the security argument at all: the certificate is structural (no shared coupling
-edge) and never references the ζ value. If anything it reinforces why a magnitude-based policy is
-the wrong instrument — we cannot even pin the magnitude with the data we have.
+This does not touch the security argument at all. The certificate is structural (no shared coupling
+edge) and never references the ζ value. In fact, it reinforces why a magnitude-based policy is the
+wrong instrument: we cannot even pin the magnitude with the data we have.
 
 ## Designed follow-up: one extra idle window resolves it
 
@@ -84,10 +84,10 @@ the wrong instrument — we cannot even pin the magnitude with the data we have.
 | 26.62 kHz | 0.9904 | 0.9910 (z=1342) |
 | 51.62 kHz | 0.0182 | 0.0223 (z=4.0) |
 
-**Cost: ~22 QPU-s for one pair.** The prediction is pre-registered here, before the run: the measured
+**Cost: ~22 QPU-s for one pair.** We pre-register the prediction here, before the run: the measured
 ΔP at τ=29 µs selects the branch outright. If it lands *between* the predictions, the static-ZZ model
-is itself incomplete. That is the more interesting outcome. We state it in advance, so no one can
-explain it away after the fact.
+is itself incomplete. That is the more interesting outcome. We state the prediction in advance, so
+that no one can explain it away after the fact.
 
 ## Files
 

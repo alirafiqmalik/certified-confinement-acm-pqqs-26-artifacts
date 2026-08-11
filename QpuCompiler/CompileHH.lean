@@ -1,12 +1,13 @@
 /-
 QpuCompiler/CompileHH.lean — iteration 14: the HEAVY-HEX end-to-end compiler.
 
-`heavyHex : Coupling 12` is the heavy-hex unit-cell ring, the cycle graph C₁₂
-(sites at even indices, flags at odd indices, wired 0–1–…–11–0). A verified-total path
-finder (the `findPath` table, with `findPath_valid` by `decide`) clears the symbolic
-routing crux. `routeCZ_hh` recovers the cons-cons shape and invariants generically, and
-delegates to the banked `routeEdge_HWF`/`routeEdge_congPhase`. Assembly is a
-line-for-line copy of i09 `Compile.lean` (routeCZ→routeCZ_hh, lnnPath n→heavyHex).
+`heavyHex : Coupling 12` is the heavy-hex unit-cell ring: the cycle graph C₁₂.
+Sites sit at even indices, flags at odd indices, wired 0–1–…–11–0. A verified-total
+path finder (the `findPath` table, with `findPath_valid` by `decide`) clears the
+symbolic routing crux. `routeCZ_hh` recovers the cons-cons shape and invariants
+generically. It delegates to the banked `routeEdge_HWF`/`routeEdge_congPhase`.
+Assembly is a line-for-line copy of i09 `Compile.lean` (routeCZ→routeCZ_hh,
+lnnPath n→heavyHex).
 -/
 import QpuCompiler.RouteEdge
 import QpuCompiler.Hardware

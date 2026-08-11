@@ -1,17 +1,17 @@
 """
-tau_discriminator.py — designs the cheap follow-up experiment that resolves the
-zeta alias that the current data cannot resolve.
+tau_discriminator.py — designs a cheap follow-up experiment. This experiment
+resolves the zeta alias that the current data cannot fix.
 
 The problem: ΔP = |sin(2π ζ τ)| is periodic. So at the single τ=40 µs that we
 used, ζ = 1.62 kHz, ζ = 26.6 kHz, and ζ = 51.6 kHz all predict the SAME ΔP =
 0.397. The first two are both physically credible. Sub-kHz to few-kHz is the
-expected residual ZZ for a tunable-coupler device like Heron, while tens of kHz
-is typical of fixed couplers. So the ambiguity is real, not pedantic. It means
+expected residual ZZ for a tunable-coupler device like Heron. Tens of kHz is
+typical of fixed couplers. So the ambiguity is real, not pedantic. It means
 that we cannot currently state the coupling strength, only the observable.
 
-The fix costs almost nothing: add ONE extra idle window. This script finds the τ
-that separates the alias branches the most, and reports the predicted ΔP for
-each one. So the follow-up run has a pre-registered discriminating prediction.
+The fix is cheap: it adds ONE extra idle window. This script finds the τ that
+best separates the alias branches. It reports the predicted ΔP for each one.
+So the follow-up run has a pre-registered discriminating prediction.
 """
 import math, json, os, sys
 

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """reconcile_provenance.py — recompute the published (dP, z) from raw counts.
 
-`sweep_results.json` and `repeat_results.json` record derived statistics only, and the
-`sweep_jobs.json` / `repeat_jobs.json` label maps they were computed through are not in
-the repository. So nothing in the artifact could re-derive them, and a reviewer has to
-take the two numbers on trust.
+`sweep_results.json` and `repeat_results.json` record only derived statistics. The
+`sweep_jobs.json` and `repeat_jobs.json` label maps that produced them are not in the
+repository. So nothing in the artifact can re-derive them, and a reviewer must take
+the two numbers on trust.
 
 The label map is recoverable without the missing file, because `submit_sweep.py` emits
 circuits in a fixed nesting:
@@ -15,8 +15,8 @@ circuits in a fixed nesting:
                 for rep in range(REPS):
 
 That is 2*2*REPS = 8 circuits per pair, pair-major. Combined with the pair list in
-`sweep_prereg.json` and the raw counts in `provenance.json`, every published cell can be
-recomputed and checked.
+`sweep_prereg.json` and the raw counts in `provenance.json`, this script can recompute
+and check every published cell.
 
 Statistic (from collect_sweep.py):
     p1     = P(probe measures 1)
@@ -43,8 +43,8 @@ REPS = sweep_prereg["reps"]
 SHOTS = sweep_prereg["shots"]
 N = SHOTS * REPS
 
-# Jobs are identified by (backend, n_pubs, creation time). submit_sweep.py submits
-# marrakesh(40) then fez(24) in one run, so a same-minute (40,24) pair is one campaign.
+# Jobs are identified by backend, n_pubs, and creation time. submit_sweep.py submits
+# marrakesh(40), then fez(24), in one run. So a same-minute (40,24) pair is one campaign.
 CAMPAIGNS = {
     "sweep":  {"ibm_marrakesh": "d9k297jjf64c739hhu70", "ibm_fez": "d9k2983jf64c739hhu80"},
     "repeat": {"ibm_marrakesh": "d9k5uljjf64c739hn19g", "ibm_fez": "d9k5um0ii2cc73efn7l0"},
@@ -92,10 +92,10 @@ for campaign, backends in CAMPAIGNS.items():
                     i += REPS
                     arms[vbit] = sum(reps) / len(reps)
                 dp, z = stat(arms[0], arms[1])
-                # Attack cost: shots needed to resolve ONE victim bit at 5 sigma,
-                # n = 25 * (p0(1-p0) + p1(1-p1)) / dP^2. This is the number that says
-                # whether the channel is practical, and it is what a reviewer asking
-                # "is this an attack or a crosstalk measurement?" wants to see.
+                # Attack cost: the shots needed to resolve ONE victim bit at 5 sigma.
+                # n = 25 * (p0(1-p0) + p1(1-p1)) / dP^2. This number says whether the
+                # channel is practical. It is what a reviewer wants to see when asking,
+                # "is this an attack or a crosstalk measurement?"
                 var = arms[0] * (1 - arms[0]) + arms[1] * (1 - arms[1])
                 shots5 = (25 * var / dp ** 2) if dp > 0 else float("inf")
                 row[dist] = {"dP": round(dp, 4), "z": round(z, 1),

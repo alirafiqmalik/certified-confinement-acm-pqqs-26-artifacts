@@ -7,7 +7,7 @@ BASE=sorted(glob.glob(f"{OPT}/o3/confined/*.qasm"))
 MUT=os.environ.get("FUZZ_OUT", str(HERE / "fuzz-out")); os.makedirs(MUT,exist_ok=True)
 for f in glob.glob(f"{MUT}/*.qasm"): os.remove(f)
 F=set(range(6,12))  # forbidden region on the 12-ring harness
-GATE1={"x","sx","id","rz"}; # Also matches tokens with the rz(...) prefix.
+GATE1={"x","sx","id","rz"}; # This also matches tokens with the rz(...) prefix.
 def gate_line(ln):
     t=ln.strip()
     if not t: return None
@@ -17,9 +17,9 @@ def gate_line(ln):
         qs=re.findall(r"\[(\d+)\]",t); return ("g1",g,[int(x) for x in qs][:1])
     if g in ("cz","cx"):
         qs=re.findall(r"\[(\d+)\]",t); return ("g2",g,[int(x) for x in qs][:2])
-    return ("unknown",)  # A conditioned or unknown token. parseQASMSafe rejects it.
+    return ("unknown",)  # A conditioned or unknown token. parseQASMSafe rejects this token.
 def support_and_class(lines):
-    """Ground truth is a (should_reject, reason) pair. An unknown token means reject, for reason unmodellable."""
+    """Ground truth is a (should_reject, reason) pair. An unknown token always means reject, with reason unmodellable."""
     sup=set()
     for ln in lines:
         p=gate_line(ln)
@@ -46,10 +46,11 @@ for bf in BASE:
         name=f"{os.path.basename(bf)[:-5]}_{typ}_{k}.qasm"
         open(f"{MUT}/{name}","w").write(txt); MUTS.append(dict(name=name,should_reject=gt,reason=reason))
 json.dump(MUTS,open(f"{MUT}/ground_truth.json","w"),indent=1)
-# Corpus diversity. Four operators over 28 bases give 1120 files, but `reloc` and
-# `alias` can rewrite a line to the qubit it already names, and `boundary` appends a
-# fixed line, so mutants collide. Reporting the distinct-content count keeps the
-# headline corpus size from overstating how much of the input space is explored.
+# Corpus diversity. Four operators run over 28 base files and produce 1120 files.
+# But `reloc` and `alias` can rewrite a line to the qubit that it already names.
+# `boundary` appends the same fixed line. So mutants can collide. The
+# distinct-content count shows the real amount of input space explored. The
+# headline corpus size alone overstates it.
 import hashlib
 digests={}
 for m in MUTS:

@@ -1,7 +1,7 @@
 /-
-QpuCompiler/Circuit.lean — sqir-style circuit IR for the IBM Heron r2 basis
-(`x`, `sx`, `id`, `rz θ` one-qubit gates, plus the native two-qubit `cz`), with
-well-formedness (bounds and distinctness), following sqir's `uc_well_typed`.
+QpuCompiler/Circuit.lean — sqir-style circuit IR for the IBM Heron r2 basis. The
+basis has one-qubit gates `x`, `sx`, `id`, `rz θ`, plus the native two-qubit `cz`.
+It has well-formedness (bounds and distinctness), following sqir's `uc_well_typed`.
 
 This is pure syntax: it has no matrices. Qubit arguments are bare `ℕ` (the sqir
 convention). Well-formedness is a separate predicate. There is no `skip`
@@ -13,7 +13,7 @@ namespace QpuCompiler
 
 /-- One-qubit gates of the Heron r2 basis. The `rz` angle is a rational number in
 units of π (the VOQC `RzQ` convention): `rz r` denotes `RZ (r·π)`. Rational angles
-give decidable equality, and so give decidable zero-rotation deletion. -/
+give decidable equality. So they give decidable zero-rotation deletion. -/
 inductive Gate1 : Type
   | x | sx | id | rz (r : ℚ)
   deriving DecidableEq

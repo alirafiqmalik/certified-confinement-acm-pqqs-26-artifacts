@@ -1,5 +1,5 @@
 /-
-CertifyQASM.lean — Axis-2 real-circuit ingestion entry point (Fork B/C [NEED] #1).
+CertifyQASM.lean — Axis-2 real-circuit ingestion entry point.
 
 This is the end-to-end path: OpenQASM-subset file(s) → untrusted `parseQASM` lexer →
 `ofList` → trusted `certifySecurity` → per-file verdict. Device: the 12-node heavy-hex
@@ -15,8 +15,8 @@ false accepts this way. For real evaluation, use `CertifyQASMSafe.lean`. This dr
 stays in the repository only to reproduce the §E7/W2 before-and-after comparison.
 
 Run (from qpu-compiler/ project root, after `lake build`):
-  lake env lean --run pipeline/paper-final/artifact/harness/CertifyQASM.lean \
-    pipeline/paper-final/artifact/harness/samples/*.qasm
+  lake env lean --run harness/CertifyQASM.lean \
+    harness/samples/*.qasm
 -/
 import QpuCompiler
 open QpuCompiler

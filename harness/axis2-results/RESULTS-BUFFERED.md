@@ -3,8 +3,8 @@
 Status: **current**. Generated 2026-08-06 with qiskit 2.5.1, Lean 4.31.0, Lake 5.0.0.
 
 This file closes a gap in the earlier axis-2 runs. `run_e5b.py` certifies against the
-bare forbidden region `tenantF`, so the headline evaluation never exercised the
-*buffered* (k-hop) policy that the paper advocates. Three experiments below.
+bare forbidden region `tenantF`. So the headline evaluation never exercised the
+*buffered* (k-hop) policy that the paper advocates. Three experiments follow.
 
 Reproduce (from the Artifact/ root, after `lake build`):
 
@@ -22,9 +22,9 @@ lake env lean --run harness/TimingBuffered.lean     # E-B3
 
 ## Baseline reproduction
 
-The unbuffered numbers reproduce **exactly** under a toolchain three minor versions
-newer than the one that first produced them (`e5_results.json`), which is worth
-stating because axis-2 measures a moving target — Qiskit's own transpiler.
+The unbuffered numbers reproduce **exactly**, under a toolchain three minor versions
+newer than the one that first produced them (`e5_results.json`). This fact matters,
+because axis-2 measures a moving target: Qiskit's own transpiler.
 
 | opt | n (full) | violations | rate |
 |----:|---------:|-----------:|-----:|
@@ -33,8 +33,8 @@ stating because axis-2 measures a moving target — Qiskit's own transpiler.
 | 2 | 38 | 27 | 71% |
 | 3 | 38 | 27 | 71% |
 
-Corpus population also reproduces exactly: full = 38 at every level; confined =
-29/28/28/28.
+Corpus population also reproduces exactly. Full population = 38 at every level.
+Confined population = 29/28/28/28.
 
 ---
 
@@ -55,19 +55,19 @@ end-to-end check that the buffered entry point agrees with the unbuffered one.
 
 **Reading this honestly: the k >= 1 rows are not a finding about the policy.** They
 are an artifact of the allocation. Tenant A = {0..5} and the k=1 halo around F both
-claim qubits 0 and 5, so on a 12-ring the tenant and its own buffer overlap and almost
-every circuit violates by construction. A buffer carved out of the tenant is not a
-buffer. E-B2 runs the experiment that this one cannot.
+claim qubits 0 and 5. So, on a 12-ring, the tenant and its own buffer overlap, and
+almost every circuit violates by construction. A buffer carved out of the tenant is
+not a buffer. E-B2 runs the experiment that this one cannot.
 
 ---
 
 ## E-B2 — is the buffered policy OPERABLE?
 
 `run_buffered_alloc.py` -> `buffered_alloc_results.json`. The provider reserves the
-k-hop halo as a dead zone and allocates the tenant what is left; the transpiler is
-handed **only** the induced subgraph on the allowed set (the restricted-coupling-map
-discipline that DynQ assumes and does not verify). The certifier then checks whether
-the transpiler actually stayed inside it.
+k-hop halo as a dead zone, and allocates to the tenant what is left. The transpiler
+receives **only** the induced subgraph on the allowed set — the restricted-coupling-map
+discipline that DynQ assumes and does not check. The certifier then checks whether
+the transpiler actually stayed inside the subgraph.
 
 | k | allowed qubits | tenant size | circuits that fit | accepted, opt 0/1/2/3 | false rejects |
 |--:|---|--:|--:|---|--:|
@@ -77,20 +77,20 @@ the transpiler actually stayed inside it.
 | 3 | {} | 0/12 | — | ring fully sterilised | — |
 
 **Zero false rejects at every k and every optimization level.** The two non-accepts at
-k=0 are `REJECT-PARSE` (the sound lexer refusing an unrecognized support-bearing
+k=0 are `REJECT-PARSE` (the sound lexer refuses an unrecognized support-bearing
 token), not confinement rejects.
 
 This is also the first false-reject arm measured on the **same device** as the
 violation rates. The earlier "0 false rejects" arm transpiled onto `PATH6` (a 6-node
-linear path) over circuits of <= 6 qubits, while the 18/53/71% rates were measured on
-the 12-node ring — different device and different circuit population, so the two
+linear path), over circuits of <= 6 qubits. We measured the 18/53/71% rates, meanwhile,
+on the 12-node ring. Device and circuit population both differ, so the two
 columns were never comparable.
 
-**Capacity is the real cost of the buffer, not runtime.** On a degree-2 ring each hop
+**Capacity is the real cost of the buffer, not runtime.** On a degree-2 ring, each hop
 costs the tenant two qubits, and the benchmark set that still fits collapses
 31 -> 23 -> 6 -> 0. k >= 3 is unusable on a 12-ring at this tenant size. On a
-degree-3 heavy-hex device the halo grows faster still. The k-knob does not scale, and
-the paper should say so rather than presenting k as freely tunable.
+degree-3 heavy-hex device, the halo grows even faster. The k-knob does not scale.
+The paper must say so, and not present k as freely tunable.
 
 ---
 
@@ -99,9 +99,9 @@ the paper should say so rather than presenting k as freely tunable.
 `harness/TimingBuffered.lean` -> `timing_buffered.csv`. Device `dev_marrakesh`
 (n = 156, 176 edges), F = {16, 22, 23}. Accept path (must scan every gate).
 
-Wall-clock, g = 10000 gates (values below are from the shipped
-`timing_buffered.csv`; wall-clock at the millisecond level is noisy, so the
-memoised/plain ratio wanders across runs — see the note after the table):
+Wall-clock, at g = 10000 gates. The values below are from the shipped
+`timing_buffered.csv`. Wall-clock at the millisecond level is noisy, so the
+memoised/plain ratio wanders across runs. See the note after the table:
 
 | region | wall | vs plain |
 |---|---:|---:|
@@ -113,12 +113,12 @@ memoised/plain ratio wanders across runs — see the note after the table):
 
 **On the memoised ratio.** Across four runs the plain check measured
 5.8–11.4 ms, `bufferArrK1` 5.7–9.4 ms, and `bufferArrK2` 5.7–12.9 ms at
-g = 10000 — fully overlapping. The memoised buffered check is therefore the
+g = 10000 — fully overlapping. The memoised buffered check therefore has the
 **same cost as the plain check within measurement noise** (observed ratios
-0.96x–2.4x); do not report a fixed small-constant overhead, because there
-isn't one. What is robust and reproducible: the *naive* buffer is ~150x at
-k = 1 and ~24,000x at k = 2, the memoised buffer is one plain check, and the
-memoised cost is flat in k.
+0.96x–2.4x). Do not report a fixed small-constant overhead, because there
+is not one. What is robust and reproducible is this: the *naive* buffer is
+~150x at k = 1, and ~24,000x at k = 2. The memoised buffer is one plain
+check. The memoised cost is flat in k.
 
 Memoised, at g = 1000, the buffer depth is essentially free:
 
@@ -128,8 +128,8 @@ Memoised, at g = 1000, the buffer depth is essentially free:
 
 (plain at g = 1000 is 0.580 ms.)
 
-`bufferArrK_ext` proves the memoised region **is** `bufferK g F k` — the same
-function, by `funext` — so `certifySecurity_bufferArrK` gives the identical verdict.
+`bufferArrK_ext` proves that the memoised region **is** `bufferK g F k` — the same
+function, by `funext`. So, `certifySecurity_bufferArrK` gives the identical verdict.
 Every gap in the table above is representation cost, not a change of policy.
 
 Two things follow, and both belong in the paper:

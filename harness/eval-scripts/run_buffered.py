@@ -2,10 +2,11 @@
 """run_buffered.py — Axis-2 sweep under the BUFFERED confinement policy.
 
 `run_e5b.py` certifies against the bare forbidden region `tenantF`. This script
-certifies the same corpus against the `k`-hop buffered region, for k = 0..K, and
+certifies the same corpus against the `k`-hop buffered region, for k = 0..K. It
 records both the verdicts and the size of the blocked region.
 
-k=0 must reproduce run_e5b.py exactly (`bufferK g F 0 = F`); the script asserts it.
+k=0 must reproduce run_e5b.py exactly (`bufferK g F 0 = F`). The script asserts
+this fact.
 
 Usage (from the Artifact/ root, after `lake build` and run_optlevel.py):
     AXIS2_OUT=/path/to/axis2-out python3 harness/eval-scripts/run_buffered.py [--kmax 3]

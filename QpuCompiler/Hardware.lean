@@ -1,8 +1,8 @@
 /-
 QpuCompiler/Hardware.lean — coupling-graph hardware model (heavy-hex abstraction),
 decidable hardware-well-formedness (HWF, strengthens WF), and a proof that the
-optimizer preserves hardware validity. Undirected edges are justified by padCZ
-symmetry (padCZ_comm). CZ is the only two-qubit gate, and it is symmetric. This
+optimizer preserves hardware validity. padCZ symmetry (padCZ_comm) justifies the
+undirected edges. CZ is the only two-qubit gate, and it is symmetric. This
 file has no routing or SWAP (i05).
 -/
 import QpuCompiler.Optimize
@@ -17,7 +17,7 @@ structure Coupling (n : ℕ) where
   edge_irrefl : ∀ a, edge a a = false
   edge_bounds : ∀ a b, edge a b = true → a < n ∧ b < n
 
-/-- Linear nearest-neighbour path coupling: `a — a+1` for all `a < n`. -/
+/-- Linear nearest-neighbor path coupling: `a — a+1` for all `a < n`. -/
 def lnnPath (n : ℕ) : Coupling n where
   edge a b := (decide (a + 1 = b) || decide (b + 1 = a))
               && decide (a < n) && decide (b < n)

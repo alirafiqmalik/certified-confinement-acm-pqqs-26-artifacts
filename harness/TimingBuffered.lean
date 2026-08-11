@@ -2,9 +2,9 @@
 TimingBuffered.lean — cost of the BUFFERED policy on a full-size device.
 
 `Timing.lean` benchmarks `certifySecurity` on `heavyHexFrag` (4 qubits, 3 edges) with
-the bare region `fragF`. That configuration cannot show the thing the cost discussion
-in Buffer.lean is actually about, because the buffered region's cost is driven by the
-device size `n`, and n = 4 there.
+the bare region `fragF`. That configuration cannot show the point that the cost
+discussion in Buffer.lean makes. The device size `n` drives the cost of the buffered
+region, and n = 4 there.
 
 This harness runs the real comparison on `dev_marrakesh` (n = 156, 176 edges):
 
@@ -29,10 +29,10 @@ def genChain156 (q : Nat) : Nat → UCom 156
 
 /-- Time one certification against a given region.
 
-The `if verdict != true` is load-bearing, not a sanity check: `let verdict := …` only
-builds a thunk, so without forcing it *between* the two clock reads the timer measures
-thunk allocation and every configuration comes out at a few hundred nanoseconds
-regardless of gate count. -/
+The `if verdict != true` check is load-bearing, not a sanity check. `let verdict := …`
+only builds a thunk. Without forcing the thunk *between* the two clock reads, the timer
+measures only thunk allocation. Every configuration then shows a few hundred
+nanoseconds, regardless of gate count. -/
 def timeRegion (label : String) (region : Nat → Bool) (c : UCom 156) : IO Unit := do
   let t0 ← IO.monoNanosNow
   let verdict := (certifySecurity dev_marrakesh region c).accepted
@@ -57,7 +57,7 @@ def main : IO Unit := do
     timeRegion s!"bufferK2/g={g}" (bufferK dev_marrakesh F_marrakesh 2) c
     timeRegion s!"bufferArrK2/g={g}"
       (bufferMemo F_marrakesh (bufferArrK dev_marrakesh F_marrakesh 2)) c
-  -- Memoisation makes larger k tractable at all; the unmemoised form is Θ(n^k).
+  -- Memoization makes larger k tractable at all. The unmemoized form is Θ(n^k).
   IO.println "# deeper k, memoised only (unmemoised bufferK 4 does not finish)"
   for k in [3, 4, 8] do
     let c := genChain156 100 1000

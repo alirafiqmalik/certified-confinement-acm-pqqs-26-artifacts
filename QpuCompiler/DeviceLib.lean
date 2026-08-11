@@ -5,14 +5,14 @@ QpuCompiler/DeviceLib.lean — encode ARBITRARY real device topologies as `Coupl
 
 `heavyHex : Coupling 12`, `heronPatch : Coupling 14`, and `heronMarrakesh : Coupling 12`
 each spell out their edge relation as an explicit decidable disjunction. That method
-works for a dozen qubits, but it fails for a real device: `ibm_marrakesh` has 352 edges
-over 156 qubits, and a disjunction of that size produces a term that the kernel must
+works for a dozen qubits, but it fails for a real device. `ibm_marrakesh` has 352 edges
+over 156 qubits. A disjunction of that size produces a term that the kernel must
 process on every `decide` call.
 
-The fix is to represent the graph as data, a canonical ordered edge list, and to
+The fix is to represent the graph as data: a canonical ordered edge list. We
 discharge the three `Coupling` obligations once, generically, instead of once per
 device. A new device then costs one `EdgeSpec` literal plus two `by decide` list
-checks, and the certifier runs against it unchanged.
+checks. The certifier runs against it unchanged.
 
 ## The representation
 
@@ -22,7 +22,7 @@ Edges are stored canonically: every edge appears exactly once, as `(lo, hi)` wit
     edge a b  :=  (min a b, max a b) ∈ edges
 
 This is symmetric by construction, because `min` and `max` are symmetric in their
-arguments, so `edge_symm` needs no case analysis on the device at all. The other two
+arguments. So `edge_symm` needs no case analysis on the device at all. The other two
 obligations follow from two finite properties of the list, each checkable by `decide`:
 
   * `ordered` : every stored pair has `p.1 < p.2`, so there are no self-loops, giving `edge_irrefl`
@@ -42,7 +42,7 @@ structure EdgeSpec (n : ℕ) where
   edges       : List (ℕ × ℕ)
   /-- Stated as a single `List.all` Bool computation, not as `∀ p ∈ edges, …`.
   This choice matters at real device sizes. The ∀-over-membership form makes
-  `by decide` run an instance search per element, and it exhausts `maxRecDepth` at
+  `by decide` run an instance search per element. It exhausts `maxRecDepth` at
   about 176 edges. One `List.all` reduces to a straight fold that the kernel
   handles easily. -/
   ordered_all : edges.all (fun p => decide (p.1 < p.2)) = true
@@ -95,11 +95,11 @@ def toCoupling (s : EdgeSpec n) : Coupling n where
 end EdgeSpec
 
 /-! Canonicalization happens on the producer side, in
-`pipeline/paper-final/artifact/harness/devices/gen_device_corpus.py`
+`harness/devices/gen_device_corpus.py`
 (`sorted({(min(a,b), max(a,b)) for a, b in raw if a != b})`). There is deliberately
-no Lean-side `canonEdges`. An unsorted Lean version would not reproduce the
-committed edge lists, so having both would invite two normal forms that disagree.
-Any `edges` field that is not canonical simply fails `ordered_all` or `bounded_all`
+no Lean-side `canonEdges`. An unsorted Lean version cannot reproduce the
+committed edge lists, so having both risks two normal forms that disagree.
+Any `edges` field that is not canonical fails `ordered_all` or `bounded_all`
 at build time. -/
 
 end QpuCompiler

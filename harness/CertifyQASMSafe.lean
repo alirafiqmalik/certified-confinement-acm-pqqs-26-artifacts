@@ -5,7 +5,7 @@ is different: it rejects any circuit with an unrecognized *support-bearing* stat
 `parseQASMSafe = none` means REJECT-PARSE. Device: 12-node ring. Tenant A={0..5}, F={6..11}.
 
 Run (from qpu-compiler/ root, after `lake build`):
-  lake env lean --run pipeline/paper-final/artifact/harness/CertifyQASMSafe.lean f1.qasm f2.qasm ...
+  lake env lean --run harness/CertifyQASMSafe.lean f1.qasm f2.qasm ...
 -/
 import QpuCompiler
 open QpuCompiler

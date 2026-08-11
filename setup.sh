@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # setup.sh — creates a Python virtual environment with everything the harness needs.
 #
-# This script is safe to re-run. It reuses an existing venv instead of recreating
-# it, and the pip install is idempotent.
+# This script is safe to re-run. It reuses an existing venv instead of
+# recreating it. Also, the pip install is idempotent.
 #
-# What gets installed, and why:
+# What this script installs, and why:
 #   qiskit              circuit representation, OpenQASM I/O, and transpilation
 #   qiskit-aer          local noise-model simulation (harness/sim/)
 #   qiskit-ibm-runtime  IBM backend access, and the offline "fake backend" topology
@@ -12,8 +12,8 @@
 #                       path needs no account and no token)
 #   mqt.qcec            only for harness/eval-scripts/run_qcec.py (the capability
 #                       comparison table against an external equivalence checker).
-#                       This is a heavier dependency. Skip it if you want only the
-#                       core reproduction path.
+#                       This dependency is heavier than the others. If you want
+#                       only the core reproduction path, skip it.
 set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -38,8 +38,6 @@ echo "=== setup complete ==="
 echo "Activate the venv in new shells with:"
 echo "    source $VENV/bin/activate"
 echo
-echo "Next steps (see README.md):"
-echo "  1. lake build                              # build + kernel-check the Lean library"
-echo "  2. bash harness/devices/verify_corpus.sh    # independently re-verify the 11-device corpus"
-echo "  3. python3 harness/sim/test_e2e.py          # 9-test zero-QPU pre-flight gate"
-echo "  4. python3 harness/certify_qasm.py --samples # certify the 4 shipped sample circuits"
+echo "Next step: run every check with"
+echo "    bash run_artifact.sh"
+echo "See README.md for what each stage does."

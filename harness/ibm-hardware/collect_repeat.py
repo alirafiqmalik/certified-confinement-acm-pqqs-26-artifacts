@@ -1,11 +1,14 @@
 """
-E1-R collector — second-snapshot replication. The statistics match `collect_sweep.py`
-exactly: an unpooled two-proportion Wald z-test over N = shots x reps, with a leak
-criterion of z >= 5. So snapshot 1 and snapshot 2 are compared on exactly the same
-rule. This script also emits a per-pair side-by-side comparison against the first
-snapshot. It reports pairs that FLIPPED in either direction.
+E1-R collector — second-snapshot replication.
+
+The statistics match `collect_sweep.py` exactly. This script uses an unpooled
+two-proportion Wald z-test over N = shots x reps. The leak criterion is z >= 5. So
+snapshot 1 and snapshot 2 use exactly the same rule.
+
+This script also gives a per-pair, side-by-side comparison against the first
+snapshot. It reports every pair that FLIPPED in either direction.
 """
-import json, math, pathlib, sys, time
+import json, os, math, pathlib, sys, time
 
 BASE = str(pathlib.Path(__file__).resolve().parent) + "/"
 for _p in pathlib.Path(__file__).resolve().parents:
@@ -13,12 +16,18 @@ for _p in pathlib.Path(__file__).resolve().parents:
         break
 else:
     raise FileNotFoundError("apikey.json not found in any parent directory of this script")
-KEY = json.load(open(_p / "apikey.json"))["apikey"]
+_KEYFILE = json.load(open(_p / "apikey.json"))
+KEY = _KEYFILE["apikey"]
+# The instance name belongs to the account, not to the experiment.
+# Set the IBM_INSTANCE environment variable, or add an "instance" field to apikey.json.
+# If both stay unset, the service selects the default instance of the account.
+_INSTANCE = os.environ.get("IBM_INSTANCE") or _KEYFILE.get("instance")
+_INST = {"instance": _INSTANCE} if _INSTANCE else {}
 from qiskit_ibm_runtime import QiskitRuntimeService
 
 jobs = json.load(open(BASE + "repeat_jobs.json"))
 prereg = json.load(open(BASE + "sweep_prereg.json"))
-svc = QiskitRuntimeService(channel="ibm_quantum_platform", token=KEY, instance="qos-instance")
+svc = QiskitRuntimeService(channel="ibm_quantum_platform", token=KEY, **_INST)
 
 WAIT = "--wait" in sys.argv
 while True:
@@ -67,7 +76,7 @@ for name, info in jobs["devices"].items():
         if row["prediction_holds"]: agree += 1
         allpairs.append(row)
 
-# --- side-by-side vs snapshot 1 ---
+# --- side-by-side comparison against snapshot 1 ---
 try:
     old = {(p["device"], p["pair"]): p for p in json.load(open(BASE + "sweep_results.json"))["pairs"]}
 except Exception:

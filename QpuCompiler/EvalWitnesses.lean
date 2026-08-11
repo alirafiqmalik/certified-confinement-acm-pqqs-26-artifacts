@@ -1,5 +1,5 @@
 /-
-QpuCompiler/EvalWitnesses.lean — Axis-1 caught-violation witnesses (Fork B/C [NEED] #1).
+QpuCompiler/EvalWitnesses.lean — Axis-1 caught-violation witnesses.
 
 This file gives three per-instance `#eval` witnesses for the evaluation. Each
 witness also appears as a kernel-checked `example ... := by decide`. This shows
@@ -42,7 +42,7 @@ raw input.
 
 Proof note: the proof of the rejection of the ingested circuit `wBsrc` is
 KERNEL-CHECKED (`by decide`, structural). The rejection of the optimizer output
-`wB` is a runtime `#eval` witness. The reason is that `optimize`/`optFix` uses
+`wB` is a runtime `#eval` witness. The reason: `optimize`/`optFix` uses
 well-founded recursion, and the kernel `decide` tactic does not reduce this
 recursion. This proof deliberately avoids `native_decide`, to keep the trust base
 free of axioms. (The proof of the *positive* direction — that `optimize` preserves

@@ -8,7 +8,7 @@ This script does two jobs.
                     option calls the Lean entry point CertifyQASM.lean. This
                     job is fully reproducible here, with no extra dependencies.
 
-  2. `--transpile`: (documented, OPTIONAL, [NEED: run externally]) Transpile
+  2. `--transpile`: (OPTIONAL, and you run it yourself) Transpile
                     real QASMBench / MQTBench circuits with Qiskit to the IBM
                     basis and a heavy-hex coupling map. The output is
                     basis-subset QASM that this harness can then certify.
@@ -24,9 +24,9 @@ import argparse, glob, os, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 # The project root is one level above harness/ (the Artifact directory).
 ROOT = os.path.abspath(os.path.join(HERE, ".."))
-# Use the SOUND lexer. `CertifyQASM.lean` drives `parseQASM`, which silently skips
-# unrecognized tokens and therefore accepts circuits whose support it never saw
-# (e.g. a classically-conditioned `if(c==1) cz q[5],q[6];` on forbidden qubits).
+# Use the SOUND lexer. `CertifyQASM.lean` drives `parseQASM`. This lexer silently skips
+# unrecognized tokens. As a result, it accepts circuits whose support it never saw (for
+# example, a classically-conditioned `if(c==1) cz q[5],q[6];` on forbidden qubits).
 # `CertifyQASMSafe.lean` drives `parseQASMSafe`, which rejects any unrecognized
 # support-bearing statement outright (REJECT-PARSE).
 LEAN_ENTRY = os.path.relpath(os.path.join(HERE, "CertifyQASMSafe.lean"), ROOT)
@@ -52,11 +52,11 @@ def run_samples():
 
 TRANSPILE_RECIPE = r'''
 # --- OPTIONAL, run externally: reproduce Axis-2 at scale -----------------------
-# [NEED: run externally]  We ship the pipeline; we do NOT ship fabricated numbers.
+# You run this step yourself. We ship the pipeline. We do NOT ship fabricated numbers.
 #
 #   pip install qiskit
 #
-# Then, per benchmark circuit (e.g. from QASMBench small/medium or MQTBench):
+# Then, per benchmark circuit (for example, from QASMBench small/medium or MQTBench):
 #
 #   from qiskit import QuantumCircuit, transpile
 #   from qiskit.transpiler import CouplingMap
@@ -69,9 +69,9 @@ TRANSPILE_RECIPE = r'''
 #
 # Feed the transpiled files back:  certify_qasm.py --files bench.transpiled.qasm ...
 # Metrics to report: accept/reject per circuit, false-reject rate (a confined circuit
-# wrongly rejected — should be 0), and parse-coverage (fraction of gates the basis-subset
-# lexer recognises). Scope honestly: circuits must fit the 12-node ring + basis subset;
-# larger devices need the coupling map / n generalised in the Lean model first.
+# wrongly rejected — must be 0), and parse-coverage (fraction of gates the basis-subset
+# lexer recognizes). Scope honestly. Circuits must fit the 12-node ring and basis subset.
+# Larger devices need the coupling map and n generalized in the Lean model first.
 '''
 
 

@@ -2,7 +2,7 @@
 
 ## What this answers
 
-Can we exercise the Lean certifier against *real* hardware graphs without hardware access?
+Can we run the Lean certifier against *real* hardware graphs without hardware access?
 **Yes. This work also removed a limitation that the paper used to disclose.**
 
 `qiskit_ibm_runtime.fake_provider` ships topology and calibration snapshots for ~68 real IBM
@@ -55,7 +55,7 @@ difference between "impossible" and "3 seconds".
 | `FakeFez` | 156 | 176 | **Heron r2 — also measured** | KERNEL |
 | `FakeKingston` | 156 | 176 | **Heron r2 — never measured** | KERNEL |
 
-The generator skips `FakeBelemV2`, which has 5 qubits. It is too small to admit a partition with a
+The generator skips `FakeBelemV2`, which has 5 qubits. It is too small to allow a partition with a
 genuine region at distance 2 or more. The generator records that fact instead of inventing a
 partition.
 
@@ -77,16 +77,16 @@ measured from the whole region:
    comes from the tenant policy, not from the hardware graph. `= true`
 
 Every one of these four checks held on every device, including a **degree-4 square lattice**
-(`Nighthawk`). This is a topology family that is genuinely different from the heavy-hex family
-that the paper was built around.
+(`Nighthawk`). We built the paper around the heavy-hex family. This topology family is
+genuinely different from it.
 
 ## Honest scope
 
 - These are **topologies**, exactly as published. This encoding work shows that the certifier
   handles real device graphs at real scale. It says nothing about leaks on those devices. That is
   a physics question, and it needs hardware. Read `sim/BLIND-EMULATION.md`.
-- `Nighthawk` widens topology coverage but is still an IBM device. Non-IBM architectures
-  (ion-trap all-to-all, neutral-atom reconfigurable) are not covered.
+- `Nighthawk` widens topology coverage, but it is still an IBM device. This work does not
+  cover non-IBM architectures (ion-trap all-to-all, neutral-atom reconfigurable).
 - The guarantee of the certifier does not change. This is a result about scale and coverage, not a
   new theorem.
 
@@ -100,15 +100,15 @@ bash verify_corpus.sh           # the real check — see below
 `verify_corpus.sh` does two things that a plain `lake build` does **not**:
 
 1. **It defeats the replay cache of Lake.** Lake reports "Build completed successfully" while it
-   replays a cached `.olean`. In that case the kernel re-checks **no `decide` at all**. The script
-   deletes `DeviceCorpus.{olean,ilean,trace}` first, so the kernel genuinely re-verifies all 44
-   verdicts from scratch. Measured: **4.9 s** for the module, and 7 s of wall time.
+   replays a cached `.olean`. In that case, the kernel does not check any `decide` call again. The script
+   deletes `DeviceCorpus.{olean,ilean,trace}` first, so the kernel checks all 44
+   verdicts again, from scratch. Measured: **4.9 s** for the module, and 7 s of wall time.
 
 2. **It recomputes every verdict outside the generated file.** The corpus is machine-generated. A
    codegen defect can therefore emit a claim that is vacuous, or that asserts the wrong expected
    value, and the file still "proves". An independent `IO` harness recomputes all four verdicts for
-   each device, and tests the `true/false/true/true` pattern. Such a defect then surfaces as a
-   `FAIL` instead of passing without notice.
+   each device, and tests the `true/false/true/true` pattern. Such a defect then causes a
+   `FAIL`, instead of a silent pass.
 
 Last run: **ALL 11 DEVICES PASS (44 verdicts recomputed independently)**. The hygiene check is
 clean, with 68 uses of `by decide`.

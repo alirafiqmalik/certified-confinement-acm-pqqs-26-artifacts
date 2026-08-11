@@ -21,7 +21,7 @@ os.makedirs(f"{OUT}/fullB", exist_ok=True)
 RING12  = CouplingMap([[i, (i + 1) % 12] for i in range(12)])
 PATH6   = CouplingMap([[i, i + 1] for i in range(5)])            # nodes 0..5 (a ring sub-path)
 
-# These are the lexer basis-subset tokens, used for parse coverage. The parse-coverage
+# These are the lexer basis-subset tokens for parse coverage. The parse-coverage
 # calculation excludes non-gate lines from the denominator.
 GATE_PREFIXES = ("x ", "sx ", "id ", "rz", "cz ", "cx ")
 NONGATE = ("OPENQASM", "include", "qreg", "creg", "gate ", "barrier", "measure",

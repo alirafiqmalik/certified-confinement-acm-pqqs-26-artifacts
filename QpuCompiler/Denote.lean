@@ -2,7 +2,7 @@
 QpuCompiler/Denote.lean — matrix denotation of Heron circuits.
 
 Bit convention: qubit `q` corresponds to bit `q` of the `Fin (2^n)` index,
-little-endian (the Qiskit convention; `Nat.testBit i q`). `padU` builds this as
+little-endian (the Qiskit convention, `Nat.testBit i q`). `padU` builds this as
 `I(2^(n−q−1)) ⊗ u ⊗ I(2^q)`. The index equivalence (KronPow.lean) puts the first
 Kronecker factor in the high bits, so `u` sits at bit `q`. `padCZ` tests bits `a`
 and `b` directly. `padU_diagonal` and the probe theorems in Sanity.lean lock this
@@ -40,9 +40,9 @@ noncomputable def padU (n q : ℕ) (u : Square 1) : Square n :=
     castSq (by omega) (kronPow (kronPow (1 : Square (n - (q + 1))) u) (1 : Square q))
   else 0
 
-/-- CZ on qubits `a`, `b` as a diagonal matrix: entry `i i` is `-1` when bits `a`
-    and `b` of `i` are both set (qubit `q` corresponds to bit `q`, little-endian),
-    and `1` otherwise. The value is `0` if the arguments are ill-formed. -/
+/-- CZ on qubits `a`, `b` as a diagonal matrix. Entry `i i` is `-1` when bits `a`
+    and `b` of `i` are both set (qubit `q` corresponds to bit `q`, little-endian).
+    Otherwise, entry `i i` is `1`. The value is `0` if the arguments are ill-formed. -/
 def padCZ (n a b : ℕ) : Square n :=
   if a < n ∧ b < n ∧ a ≠ b then
     Matrix.diagonal (fun i : Fin (2 ^ n) =>
@@ -108,8 +108,8 @@ theorem padCZ_mem_unitaryGroup {n a b : ℕ} (ha : a < n) (hb : b < n) (hab : a 
     split <;> norm_num
   · rw [Matrix.diagonal_apply_ne _ hij, Matrix.one_apply_ne hij]
 
-/-- CZ is an involution in the well-formed case. In the ill-formed case `padCZ`
-is `0`, and the statement would be false. -/
+/-- CZ is an involution in the well-formed case. In the ill-formed case, `padCZ`
+is `0`, and the statement does not hold there. -/
 theorem padCZ_mul_self {n a b : ℕ} (ha : a < n) (hb : b < n) (hab : a ≠ b) :
     padCZ n a b * padCZ n a b = 1 := by
   rw [padCZ, if_pos ⟨ha, hb, hab⟩, Matrix.diagonal_mul_diagonal,

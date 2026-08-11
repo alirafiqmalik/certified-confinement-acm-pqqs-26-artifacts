@@ -59,11 +59,12 @@ Every `rz(θ)` maps to `.rz 0`. The function DISCARDS the true angle from the QA
 source. It does not approximate the angle. This is sound for the security
 certificate, because the certificate reads only gate *support* (which qubits a gate
 touches — see the file-level note above). But the `GApp` value this function
-returns is not a faithful copy of the source circuit. Suppose a future caller
-needs the real angle, for example to check that the compiled circuit still
-computes the same unitary as the source. Then this function is the wrong
-starting point. It will silently produce a circuit that denotes differently
-from the QASM input. -/
+returns is not a faithful copy of the source circuit.
+
+Suppose a future caller needs the real angle, for example to check that the
+compiled circuit still computes the same unitary as the source. Then this
+function is the wrong starting point. It will silently produce a circuit that
+denotes differently from the QASM input. -/
 def gateOfSupportOnly (gate : String) (qs : List ℕ) : Option GApp :=
   if gate == "x" then qs.head?.map (fun q => .g1 .x q)
   else if gate == "sx" then qs.head?.map (fun q => .g1 .sx q)
@@ -90,7 +91,7 @@ def classifyStmt (s : String) : Option (Option GApp) :=
 `none` — that is, `classifyStmt` under the unsound error policy. -/
 def parseStmt (s : String) : Option GApp := (classifyStmt s).join
 
-/-- Drop a `//` line comment from one source line, keeping the text before it. -/
+/-- Drop a `//` line comment from one source line. Keep the text before it. -/
 def stripComment (line : String) : String :=
   match line.splitOn "//" with
   | []          => line
@@ -101,7 +102,9 @@ def stripComment (line : String) : String :=
 ORDER MATTERS. This function splits on newline first. Then it removes the line
 comment. Then it splits on `;`. An earlier version split on `;` first. That
 version cut any `//` comment that contained a `;`, and left the tail of the
-comment looking like a statement. That version made `parseQASMSafe` reject
+comment looking like a statement.
+
+That version made `parseQASMSafe` reject
 `samples/01_ok_confined.qasm`, whose comment reads `… slot A = {0..5}; all cz are
 ring edges.`. The fragment `all cz are ring edges.` is an unrecognized
 support-bearing token, so the sound lexer refused the whole file. The rejection
@@ -190,7 +193,7 @@ def genLine : ℕ → UCom 4
 cannot account for. This is the whole of the §E3 fix: one error policy, one
 classifier. -/
 
--- the conditioned-gate evasion is REJECTED by the safe lexer …
+-- the safe lexer REJECTS the conditioned-gate evasion …
 #eval (parseQASMSafe "x q[6]; if(c==1) cz q[6],q[3];").isNone      -- true (SAFE)
 -- … whereas the OLD lexer silently skips the guarded gate (the hole the fuzzer found):
 #eval (parseQASM "x q[6]; if(c==1) cz q[6],q[3];").length          -- 1 (UNSOUND)
