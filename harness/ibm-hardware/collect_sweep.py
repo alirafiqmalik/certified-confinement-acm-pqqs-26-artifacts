@@ -35,7 +35,7 @@ for name,info in jobs.items():
         leak_d1=row["d1"]["z"]>=5; leak_d2=row["d2"]["z"]>=5
         row["prediction_holds"]=bool(leak_d1 and not leak_d2)  # leak@d1, null@d2
         row["note"]=("OK" if row["prediction_holds"] else
-                     ("d1 no-leak (certifier still REJECTs=safe-conservative)" if not leak_d1 else
+                     ("d1 no-leak (validator still REJECTs=safe-conservative)" if not leak_d1 else
                       "LEAK@d2 breaks NN → motivates k>1"))
         if row["prediction_holds"]: agree+=1
         allpairs.append(row)

@@ -1,4 +1,4 @@
-# E1-R — pre-registration of the second-snapshot replication
+# Pre-registration of the second-snapshot replication — paper question E4
 
 **Written 2026-07-28 before the jobs returned.** We submitted job IDs `d9k5uljjf64c739hn19g`
 (ibm_marrakesh, 40 circuits) and `d9k5um0ii2cc73efn7l0` (ibm_fez, 24 circuits) before we wrote this
@@ -24,16 +24,16 @@ weakness for itself.
 ## Outcome rules, fixed in advance
 | Outcome | What we will write |
 |---|---|
-| **Leak at d=1 reproduces on most pairs, no leak at d≥2 on any pair** | §9 ¶4 hedge narrows from "single calibration snapshot" to "two independent calibration snapshots". k=1 sufficiency now rests on 16 pair-observations rather than 8. |
+| **Leak at d=1 reproduces on most pairs, no leak at d≥2 on any pair** | The limitations hedge narrows from "single calibration snapshot" to "two independent calibration snapshots". k=1 sufficiency now rests on 16 pair-observations rather than 8. |
 | **Some pairs flip d=1 leak status** | We report it per pair, in a flip table, not averaged away. A pair that leaks in one snapshot and not the other *strengthens* the case for a structural certificate, which is placement-based, over a magnitude-based one. We will say so. We will also report it as instability. |
-| **Any pair leaks at d ≥ 2** | This **breaks** the k=1 sufficiency claim. We will report it prominently, raise the recommended default to k=2, and rewrite §7.7's "k=1 is the principled minimum". `bufferK` already supports this with no new soundness proof — that is the design property being tested. |
+| **Any pair leaks at d ≥ 2** | This **breaks** the k=1 sufficiency claim. We will report it prominently, raise the recommended default to k=2, and rewrite the E5 claim that "k=1 is the principled minimum". `bufferK` already supports this with no new soundness proof — that is the design property being tested. |
 | **Jobs fail / quota exhausted** | We report it as not-run. We will not relabel any number from snapshot 1 as a replication. |
 
 ## Honest limit of what a positive result buys
 Both snapshots fall on the **same calendar day**, about 1 to 3 hours apart, and they span at
 least one recalibration on each device. A positive result therefore removes the
 *single-calibration-snapshot* hedge. It does **not** establish multi-day or cross-generation
-stability. §9 will say "two
+stability. The limitations section will say "two
 independent calibration snapshots on one day", not "reproducible over time".
 
 ## Budget

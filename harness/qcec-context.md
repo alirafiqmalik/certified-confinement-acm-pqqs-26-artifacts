@@ -1,4 +1,4 @@
-# E6 — QCEC capability contrast (NOT a speed claim)
+# QCEC capability contrast — related-work context (NOT a speed claim)
 
 The A2-FINAL ruling states that this is a **capability contrast first**. We show timing only
 as context, clearly labelled as a different task. We never show it as "we are faster than
@@ -10,9 +10,9 @@ QCEC".
 | **QCEC (mqt.qcec 3.7.0)** | functional **equivalence** | Θ(2ⁿ) worst case / QMA-hard | **cannot express — no notion of qubit regions** | unverified checker |
 | **this work** | hardware-legality + **tenant confinement** | Θ(#gates), decidable | **is the property it certifies** | kernel-checked (`[propext]`) |
 
-QCEC and our certifier answer **different questions**. QCEC verifies that a transpiled circuit is
+QCEC and our validator answer **different questions**. QCEC verifies that a transpiled circuit is
 functionally equivalent to its source. It **does not represent tenant regions**. It can therefore
-neither express nor test "the secret shares no qubit or edge with a co-tenant". Our certifier
+neither express nor test "the secret shares no qubit or edge with a co-tenant". Our validator
 does not solve equivalence in general, because that is the QMA-hard problem that we deliberately
 avoid. It certifies a *decidable structural security property* in linear time.
 
@@ -24,5 +24,5 @@ that the DD engine of QCEC is fast on small structured circuits. That is why a
 garbage and ancilla qubit counts did not match, and the partial-equivalence setting was off. That is a
 QCEC configuration artifact. We make **no** claim from it.
 
-**Ships as:** the capability row in Table 1, plus one sentence in §8. There is no comparative
+**Ships as:** the capability row in the related-work table, plus one sentence there. There is no comparative
 speed figure.

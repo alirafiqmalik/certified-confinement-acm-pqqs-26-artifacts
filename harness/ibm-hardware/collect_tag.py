@@ -76,7 +76,7 @@ for r in rows:
           f"{'dP=%s, z=%s' % (r['d1']['dP'], r['d1']['z']):<24}"
           f"{'dP=%s, z=%s' % (r['d2']['dP'], r['d2']['z']):<24}{v}")
 print(f"\n{tag}: leak@d1 {d1}/{len(rows)} · leak@d2 {d2}/{len(rows)}")
-print(f"certifier soundness (never accepts a leaking placement) = {len(rows)-d2}/{len(rows)}")
+print(f"validator soundness (never accepts a leaking placement) = {len(rows)-d2}/{len(rows)}")
 
 json.dump({"tag": tag, "backend": info["backend"], "job_id": info["job_id"],
            "pair_origin": info.get("pair_origin"), "last_calibration": info.get("last_calibration"),

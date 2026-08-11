@@ -8,7 +8,7 @@
 #                  Needs: elan/lake + Python. Costs no money and no QPU time.
 #                  Runs always.
 #
-#   B. benchmarks  Axis-2 sweep over real QASMBench circuits, front-end fuzzing,
+#   B. benchmarks  QASMBench sweep (paper E1), front-end fuzzing,
 #                  buffered-policy sweeps, external equivalence-checker context.
 #                  Needs: the QASMBench suite, which this artifact does not ship.
 #                  Runs when QASMBench is present, or with --fetch-benchmarks.
@@ -137,7 +137,7 @@ import QpuCompiler
 #print axioms QpuCompiler.checkerSteps_seq
 def main : IO Unit := pure ()
 EOF
-# The soundness theorem of the certifier must rest on `propext` alone. The other
+# The soundness theorem of the validator must rest on `propext` alone. The other
 # results can also use the two remaining standard axioms. Any further axiom is a
 # failure.
 check_axioms() {
@@ -171,7 +171,7 @@ stage A3 "check that no proof leaves the kernel" check_tactics
 
 stage A4 "re-verify the 11-device corpus" bash harness/devices/verify_corpus.sh
 stage A5 "certify the 4 sample circuits" "$PY" harness/certify_qasm.py --samples
-stage A6 "measure the checker cost against gate count" \
+stage A6 "measure the validator cost against gate count" \
   lake env lean --run harness/Timing.lean
 stage A7 "run the 9-test offline simulator suite" "$PY" harness/sim/test_e2e.py
 stage A8 "design the alias-resolving follow-up measurement" \
@@ -183,7 +183,7 @@ stage A9 "recompute the published hardware cells from raw counts" \
 # ====================================================== tier B: benchmarks
 BENCH="${QASMBENCH_SMALL:-$HERE/harness/QASMBench/small}"
 if [ "$CORE_ONLY" -eq 1 ]; then
-  skip B "QASMBench axis-2 tier" "--core-only"
+  skip B "QASMBench benchmark tier" "--core-only"
 elif [ ! -d "$BENCH" ] && [ "$FETCH_BENCH" -eq 1 ]; then
   say "fetching QASMBench (external suite, not shipped with this artifact)"
   git clone --depth 1 https://github.com/pnnl/QASMBench "$HERE/harness/QASMBench" \
@@ -193,7 +193,7 @@ fi
 if [ "$CORE_ONLY" -eq 1 ]; then
   :
 elif [ ! -d "$BENCH" ]; then
-  skip B "QASMBench axis-2 tier" "QASMBench not found (re-run with --fetch-benchmarks)"
+  skip B "QASMBench benchmark tier" "QASMBench not found (re-run with --fetch-benchmarks)"
 else
   echo "QASMBench small suite: $BENCH"
   export QASMBENCH_SMALL="$BENCH"
@@ -206,7 +206,7 @@ else
   # from artifact-run/. The results this repository ships stay untouched.
   stage B1 "transpile the benchmark suite at optimisation levels 0-3" \
     in_out "$PY" "$HERE/harness/eval-scripts/run_optlevel.py"
-  stage B2 "certify every transpiled circuit (axis-2 verdicts)" \
+  stage B2 "validate every transpiled circuit (E1 verdicts)" \
     in_out "$PY" "$HERE/harness/eval-scripts/run_e5b.py"
   stage B3 "generate the 1120-mutant fuzz corpus" \
     in_out "$PY" "$HERE/harness/eval-scripts/fuzz_e3.py"

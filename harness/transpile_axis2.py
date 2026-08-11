@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Axis-2 at scale. This script transpiles real QASMBench circuits to the ring
+"""Paper question E1, at scale. This script transpiles real QASMBench circuits to the ring
 and basis subset of the Lean device model, under two tenant-layout regimes.
 The script writes basis-subset QASM as output."""
 import os, glob, sys, json, traceback, pathlib

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-certify_qasm.py — Axis-2 real-circuit coverage harness (driver).
+certify_qasm.py — real-circuit coverage harness, driver side (paper question E1).
 
 This script does two jobs.
 
@@ -35,7 +35,7 @@ LAKE = os.path.expanduser("~/.elan/bin/lake")
 
 
 def certify(qasm_paths):
-    """Invoke the Lean certifier on the given QASM files. Stream the verdicts from the certifier."""
+    """Invoke the Lean validator on the given QASM files. Stream the verdicts from the validator."""
     if not qasm_paths:
         print("no QASM files to certify", file=sys.stderr)
         return 1
@@ -51,7 +51,7 @@ def run_samples():
 
 
 TRANSPILE_RECIPE = r'''
-# --- OPTIONAL, run externally: reproduce Axis-2 at scale -----------------------
+# --- OPTIONAL, run externally: reproduce the E1 corpus at scale ----------------
 # You run this step yourself. We ship the pipeline. We do NOT ship fabricated numbers.
 #
 #   pip install qiskit
@@ -76,7 +76,7 @@ TRANSPILE_RECIPE = r'''
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Certify OpenQASM-subset circuits via the Lean checker.")
+    ap = argparse.ArgumentParser(description="Validate OpenQASM-subset circuits with the Lean validator.")
     ap.add_argument("--samples", action="store_true", help="certify the shipped sample circuits")
     ap.add_argument("--files", nargs="*", help="certify specific QASM files")
     ap.add_argument("--transpile-recipe", action="store_true",

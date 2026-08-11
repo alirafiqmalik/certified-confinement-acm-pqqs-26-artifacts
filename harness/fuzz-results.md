@@ -1,4 +1,4 @@
-# E3 — Front-end fuzz (Giallar-style: fuzzer found a soundness bug, we fixed it)
+# Front-end fuzz — paper question E1 (a fuzzer found a soundness bug, we fixed it)
 
 > **RE-VERIFIED 2026-07-30.** We re-ran the full 1120-mutant corpus after the `qasmStmts`
 > comment-ordering fix in `Frontend.lean` (a `//` comment containing a `;` used to leave a
@@ -30,5 +30,5 @@ certified each mutant against the ring, with F={6..11}.
   *skips*, not just parse failures. The trusted core stays unchanged (`certifySecurity_sound` =
   `[propext]`).
 
-**Paper framing (§7.1, §9):** We fuzzed our own untrusted front-end. It found 269 unsound accepts.
+**Paper framing (E1, and the limitations section):** We fuzzed our own untrusted front-end. It found 269 unsound accepts.
 The `parseQASMSafe` fix drives false-accepts to 0 over 1120 adversarial mutants.

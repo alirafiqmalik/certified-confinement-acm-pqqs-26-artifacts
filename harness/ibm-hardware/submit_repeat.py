@@ -1,7 +1,7 @@
 """
-E1-R — second-snapshot REPLICATION of the n=8 leak sweep.
+Second-snapshot REPLICATION of the n=8 leak sweep (paper question E4).
 
-Purpose: this script removes the paper's "single calibration snapshot" hedge (§9 ¶4).
+Purpose: this script removes the paper's "single calibration snapshot" hedge.
 
 Design rules (these are the scientific content of this script, not boilerplate):
  1. The script reads the 8 victim/probe pairs VERBATIM from `sweep_prereg.json`. It

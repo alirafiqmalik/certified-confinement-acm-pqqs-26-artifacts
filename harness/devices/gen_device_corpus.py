@@ -1,7 +1,7 @@
 """
 gen_device_corpus.py — turn real QPU topologies into Lean `Coupling n` devices.
 
-Purpose: test the certifier against actual hardware graphs, with **no QPU access**.
+Purpose: test the validator against actual hardware graphs, with **no QPU access**.
 `qiskit_ibm_runtime.fake_provider` ships calibration and topology snapshots of about
 68 real IBM devices. None of them need an account, a token, or a second of quota.
 They include Heron (156q), heavy-hex Eagle (127q), the Nighthawk square lattice
@@ -190,9 +190,9 @@ def emit(dev, slug):
 
     L = []
     L.append(f"/-! ### `{dev['name']}` — {n} qubits, {len(es)} canonical edges."
-             f"  verdicts: {'KERNEL `decide`' if kernel else '`#eval` only'}")
-    L.append(f"Co-tenant region `F = {F}` is seeded at the degree-{dev['degree']} qubit q{seed},")
-    L.append(f"chosen as the most *interior* max-degree site so the test is not a boundary case.")
+             f" Verdicts: {'KERNEL `decide`' if kernel else '`#eval` only'}.")
+    L.append(f"The co-tenant region `F = {F}` is placed at the degree-{dev['degree']} qubit q{seed}.")
+    L.append("This qubit is the most interior max-degree site, so the test is not a boundary case.")
     L.append(f"Rings by distance from F: |d=1| = {dev['n_ring1']}, |d=2| = {dev['n_ring2']},"
              f" |d>=3| = {dev['n_ring3']}. -/")
     # maxRecDepth 8000 here budgets `decide` only for `ordered_all` and `bounded_all`.
@@ -210,19 +210,19 @@ def emit(dev, slug):
     L.append("")
     L.append(f"def dev_{slug} : Coupling {n} := spec_{slug}.toCoupling")
     L.append(f"def F_{slug} : ℕ → Bool := fun q => {' || '.join(f'decide (q = {x})' for x in F)}")
-    L.append(f"/-- Support-disjoint from `F` yet sitting ON its 1-hop ring (distance"
-             f" {dev['adj_dist']}): the placement plain `confinedb` accepts and `bufferF` must reject. -/")
+    L.append("/-- This placement is support-disjoint from `F`, but it sits on the 1-hop ring of")
+    L.append(f"`F` (distance {dev['adj_dist']}). Plain `confinedb` accepts it, and `bufferF` must reject it. -/")
     L.append(f"def adj_{slug} : UCom {n} := .seq (.app1 .x {t}) (.cz {t} {p})")
     L.append(f"/-- Distance {dev['far_dist']} from `F` on both ends: must stay accepted. -/")
     L.append(f"def far_{slug} : UCom {n} := .seq (.app1 .x {fa}) (.cz {fa} {fb})")
     L.append(claim(f"(certifySecurity dev_{slug} F_{slug} adj_{slug}).accepted",
-                   "true", "THE GAP: support-only confinement accepts an adjacent placement"))
+                   "true", "THE GAP: confinement based on support alone accepts an adjacent placement."))
     L.append(claim(f"(certifySecurity dev_{slug} (bufferF dev_{slug} F_{slug}) adj_{slug}).accepted",
-                   "false", "THE FIX: neighbour-buffered policy rejects it"))
+                   "false", "THE FIX: the neighbour-buffered policy rejects it."))
     L.append(claim(f"(certifySecurity dev_{slug} (bufferF dev_{slug} F_{slug}) far_{slug}).accepted",
-                   "true", "NO OVER-BLOCK: a distant placement is still accepted"))
+                   "true", "NO OVER-BLOCK: a distant placement is still accepted."))
     L.append(claim(f"(certifySecurity dev_{slug} (bufferF dev_{slug} F_{slug}) adj_{slug}).hardwareLegal",
-                   "true", "the rejection is POLICY, not hardware legality"))
+                   "true", "The rejection is a policy decision, not a hardware-legality failure."))
     L.append("")
     return "\n".join(L)
 
@@ -241,16 +241,20 @@ def header(meta, skipped):
     n_kernel = sum(1 for m in meta if m["kernel_checked"])
     n_eval = n_dev - n_kernel
     max_q = max((m["nq"] for m in meta), default=0)
-    max_e = max((m["n_edges"] for m in meta), default=0)
+    # Take the edge count OF the largest device, not the largest edge count in the
+    # corpus. The two come from different devices: Nighthawk has more edges (218)
+    # than the 156-qubit Heron devices (176), so a global max pairs 156 qubits with
+    # an edge count that belongs to a 120-qubit device.
+    max_e = max((m["n_edges"] for m in meta if m["nq"] == max_q), default=0)
     if n_eval == 0:
         checked = [
-            f'NOTE ON WHAT IS KERNEL-CHECKED: all {4 * n_dev} per-device verdicts below are',
-            f'`by decide`, kernel-checked — including at the largest device in the corpus',
-            f'({max_q} qubits, {max_e} canonical undirected edges). The canonical edge-list',
-            '`EdgeSpec` encoding is what makes that practical; an earlier nested-disjunction',
-            'encoding did not reduce at this size. Each device *encoding* is additionally',
-            'checked by `lake build` (`ordered_all`/`bounded_all` are `by decide` over the real',
-            'edge list, and `DeviceLib` derives symmetry/irreflexivity/bounds generically).',
+            f'NOTE ON WHAT IS KERNEL-CHECKED: all {4 * n_dev} per-device verdicts below are `by decide`',
+            f'and kernel-checked, including at the largest device in the corpus ({max_q} qubits,',
+            f'{max_e} canonical undirected edges). The canonical edge-list `EdgeSpec` encoding',
+            'makes that practical; an earlier nested-disjunction encoding did not reduce at',
+            'this size. `lake build` also checks each device encoding: `ordered_all` and',
+            '`bounded_all` are `by decide` over the real edge list, and `DeviceLib` derives',
+            'symmetry, irreflexivity, and bounds generically.',
         ]
     else:
         checked = [
@@ -267,19 +271,21 @@ def header(meta, skipped):
         skip_lines += [f'  * {cls} — {why}' for cls, why in skipped]
     return ['/-',
             'QpuCompiler/DeviceCorpus.lean — GENERATED by',
-            'harness/devices/gen_device_corpus.py. Do not hand-edit.',
+            'harness/devices/gen_device_corpus.py. Do not',
+            'hand-edit the generated code below this header.',
             '',
-            f'{n_dev} real IBM QPU topologies (7–{max_q} qubits) encoded as `Coupling n`, so the',
-            'certifier can be exercised against actual hardware graphs with **no QPU access',
-            'whatsoever** (topologies come from `qiskit_ibm_runtime.fake_provider`, which needs',
-            'no account and no quota).',
+            f'This file encodes {n_dev} real IBM QPU topologies (7 to {max_q} qubits) as `Coupling n`.',
+            'So the validator can run against real hardware graphs with no QPU access at all.',
+            'The topologies come from `qiskit_ibm_runtime.fake_provider`, which needs no',
+            'account and no quota.',
             '',
-            'Each device gets a worst-case tenant partition and two witnesses. The four verdicts',
-            'per device assert the same four facts the paper argues on its toy models:',
+            'Each device gets a worst-case tenant partition and two witnesses. The four',
+            'verdicts per device assert the same four facts that the paper argues on its toy',
+            'models:',
             '  1. support-only confinement ACCEPTS a support-disjoint but ADJACENT placement,',
             '  2. the neighbour-buffered policy REJECTS it,',
             '  3. a genuinely distant placement is still ACCEPTED (no over-blocking),',
-            '  4. the rejected placement is hardware-LEGAL — so the refusal is policy, not legality.',
+            '  4. the rejected placement is hardware-LEGAL, so the refusal is policy, not legality.',
             ''] + checked + skip_lines + [
             '-/',
             'import QpuCompiler.DeviceLib',

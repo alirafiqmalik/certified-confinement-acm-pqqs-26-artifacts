@@ -1,5 +1,5 @@
 /-
-CertifyQASMSafe.lean — Axis-2 ingestion with the SOUND lexer `parseQASMSafe` (§E3).
+CertifyQASMSafe.lean — ingestion with the SOUND lexer `parseQASMSafe` (paper question E1).
 `CertifyQASM.lean` uses `parseQASM` and silently skips unrecognized tokens. This file
 is different: it rejects any circuit with an unrecognized *support-bearing* statement.
 `parseQASMSafe = none` means REJECT-PARSE. Device: 12-node ring. Tenant A={0..5}, F={6..11}.

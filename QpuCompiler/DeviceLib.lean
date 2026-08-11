@@ -12,7 +12,7 @@ process on every `decide` call.
 The fix is to represent the graph as data: a canonical ordered edge list. We
 discharge the three `Coupling` obligations once, generically, instead of once per
 device. A new device then costs one `EdgeSpec` literal plus two `by decide` list
-checks. The certifier runs against it unchanged.
+checks. The validator runs against it unchanged.
 
 ## The representation
 

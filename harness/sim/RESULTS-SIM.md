@@ -1,4 +1,4 @@
-# QPU simulation — forward model of the measured ZZ leak (RESULTS)
+# QPU simulation — forward model of the measured ZZ leak, the regression harness behind paper question E4 (RESULTS)
 
 ## What this is, and what it is not
 
@@ -39,7 +39,7 @@ stored calibration snapshot** (`2026-07-29 07:22 EDT`), not from guesses.
 | **T5** | response curve tracks \|sin(2πζτ)\| | 5/5 points within 0.03 |
 | **T6** | alias honesty | ζ ∈ {1.6, 26.6, 51.6} kHz all give ΔP=0.397 |
 | **T7** | plausibility of fitted ζ | **219–1666 Hz** across 13 pairs |
-| **T8** | kernel-checked certifier verdicts on the real patch | support-only ACCEPTS d=1. `bufferF` REJECTS it. Distant region still accepted |
+| **T8** | kernel-checked validator verdicts on the real patch | support-only ACCEPTS d=1. `bufferF` REJECTS it. Distant region still accepted |
 | **T9** | **blind** structural prediction vs held-out hardware | **0 missed leaks in 46 observations** (see `BLIND-EMULATION.md`) |
 
 Reproduce: `python test_e2e.py` (exits non-zero on any failure, so it works as a pre-flight gate).

@@ -1,4 +1,4 @@
-# Blind hardware emulation — can we predict leaks *without* knowing the results?
+# Blind hardware emulation — paper question E5 (can we predict leaks *without* knowing the results?)
 
 ## The question
 
@@ -73,11 +73,11 @@ flagged the placement correctly both times, before and after the channel became 
 
 **Does:** a tenant can identify every at-risk placement on an IBM device **before running anything**,
 from public metadata alone. The Lean certificate enforces this same rule. That is the practically
-important claim: the certifier's input requires no privileged data.
+important claim: the validator's input requires no privileged data.
 
 **Does not:** predict leak strength, guarantee that the NN rule holds on other hardware families, or
 substitute for the hardware measurements. Non-graph-mediated channels (shared readout resonators,
-control-line crosstalk) are not caught by *any* coupling-map-derived rule, at any radius. §9 already
+control-line crosstalk) are not caught by *any* coupling-map-derived rule, at any radius. The limitations section already
 discloses this.
 
 ## Reproduce

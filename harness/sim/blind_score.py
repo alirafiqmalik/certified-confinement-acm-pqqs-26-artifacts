@@ -15,11 +15,11 @@ before the first measurement.
 We score two directions separately, because they are not equally important:
 
   SAFETY-CRITICAL  never predict "no leak" for a placement that does leak.
-                   A miss here means that the certifier accepts a leaking
+                   A miss here means that the validator accepts a leaking
                    placement. The paper's soundness claim depends on this
                    direction.
   CONSERVATISM     predicting "leak" where none was detected is a harmless
-                   over-block. The certifier refuses a placement that happened to
+                   over-block. The validator refuses a placement that happened to
                    be quiet. This over-block costs usable area, not security.
 """
 import json, os

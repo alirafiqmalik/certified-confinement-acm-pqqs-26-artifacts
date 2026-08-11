@@ -9,14 +9,14 @@
 > `axis2-results/optlevel-results.md` and `fuzz-results.md`. We keep this file as the historical
 > first-pass record. **Do not cite its headline numbers.**
 
-# Axis-2 at scale — real transpiled circuits (RESULTS)
+# Real transpiled circuits at scale — paper question E1 (RESULTS)
 
-We ran the paper's Axis-2 coverage evaluation on **real benchmark circuits** end to end:
+We ran the paper's E1 coverage evaluation on **real benchmark circuits** end to end:
 QASMBench (PNNL) `small` suite → Qiskit `transpile` (v2.5.0) to the Lean device model's
 **12-node heavy-hex ring** + **basis subset** `{x, sx, rz, cz, id}` → untrusted
 `parseQASM` → trusted `certifySecurity heavyHex tenantF` (tenant `A={0..5}`, forbidden
 co-tenant `F={6..11}`). Date: 2026-07-23. This does not re-derive the shipped `#eval`s. These are
-stock-transpiler outputs. The checker never saw them before this run.
+stock-transpiler outputs. The validator never saw them before this run.
 
 ## Method
 - **Source:** QASMBench `small` (git `pnnl/QASMBench`, sparse `small/`), 42 circuit directories,
@@ -51,12 +51,12 @@ stock-transpiler outputs. The checker never saw them before this run.
   certified **10,532 gates** across 63 runs. This is real transpiler output, not toy circuits.
 
 - **Headline empirical finding:** a stock, tenant-**unaware** transpiler placed **80%** of
-  benchmark circuits partly on forbidden co-tenant qubits. The checker caught **every** one. Each
-  showed `legal=true` yet `confined=false`. That is the "money example" at benchmark scale:
+  benchmark circuits partly on forbidden co-tenant qubits. The validator caught **every** one. Each
+  showed `legal=true` yet `confined=false`. That is the direct-contact case at benchmark scale:
   hardware legality alone never implies tenant safety.
 
 - **False-reject rate 0 of 28.** When the transpiler *did* respect the tenant region, the
-  checker never rejected wrongly. There was no over-blocking.
+  validator never rejected wrongly. There was no over-blocking.
 
 - The 7 ACCEPTs in Regime B are small circuits (`n2` and a few others) that the transpiler
   happened to place entirely within `{0..5}`. These are genuinely confined, and correctly

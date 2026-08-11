@@ -1,6 +1,6 @@
 # Live IBM QPU results — tenant-isolation leak on real Heron r2 (2026-07-28)
 
-**This is the headline empirical result of the paper (§7.6).** On a real IBM Heron r2 device, a
+**This is the headline empirical result behind paper question E4.** On a real IBM Heron r2 device, a
 co-tenant placed on a qubit *adjacent* to a victim reads the secret qubit state of that victim. The
 swing in its own measurement is 38 percentage points. The channel disappears completely at graph
 distance 2 or more. Our confinement certificate, under the neighbor-buffered policy `bufferF`,
@@ -55,7 +55,7 @@ state as idle):
 - **The tunable couplers of Heron r2 do NOT null this ZZ channel** for this pair. That directly
   refutes the pre-registered concern that the demo can see nothing on a tunable-coupler device.
 
-## Correspondence with the certifier (the bridge)
+## Correspondence with the validator (the bridge)
 ZZ coupling is a property of a **coupling edge**. Our confinement predicate under `bufferF`
 (`QpuCompiler/Buffer.lean`, kernel-checked) forbids the victim from sharing an edge with the
 forbidden co-tenant region. It therefore rejects exactly the `d=1` placement that leaks, and it
@@ -64,7 +64,7 @@ accepts `d≥2`:
 - `certifySecurity heronPatch (bufferF …) vAdj` → accepted **false** ← rejects the leaking placement
 - `certifySecurity heronPatch (bufferF …) vFar` → accepted **true** ← no over-blocking
 
-**The certifier's accept/reject boundary coincides with the measured physical leak boundary.**
+**The validator's accept/reject boundary coincides with the measured physical leak boundary.**
 A device-specific Lean patch encodes the real `ibm_marrakesh` neighborhood of q98 and makes this
 exact. Read `HeronMarrakesh.lean`.
 

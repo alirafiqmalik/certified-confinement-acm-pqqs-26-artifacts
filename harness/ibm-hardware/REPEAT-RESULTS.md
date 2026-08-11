@@ -1,4 +1,4 @@
-# E1-R — second-snapshot replication (RESULTS)
+# Second-snapshot replication — paper question E4 (RESULTS)
 
 **Status: COMPLETE — all 8 pre-registered pairs replicated.** (`ibm_fez` finally cleared its queue
 after ~23 h. The earlier PARTIAL wording is superseded.) We fixed the analysis rule in advance, in
@@ -74,7 +74,7 @@ The structural d=1 / d≥2 boundary did not move in any of the three.
 
 ## Cumulative across all snapshots
 
-**15 pair-observations · 14 leak at d=1 · 0 leak at d≥2 · certifier sound on 15/15.**
+**15 pair-observations · 14 leak at d=1 · 0 leak at d≥2 · validator sound on 15/15.**
 
 - Snapshot 1: 8 pairs, 7 leak.
 - Snapshot 2: 5 marrakesh pairs, 5 leak.
@@ -93,7 +93,7 @@ The structural d=1 / d≥2 boundary did not move in any of the three.
 | fez | 1 | ΔP=0.1727, z=33.2 | ΔP=0.1830, z=37.8 | z=0.1 | HOLDS |
 | fez | 2 | ΔP=0.1970, z=41.7 | ΔP=0.2720, z=51.2 | z=0.2 | HOLDS |
 
-**Snapshot 2: leak@d1 8/8 · leak@d≥2 0/8 · certifier sound 8/8.**
+**Snapshot 2: leak@d1 8/8 · leak@d≥2 0/8 · validator sound 8/8.**
 
 ## The flip is the most important result of the replication
 
@@ -103,7 +103,7 @@ calibration it leaks at z=22.4.**
 
 That reverses the interpretation, in the direction that favors the design:
 
-- The certifier correctly rejected that placement. It was **not** an over-block: snapshot 1 did
+- The validator correctly rejected that placement. It was **not** an over-block: snapshot 1 did
   not detect the channel at that calibration.
 
 - Across snapshots, **every one of the 8 pre-registered pairs leaked at d=1 at some point.** The
@@ -124,7 +124,7 @@ That reverses the interpretation, in the direction that favors the design:
 | 3 (~23:21Z, marrakesh subset) | 2 | 2 | 0 |
 | **total** | **18** | **17** | **0** |
 
-**Certifier soundness (never accepted a leaking placement): 18/18.**
+**Validator soundness (never accepted a leaking placement): 18/18.**
 **k=1 sufficiency (no leak at d≥2): 18/18.**
 
 ## New-pairs run (`mrk_new`) — 5 previously-unmeasured pairs
@@ -160,7 +160,7 @@ roughly 8×**. That is one more reason a magnitude-calibrated policy is the wron
 | **total observations** | **23** | **22** | **0** |
 
 - **13 distinct qubit pairs** measured, across **2 devices** and **4 calibrations**.
-- **Certifier soundness: 23/23** — it never accepted a placement that leaked.
+- **Validator soundness: 23/23** — it never accepted a placement that leaked.
 - **k=1 sufficiency: 23/23** — no pair leaked at graph distance ≥ 2, on any pair, device, or
   calibration. This is the strongest form of the paper's load-bearing structural assumption, and it
   survived 13 independent chances to fail.

@@ -17,7 +17,7 @@ WHAT EACH TEST IS FOR (and what it is NOT)
                         and does not hide them
   T7 plausibility       the fitted ζ values sit in a physically sane residual-ZZ
                         band for Heron r2
-  T8 certifier          Lean verdicts on the REAL device patch: the buffered policy
+  T8 validator          Lean verdicts on the REAL device patch: the buffered policy
                         rejects the adjacent placement, and accepts the distant one
   T9 blind prediction   the NON-circular test. It predicts which placements leak,
                         from PUBLIC metadata only (the coupling map). It scores the
@@ -120,8 +120,8 @@ lo, hi = min(z0s), max(z0s)
 check("T7 fitted zeta within 0.1-100 kHz", 100.0 <= lo and hi <= 100_000.0,
       f"range {lo:.0f}-{hi:.0f} Hz ({lo/1e3:.2f}-{hi/1e3:.2f} kHz) over {len(z0s)} pairs")
 
-# ---------------------------------------------------------------- T8 certifier
-print("\nT8 certifier — Lean verdicts on the real ibm_marrakesh patch")
+# ---------------------------------------------------------------- T8 validator
+print("\nT8 validator — Lean verdicts on the real ibm_marrakesh patch")
 lean = r"""
 import QpuCompiler.HeronMarrakesh
 import QpuCompiler.Buffer
@@ -143,11 +143,11 @@ try:
     r = subprocess.run(["lake", "env", "lean", "--run", tmp], cwd=ROOT, env=env,
                        capture_output=True, text=True, timeout=900)
     ok = "LEAN_VERDICTS_OK" in r.stdout
-    check("T8 kernel-checked certifier verdicts", ok,
+    check("T8 kernel-checked validator verdicts", ok,
           "d=1 accepted by support-only, REJECTED by bufferF, distant region still accepted"
           if ok else f"rc={r.returncode} out={r.stdout[-300:]} err={r.stderr[-300:]}")
 except Exception as e:
-    check("T8 kernel-checked certifier verdicts", False, f"could not run lean: {e}")
+    check("T8 kernel-checked validator verdicts", False, f"could not run lean: {e}")
 
 # ---------------------------------------------------------------- T9 blind
 print("\nT9 blind structural prediction — scored against held-out hardware")

@@ -6,10 +6,10 @@ QpuCompiler/Buffer.lean — neighbour-buffered confinement (the adjacency gap).
 `confinedb A c` (Confine.lean) is a pure *gate-support* predicate. It rejects `c`
 only when some gate of `c` acts on a qubit outside `A`. So certifying against the
 complement of a forbidden region `F` catches exactly one thing. It catches the
-transpiler *routing a gate onto* a co-tenant qubit (the `.cz 0 3` money example).
+transpiler *routing a gate onto* a co-tenant qubit (the `.cz 0 3` direct-contact example).
 
 It is **blind to adjacency**. Consider a victim circuit whose support is entirely
-disjoint from `F`, but which sits on a coupling *edge* next to `F`. The checker
+disjoint from `F`, but which sits on a coupling *edge* next to `F`. The validator
 ACCEPTS it anyway — even though that adjacency is exactly the physical
 precondition for the documented nearest-neighbour crosstalk side channel on
 superconducting hardware.
@@ -157,7 +157,7 @@ example : (certifySecurity heronPatch (bufferK heronPatch patchF 4) vFar).accept
 
 /-! ## Buffered preservation through the COMPILE pipeline (closing the composition gap)
 
-The one-shot certifier story above only covers *externally supplied* circuits. The
+The one-shot validator story above only covers *externally supplied* circuits. The
 pipeline preservation theorems (`route_hh_confine`, `optimize_conf`,
 `compile_hh_confine_correct`) are stated for the plain support predicate. But they
 are already **universally quantified over the region** (`{A F : ℕ → Bool}`), exactly
@@ -226,7 +226,7 @@ theorem compile_hh_confine_bufferedK {m : ℕ} (g : Coupling m) (F : ℕ → Boo
       ∧ confinedb (fun x => !bufferK g F k x) (optimize (route_hh c)) = true :=
   compile_hh_confine_correct (F := bufferK g F k) h hpol (by intro x hx; simpa using hx)
 
-/-- **Pipeline output passes the buffered certifier.** Composes the compile-level
+/-- **Pipeline output passes the buffered validator.** Composes the compile-level
 guarantee with the one-call driver: our own compiler's output is ACCEPTED by the
 same `certifySecurity` used on untrusted external transpilers. -/
 theorem certify_compile_hh_buffered (F : ℕ → Bool) {c : UCom 12}
@@ -346,7 +346,7 @@ theorem bufferMemo_ext {n : ℕ} (g : Coupling n) (F : ℕ → Bool) :
     bufferMemo F (bufferArr g F) = bufferF g F :=
   funext (bufferMemo_eq g F)
 
-/-- Hence the certifier returns the **identical verdict** with the cheap region. -/
+/-- Hence the validator returns the **identical verdict** with the cheap region. -/
 theorem certifySecurity_bufferMemo {n : ℕ} (g : Coupling n) (F : ℕ → Bool) (ext : UCom n) :
     certifySecurity g (bufferMemo F (bufferArr g F)) ext
       = certifySecurity g (bufferF g F) ext := by
@@ -408,7 +408,7 @@ theorem bufferArrK_ext {n : ℕ} (g : Coupling n) (F : ℕ → Bool) (k : ℕ) :
     bufferMemo F (bufferArrK g F k) = bufferK g F k :=
   funext (bufferArrK_eq g F k)
 
-/-- Hence the certifier returns the **identical verdict** with the tabulated `k`-hop region. -/
+/-- Hence the validator returns the **identical verdict** with the tabulated `k`-hop region. -/
 theorem certifySecurity_bufferArrK {n : ℕ} (g : Coupling n) (F : ℕ → Bool) (k : ℕ)
     (ext : UCom n) :
     certifySecurity g (bufferMemo F (bufferArrK g F k)) ext

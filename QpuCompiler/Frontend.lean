@@ -1,11 +1,12 @@
 /-
-QpuCompiler/Frontend.lean — OpenQASM-subset ingestion + §8.2 complexity artifact.
+QpuCompiler/Frontend.lean — OpenQASM-subset ingestion, plus the cost result behind
+paper question E2.
 
 The lexer is an UNTRUSTED front-end. It turns an OpenQASM-subset string into a
 `List GApp` (then `ofList` turns this list into a `UCom`). The lexer sits on the
 *producer* side of the de-Bruijn architecture, next to the untrusted transpiler.
 The lexer does not need a proof of correctness, because the trusted
-`certifySecurity` checker validates the resulting circuit. This closes the
+`certifySecurity` validator checks the resulting circuit. This closes the
 ingestion story: a QASM string goes in, and a `CertResult` comes out.
 
 Two lexers share one classifier (`classifyStmt`). They differ only in their error
@@ -13,7 +14,7 @@ policy for a statement that the subset does not cover:
 
   * `parseQASMSafe` returns `none`, so the driver REJECTS the circuit. **Use this
     lexer.**
-  * `parseQASM` silently drops the statement. This is UNSOUND. The §E3 fuzz pass
+  * `parseQASM` silently drops the statement. This is UNSOUND. The fuzz pass
     turned 269 of 1120 crafted inputs into false accepts, through exactly this
     hole. The file keeps `parseQASM` only as the §E7/W2 counterexample.
 
@@ -121,7 +122,7 @@ counterexample — see `parseQASMSafe`. -/
 def parseQASM (src : String) : List GApp :=
   (qasmStmts src).filterMap parseStmt
 
-/-- Sound (still untrusted) lexer: `none` means the certifier REJECTS. Any
+/-- Sound (still untrusted) lexer: `none` means the validator REJECTS. Any
 unrecognized support-bearing token can now only cause a safe rejection, never a
 silent skip. This restores the invariant that "a lexer gap can only cause a safe
 rejection" for *skips*, not only for outright parse failures. -/
@@ -144,13 +145,13 @@ def demoBad : String := "x q[0]; cz q[0], q[3];"
 
 -- The sound lexer produces the expected gate list (the angle is a placeholder):
 #eval (parseQASMSafe demoOK).map (·.length)   -- some 4 (x, sx, cz, rz)
--- End-to-end: untrusted QASM string → ofList → trusted certifier → verdict.
+-- End-to-end: untrusted QASM string → ofList → trusted validator → verdict.
 #eval ((parseQASMSafe demoOK).map
         (fun gs => (certifySecurity heavyHexFrag fragF (ofList gs)).accepted))   -- some true
 #eval ((parseQASMSafe demoBad).map
         (fun gs => (certifySecurity heavyHexFrag fragF (ofList gs)).accepted))   -- some false
 
-/-! ## §8.2 — the checker's cost is polynomial and independent of 2ⁿ
+/-! ## The cost of validation is polynomial and independent of 2ⁿ
 
 `certifySecurity` equals `decide (HWF g ·)` combined with `confinedb (!F) ·`. Both
 are structural folds. Each fold visits every gate once, with an O(1) per-gate
@@ -164,13 +165,13 @@ CAVEAT: this Θ(#gates) figure assumes an O(1) region predicate. A *buffered*
 region is not O(1) per query. See the cost accounting in `Buffer.lean`, which
 also supplies the O(1) tabulated form. -/
 
-/-- Number of gates the security checker inspects = the exact step count (a proxy for cost). -/
+/-- Number of gates the security validator inspects = the exact step count (a proxy for cost). -/
 def checkerSteps {n : ℕ} : UCom n → ℕ
   | .seq c₁ c₂ => checkerSteps c₁ + checkerSteps c₂
   | .app1 _ _  => 1
   | .cz _ _    => 1
 
-/-- The checker's work is additive over composition — the fold is linear in gate count. -/
+/-- The validator's work is additive over composition — the fold is linear in gate count. -/
 theorem checkerSteps_seq {n : ℕ} (c₁ c₂ : UCom n) :
     checkerSteps (.seq c₁ c₂) = checkerSteps c₁ + checkerSteps c₂ := rfl
 
@@ -179,18 +180,18 @@ def genLine : ℕ → UCom 4
   | 0     => .app1 .id 0
   | g + 1 => .seq (.cz 0 1) (genLine g)
 
--- Feasibility proxy: checker cost grows LINEARLY in #gates (here #qubits fixed at 4).
+-- Feasibility proxy: validator cost grows LINEARLY in #gates (here #qubits fixed at 4).
 -- The same holds for any n. checkerSteps never references the 2ⁿ state space.
 #eval checkerSteps (genLine 10)    -- 11
 #eval checkerSteps (genLine 100)   -- 101
 #eval checkerSteps (genLine 1000)  -- 1001
--- and the certifier runs on all of them (no 2ⁿ blowup):
+-- and the validator runs on all of them (no 2ⁿ blowup):
 #eval (certifySecurity heavyHexFrag fragF (genLine 1000)).accepted  -- true
 
-/-! ## §E3 — the unsound skip, exhibited
+/-! ## The unsound skip, exhibited
 
 `parseQASM` drops the guarded gate. `parseQASMSafe` rejects the statement it
-cannot account for. This is the whole of the §E3 fix: one error policy, one
+cannot account for. This is the whole of the fix: one error policy, one
 classifier. -/
 
 -- the safe lexer REJECTS the conditioned-gate evasion …

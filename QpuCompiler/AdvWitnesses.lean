@@ -1,8 +1,8 @@
 /-
 QpuCompiler/AdvWitnesses.lean — §E7 crafted hostile-transpiler witnesses.
 
-The *incidental* money example (`.cz 0 3`) is different. We DELIBERATELY designed
-these circuits to sneak a tenant-isolation violation past the checker. The checker
+The *incidental* direct-contact example (`.cz 0 3`) is different. We DELIBERATELY designed
+these circuits to sneak a tenant-isolation violation past the validator. The validator
 catches both. The neighbour-buffered policy catches W1. The sound lexer
 `parseQASMSafe` catches W2.
 
@@ -11,8 +11,8 @@ VERIFICATION STATUS (honest, per witness — do NOT paraphrase as "every verdict
   * **W1** — every verdict is `by decide` (kernel-checked) on the real `ibm_marrakesh`
     patch. The proof is fully verified end to end.
   * **W2** — the *circuit-level* verdicts are `by decide`. The old lexer yields the
-    circuit `w2skipped`, with the guarded gate silently dropped, and the checker
-    ACCEPTS it. The circuit `w2full` contains the hidden gate, and the checker
+    circuit `w2skipped`, with the guarded gate silently dropped, and the validator
+    ACCEPTS it. The circuit `w2full` contains the hidden gate, and the validator
     REJECTS it. One step stays as an `#eval` witness only: `parseQASM w2src` equals
     `w2skipped`'s gate list, and `parseQASMSafe w2src = none`. This step CANNOT
     become `by decide`. `String.splitOn` uses well-founded recursion
@@ -49,11 +49,11 @@ example : (certifySecurity heronMarrakesh (bufferF heronMarrakesh Fd1) w1).hardw
 /-! ## W2 — lexer-evasion (defeats the *old* front-end)
 
 A conditioned CZ hides a gate onto the co-tenant qubit 3. The shipped `parseQASM`
-silently skips the `if(...)` line. The certifier then ACCEPTS the confined-looking
+silently skips the `if(...)` line. The validator then ACCEPTS the confined-looking
 remainder (UNSOUND). `parseQASMSafe` rejects the unrecognized support-bearing token. -/
 def w2src : String := "x q[6]; if(c==1) cz q[6],q[3];"
 
--- OLD lexer skips the guarded gate → certifier ACCEPTS (the unsound hole).
+-- OLD lexer skips the guarded gate → validator ACCEPTS (the unsound hole).
 -- `#eval` ONLY: the kernel cannot reduce `String.splitOn` (WF recursion, plus opaque
 -- string literals). So this step cannot use `by decide`. See the header.
 #eval (parseQASM w2src).length                                                       -- 1 (`x q[6]`)
@@ -75,7 +75,7 @@ example : (certifySecurity heronMarrakesh Fd1 w2full).accepted = false := by dec
 example : (certifySecurity heronMarrakesh (bufferF heronMarrakesh Fd1) w2full).accepted
     = false := by decide
 
-/-! ## §E4 — buffer-radius k ablation (isolation vs usable area)
+/-! ## Buffer-radius k ablation, paper question E5 (isolation vs usable area)
 
 Derivation order (honest): we fixed k = 1 on 2026-07-23, based on the documented
 nearest-neighbour ZZ threat model. This choice came BEFORE the 2026-07-28 hardware

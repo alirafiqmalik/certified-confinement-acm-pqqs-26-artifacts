@@ -4,7 +4,7 @@ harness/devices/gen_device_corpus.py. Do not
 hand-edit the generated code below this header.
 
 This file encodes 11 real IBM QPU topologies (7 to 156 qubits) as `Coupling n`.
-So the certifier can run against real hardware graphs with no QPU access at all.
+So the validator can run against real hardware graphs with no QPU access at all.
 The topologies come from `qiskit_ibm_runtime.fake_provider`, which needs no
 account and no quota.
 

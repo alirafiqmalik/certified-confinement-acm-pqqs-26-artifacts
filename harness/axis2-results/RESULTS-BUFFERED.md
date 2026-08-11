@@ -1,8 +1,8 @@
-# Axis-2 under the BUFFERED confinement policy
+# QASMBench circuits under the BUFFERED confinement policy (paper E5)
 
 Status: **current**. Generated 2026-08-06 with qiskit 2.5.1, Lean 4.31.0, Lake 5.0.0.
 
-This file closes a gap in the earlier axis-2 runs. `run_e5b.py` certifies against the
+This file closes a gap in the earlier QASMBench runs. `run_e5b.py` certifies against the
 bare forbidden region `tenantF`. So the headline evaluation never exercised the
 *buffered* (k-hop) policy that the paper advocates. Three experiments follow.
 
@@ -24,7 +24,7 @@ lake env lean --run harness/TimingBuffered.lean     # E-B3
 
 The unbuffered numbers reproduce **exactly**, under a toolchain three minor versions
 newer than the one that first produced them (`e5_results.json`). This fact matters,
-because axis-2 measures a moving target: Qiskit's own transpiler.
+because this evaluation measures a moving target: Qiskit's own transpiler.
 
 | opt | n (full) | violations | rate |
 |----:|---------:|-----------:|-----:|
@@ -66,7 +66,7 @@ not a buffer. E-B2 runs the experiment that this one cannot.
 `run_buffered_alloc.py` -> `buffered_alloc_results.json`. The provider reserves the
 k-hop halo as a dead zone, and allocates to the tenant what is left. The transpiler
 receives **only** the induced subgraph on the allowed set — the restricted-coupling-map
-discipline that DynQ assumes and does not check. The certifier then checks whether
+discipline that DynQ assumes and does not check. The validator then checks whether
 the transpiler actually stayed inside the subgraph.
 
 | k | allowed qubits | tenant size | circuits that fit | accepted, opt 0/1/2/3 | false rejects |

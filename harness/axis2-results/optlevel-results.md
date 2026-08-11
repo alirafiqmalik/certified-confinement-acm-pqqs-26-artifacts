@@ -1,4 +1,4 @@
-# E5 (+E8) — Violation-rate vs Qiskit optimization level — certification overhead
+# Violation rate vs Qiskit optimization level, and validation overhead — paper questions E1 and E2
 
 > **RE-VERIFIED 2026-07-30.** We re-ran the evaluation after the `qasmStmts` comment-ordering fix
 > in `Frontend.lean`. All figures below are UNCHANGED (violation rate 18/53/71/71%, 27/28
@@ -6,7 +6,7 @@
 > So the defect never triggered here. The single `REJECT-PARSE` is `shor_n5.qasm`, which holds a
 > genuine `if (c==1)` conditioned gate. This is a correct safe reject.
 
-We certified circuits with the SOUND lexer `parseQASMSafe` (§E3). We used the QASMBench-small
+We validated circuits with the SOUND lexer `parseQASMSafe`. We used the QASMBench-small
 fittable subset (≤12 qubits), transpiled to the 12-node ring plus basis subset at each Qiskit
 `optimization_level`. Device model: ring `Coupling 12`, tenant A={0..5}, forbidden F={6..11}.
 
@@ -20,7 +20,7 @@ fittable subset (≤12 qubits), transpiled to the 12-node ring plus basis subset
 
 **The threat is pervasive and worsens with optimization.** A tenant-unaware transpiler at the
 default and aggressive settings (opt 2–3) places ~71% of circuits partly onto forbidden co-tenant
-qubits. The certifier catches all of them. Higher optimization spreads the logical circuit across
+qubits. The validator catches all of them. Higher optimization spreads the logical circuit across
 more physical qubits (better depth and routing, but no tenant awareness). This increases
 co-location.
 
@@ -40,8 +40,8 @@ false-reject, 99.9% parse-coverage" (via the unsound `parseQASM`) becomes **27/2
 safe parse-rejection** under `parseQASMSafe`. No confined circuit is wrongly rejected on the
 confinement check itself.
 
-## E8 — certification overhead
-Per-circuit `certifySecurity` runs in **< 1 ms** (E2), compared with Qiskit `transpile` at
+## Validation overhead (paper question E2)
+Per-circuit `certifySecurity` runs in **< 1 ms**, compared with Qiskit `transpile` at
 ~6–45 ms per circuit (opt-dependent). Certification adds **well under ~10%** to per-circuit
 compile time. This is negligible. It is consistent with OwlC's ≤6% framing.
 

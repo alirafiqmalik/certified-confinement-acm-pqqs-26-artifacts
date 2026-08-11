@@ -1,5 +1,5 @@
 /-
-CertifyQASM.lean — Axis-2 real-circuit ingestion entry point.
+CertifyQASM.lean — real-circuit ingestion entry point (paper question E1).
 
 This is the end-to-end path: OpenQASM-subset file(s) → untrusted `parseQASM` lexer →
 `ofList` → trusted `certifySecurity` → per-file verdict. Device: the 12-node heavy-hex
@@ -9,8 +9,8 @@ The lexer is UNTRUSTED (basis subset {x, sx, id, rz, cz/cx}).
 
 WARNING: this driver uses `parseQASM`, which is UNSOUND. It silently DROPS any
 statement it does not recognize. As a result, a gate can disappear from the circuit.
-For example, this happens when a classical guard hides the gate. The checker can then
-accept the remainder as valid. The §E3 fuzz pass turned 269 of 1120 crafted inputs into
+For example, this happens when a classical guard hides the gate. The validator can then
+accept the remainder as valid. The fuzz pass turned 269 of 1120 crafted inputs into
 false accepts this way. For real evaluation, use `CertifyQASMSafe.lean`. This driver
 stays in the repository only to reproduce the §E7/W2 before-and-after comparison.
 

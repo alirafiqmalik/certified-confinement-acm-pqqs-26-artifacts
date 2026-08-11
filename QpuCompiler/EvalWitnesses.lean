@@ -1,5 +1,5 @@
 /-
-QpuCompiler/EvalWitnesses.lean — Axis-1 caught-violation witnesses.
+QpuCompiler/EvalWitnesses.lean — caught-violation witnesses (paper question E1).
 
 This file gives three per-instance `#eval` witnesses for the evaluation. Each
 witness also appears as a kernel-checked `example ... := by decide`. This shows
@@ -22,7 +22,7 @@ namespace QpuCompiler
 `swapEdge 4 0 3` is the routing primitive (a SWAP macro) on the degree-3 fragment
 edge `0–3`. The edge is HARDWARE-LEGAL, because `0–3` is a real edge. But the SWAP
 moves qubit-`0` state onto the forbidden co-tenant qubit `3`. This is exactly the
-SWAP-attack co-location channel. The certifier accepts the legality. But it REJECTS
+SWAP-attack co-location channel. The validator accepts the legality. But it REJECTS
 the circuit under the confinement policy. -/
 def wA : UCom 4 := swapEdge 4 0 3
 
@@ -36,8 +36,8 @@ example : (certifySecurity heavyHexFrag fragF wA).accepted = false := by decide
 
 The external producer sends an ingested circuit `wBsrc`. The verified `optimize`
 function runs on this circuit. The two `x 0` gates fuse, but the boundary-crossing
-`cz 0 3` gate stays. The checker finds this gate in the OPTIMIZER'S OUTPUT `wB`.
-So the checker catches a confinement violation after optimization, not only in the
+`cz 0 3` gate stays. The validator finds this gate in the OPTIMIZER'S OUTPUT `wB`.
+So the validator catches a confinement violation after optimization, not only in the
 raw input.
 
 Proof note: the proof of the rejection of the ingested circuit `wBsrc` is

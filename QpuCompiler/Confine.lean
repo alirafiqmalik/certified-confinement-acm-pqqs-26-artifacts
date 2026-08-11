@@ -318,11 +318,11 @@ structure CertResult where
 /-- The certificate is accepted iff the circuit is hardware-legal AND policy-confined. -/
 def CertResult.accepted (r : CertResult) : Bool := r.hardwareLegal && r.policyConfined
 
-/-- One-call security certifier over an untrusted external circuit. -/
+/-- One-call security validator over an untrusted external circuit. -/
 def certifySecurity {n : ℕ} (g : Coupling n) (F : ℕ → Bool) (ext : UCom n) : CertResult :=
   { hardwareLegal := decide (HWF g ext), policyConfined := confinedb (fun x => !F x) ext }
 
-/-- **Soundness of the certifier.** An accepted verdict gives a kernel-checked
+/-- **Soundness of the validator.** An accepted verdict gives a kernel-checked
 guarantee that the external circuit is hardware-legal and touches no forbidden
 qubit. -/
 theorem certifySecurity_sound {n : ℕ} (g : Coupling n) (F : ℕ → Bool) (ext : UCom n)
@@ -361,7 +361,7 @@ example : (certifySecurity heavyHexFrag fragF (.seq (.app1 .x 0) (.cz 0 1) : UCo
 example : (certifySecurity heavyHexFrag fragF (ofList [.g1 .x 0, .g2 0 1])).accepted = true := by
   decide
 -- THE multi-tenant threat, CAUGHT: `.cz 0 3` is HARDWARE-LEGAL (0-3 is an edge), yet it
--- touches the forbidden co-tenant qubit 3. The certifier rejects it on the policy check:
+-- touches the forbidden co-tenant qubit 3. The validator rejects it on the policy check:
 example : (certifySecurity heavyHexFrag fragF (.cz 0 3 : UCom 4)).hardwareLegal = true := by decide
 example : (certifySecurity heavyHexFrag fragF (.cz 0 3 : UCom 4)).accepted = false := by decide
 

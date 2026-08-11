@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""run_buffered.py — Axis-2 sweep under the BUFFERED confinement policy.
+"""run_buffered.py — QASMBench sweep under the BUFFERED confinement policy (paper E5).
 
 `run_e5b.py` certifies against the bare forbidden region `tenantF`. This script
 certifies the same corpus against the `k`-hop buffered region, for k = 0..K. It

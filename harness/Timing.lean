@@ -1,11 +1,11 @@
 /-
-Timing.lean — Axis-3 wall-clock timing harness.
+Timing.lean — wall-clock timing harness (paper question E2).
 
 This harness gives empirical support for the Θ(#gates) claim. It times `certifySecurity`
 on `genLine g` (a g-gate CZ chain on the degree-3 fragment) for growing values of g.
 It prints the exact `checkerSteps` count with the wall-clock time in nanoseconds. The
-step count is the honest proxy, because the checker visits each gate once. The
-wall-clock time confirms that the checker never touches the 2ⁿ state space. Cost tracks
+step count is the honest proxy, because the validator visits each gate once. The
+wall-clock time confirms that the validator never touches the 2ⁿ state space. Cost tracks
 the gate count, not the qubit count.
 
 Run:  lake env lean --run harness/Timing.lean

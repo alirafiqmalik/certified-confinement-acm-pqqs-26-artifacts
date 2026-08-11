@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """run_buffered_alloc.py — is the buffered policy OPERABLE?
 
-`run_buffered.py` certifies the existing axis-2 corpus against the k-hop buffered
+`run_buffered.py` certifies the existing QASMBench corpus against the k-hop buffered
 region and rejects almost everything. This is not a property of the policy. It is
 a property of the *allocation*. Tenant A = {0..5} and the k=1 buffer around
 F = {6..11} both claim qubits 0 and 5. So every circuit that touches the ends of
@@ -18,7 +18,7 @@ halo around the co-tenant as a dead zone, and the tenant gets what is left.
 
 For each k, we give the transpiler ONLY the induced subgraph on the allowed set.
 This is the "restricted coupling map" discipline that DynQ assumes but does not
-check. Then we use the Lean certifier to verify that the transpiler actually
+check. Then we use the Lean validator to verify that the transpiler actually
 stayed inside it. Two numbers come out:
 
   * operability : accept rate for circuits that FIT the allowed set. A policy that

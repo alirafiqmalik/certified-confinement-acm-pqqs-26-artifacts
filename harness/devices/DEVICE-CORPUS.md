@@ -1,17 +1,17 @@
-# Multi-device certifier testing — 11 real QPU topologies, zero QPU time
+# Multi-device validator testing — paper question E3 (11 real QPU topologies, zero QPU time)
 
 ## What this answers
 
-Can we run the Lean certifier against *real* hardware graphs without hardware access?
+Can we run the Lean validator against *real* hardware graphs without hardware access?
 **Yes. This work also removed a limitation that the paper used to disclose.**
 
 `qiskit_ibm_runtime.fake_provider` ships topology and calibration snapshots for ~68 real IBM
 devices. It needs no account, no token, and no quota. We encode a diverse slice as Lean
-`Coupling n` values. We run the certifier against every one.
+`Coupling n` values. We run the validator against every one.
 
 ## The result that matters: the device-size ceiling is gone
 
-The paper previously said (§9¶3):
+The paper previously said, in its limitations:
 
 > *"Encoding larger (20–30-qubit) patches is deferred: the kernel `decide` on the edge relation
 > degrades at that size (an implementation limit, not a method limit)."*
@@ -82,12 +82,12 @@ genuinely different from it.
 
 ## Honest scope
 
-- These are **topologies**, exactly as published. This encoding work shows that the certifier
+- These are **topologies**, exactly as published. This encoding work shows that the validator
   handles real device graphs at real scale. It says nothing about leaks on those devices. That is
   a physics question, and it needs hardware. Read `sim/BLIND-EMULATION.md`.
 - `Nighthawk` widens topology coverage, but it is still an IBM device. This work does not
   cover non-IBM architectures (ion-trap all-to-all, neutral-atom reconfigurable).
-- The guarantee of the certifier does not change. This is a result about scale and coverage, not a
+- The guarantee of the validator does not change. This is a result about scale and coverage, not a
   new theorem.
 
 ## Reproduce

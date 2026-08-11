@@ -1,6 +1,6 @@
-# E1 — Hardware reproducibility sweep (RESULTS, 2026-07-28)
+# Hardware reproducibility sweep — paper question E4 (RESULTS, 2026-07-28)
 
-This upgrades §7.6 from a single pair (n=1) to eight pairs (n=8). Each triple is a victim, a d=1
+This upgrades the E4 hardware evidence from a single pair (n=1) to eight pairs (n=8). Each triple is a victim, a d=1
 probe, and a d=2 control, across **two IBM Heron r2 devices**. It tests one *prediction*: that the
 leak is strictly nearest-neighbor, present at d=1 and null at d≥2. We fixed k=1 on 2026-07-23,
 before any sweep data existed. That prediction is exactly the condition the `bufferF` certificate
@@ -39,15 +39,15 @@ enforces at k=1.
   sufficiency of a **k=1** buffer — holds on **8/8** pairs. This is the key sweep finding.
 
 - **fez pair 0 showed no detectable d=1 leak** (ΔP=0.0002, z=0.0). We report it plainly. We do not
-  drop it. The certifier still **REJECTS** this placement, structurally, on the coupling edge. The
-  result is *conservatively safe*, because the certifier never *accepts* a leaking placement.
+  drop it. The validator still **REJECTS** this placement, structurally, on the coupling edge. The
+  result is *conservatively safe*, because the validator never *accepts* a leaking placement.
 
-## Certifier–hardware agreement (the honest framing)
-The verdict of the certifier is **structural**: it rejects exactly when the victim shares a
+## Validator–hardware agreement (the honest framing)
+The verdict of the validator is **structural**: it rejects exactly when the victim shares a
 coupling edge with the co-tenant. Under `bufferF` it therefore **REJECTS all 8** d=1 placements
 and **ACCEPTS all 8** d=2 placements. Against the physics:
 
-- **Soundness (the safety-critical direction): 8/8** — the certifier never accepted a placement
+- **Soundness (the safety-critical direction): 8/8** — the validator never accepted a placement
   that leaked. No false-accepts.
 
 - **Necessity (did the guarded-against leak actually occur): 7/8** at d=1 — on 1 pair the rejected

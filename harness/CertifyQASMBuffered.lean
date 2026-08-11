@@ -1,8 +1,8 @@
 /-
-CertifyQASMBuffered.lean — Axis-2 ingestion under the *buffered* confinement policy.
+CertifyQASMBuffered.lean — ingestion under the *buffered* confinement policy (paper E1, E5).
 
 `CertifyQASMSafe.lean` certifies against the bare forbidden region `tenantF`. That is
-the policy the checker can enforce. It is NOT the policy the paper recommends. A gate
+the policy the validator can enforce. It is NOT the policy the paper recommends. A gate
 one hop from a co-tenant qubit is where the measured crosstalk lives, and `tenantF`
 allows it. This entry point closes that gap by certifying against the `k`-hop buffered
 region.

@@ -35,7 +35,7 @@
   "detail": "range 219-1666 Hz (0.22-1.67 kHz) over 13 pairs"
  },
  {
-  "name": "T8 kernel-checked certifier verdicts",
+  "name": "T8 kernel-checked validator verdicts",
   "passed": true,
   "detail": "d=1 accepted by support-only, REJECTED by bufferF, distant region still accepted"
  },

@@ -1,5 +1,5 @@
 /-
-QpuCompiler/HeronMarrakesh.lean — the certifier bridge to the LIVE IBM result.
+QpuCompiler/HeronMarrakesh.lean — the validator bridge to the LIVE IBM result.
 
 On `ibm_marrakesh` (IBM Heron r2, 156q, free/open plan), on 2026-07-28, we measured a
 real multi-tenant side channel. A co-tenant one hop from a victim qubit reads the
@@ -12,7 +12,7 @@ nearest-neighbor. (Full data:
 
 This file encodes the REAL device neighborhood of the victim (physical qubit 98 and
 the qubits within 3 hops, relabeled 0..11 — see `marrakesh_patch.json`) as a
-`Coupling 12`. It shows that the certifier's verdict matches the physical leak:
+`Coupling 12`. It shows that the validator's verdict matches the physical leak:
 
   * The victim runs on qubit **6** (phys q98). Its gate support is `{6}`. It never
     gates a co-tenant qubit. It only *sits next to* one.
@@ -92,7 +92,7 @@ def Ffar : ℕ → Bool := fun q => decide (q = 0)
 Each `example` is `by decide` (kernel-checked). The `#eval`s print the same verdict. -/
 
 -- The 1-hop buffer of the d=1 co-tenant is {3} ∪ neighbors(3) = {2,3,4,6}. It CONTAINS
--- the victim qubit 6. This is why the certifier rejects the adjacent placement:
+-- the victim qubit 6. This is why the validator rejects the adjacent placement:
 #eval (List.range 12).filter (bufferF heronMarrakesh Fd1)     -- [2, 3, 4, 6]
 example : (List.range 12).filter (bufferF heronMarrakesh Fd1) = [2, 3, 4, 6] := by decide
 

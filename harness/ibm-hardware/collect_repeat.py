@@ -1,5 +1,5 @@
 """
-E1-R collector — second-snapshot replication.
+Collector for the second-snapshot replication (paper question E4).
 
 The statistics match `collect_sweep.py` exactly. This script uses an unpooled
 two-proportion Wald z-test over N = shots x reps. The leak criterion is z >= 5. So
@@ -100,7 +100,7 @@ for r in allpairs:
 d1_leaks = sum(1 for r in allpairs if r["leak_d1"])
 d2_leaks = sum(1 for r in allpairs if r["leak_d2"])
 print(f"\nsnapshot-2 totals: leak@d1 {d1_leaks}/{len(allpairs)} · leak@d2 {d2_leaks}/{len(allpairs)}")
-print(f"certifier soundness (never accepts a leaking placement) = {len(allpairs)-d2_leaks}/{len(allpairs)} "
+print(f"validator soundness (never accepts a leaking placement) = {len(allpairs)-d2_leaks}/{len(allpairs)} "
       f"[a d>=2 leak would be the only way to break it]")
 if flips:
     print("\nPAIRS THAT FLIPPED d1 leak-status between snapshots (report these, do not hide them):")
