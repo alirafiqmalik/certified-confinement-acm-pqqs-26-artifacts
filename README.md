@@ -2,6 +2,10 @@
 
 **Lean 4–verified confinement checks for quantum-cloud circuits.**
 
+This repository is the research artifact for the **ACM PQQS ’26 paper submission**
+[**Certified Confinement: Kernel-Checked Validation of Untrusted Quantum-Cloud Transpiler Output**](https://dl.acm.org/doi/10.1145/3839338.3857240),
+by Ali Hamza Malik and Muhammad Taqi Raza.
+
 [Quick start](#quick-start) · [How it works](#how-it-works) · [Results](#results-and-evidence) · [Setup](docs/SETUP.md) · [Reproduction guide](docs/USAGE.md) · [Paper → code](docs/PAPER.md)
 
 A quantum circuit can obey every device connectivity rule and still touch another
@@ -172,3 +176,28 @@ For a specific claim, start with [Paper → code](docs/PAPER.md). For reproducti
 help, use the [setup guide](docs/SETUP.md) and [stage reference](docs/USAGE.md).
 Report issues with the command, toolchain versions, and relevant stage log in
 [GitHub Issues](https://github.com/alirafiqmalik/certified-confinement-acm-pqqs-26-artifacts/issues).
+
+## Citation
+
+If you use this artifact, please cite the accompanying paper:
+
+Ali Hamza Malik and Muhammad Taqi Raza. 2026. **Certified Confinement:
+Kernel-Checked Validation of Untrusted Quantum-Cloud Transpiler Output.**
+In *Proceedings of the 2026 ACM Conference on Post-Quantum and Quantum-based
+Security* (PQQS ’26). ACM, New York, NY, USA, 106–121.
+[https://doi.org/10.1145/3839338.3857240](https://doi.org/10.1145/3839338.3857240).
+
+```bibtex
+@inproceedings{malik2026certifiedconfinement,
+  author    = {Malik, Ali Hamza and Raza, Muhammad Taqi},
+  title     = {Certified Confinement: Kernel-Checked Validation of Untrusted Quantum-Cloud Transpiler Output},
+  booktitle = {Proceedings of the 2026 ACM Conference on Post-Quantum and Quantum-based Security},
+  series    = {PQQS '26},
+  year      = {2026},
+  pages     = {106--121},
+  publisher = {ACM},
+  address   = {New York, NY, USA},
+  doi       = {10.1145/3839338.3857240},
+  url       = {https://doi.org/10.1145/3839338.3857240}
+}
+```
