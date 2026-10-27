@@ -102,10 +102,10 @@ It reproduces the committed files byte for byte.
 ```
 
 ```
-ACCEPT  harness/samples/01_ok_confined.qasm    (gates=7 legal=true  confined=true)
-REJECT  harness/samples/02_cotenant_touch.qasm (gates=3 legal=true  confined=false)
-REJECT  harness/samples/03_illegal_edge.qasm   (gates=2 legal=false confined=false)
-ACCEPT  harness/samples/04_ok_ring_chain.qasm  (gates=8 legal=true  confined=true)
+ACCEPT  examples/01_ok_confined.qasm    (gates=7 legal=true  confined=true)
+REJECT  examples/02_cotenant_touch.qasm (gates=3 legal=true  confined=false)
+REJECT  examples/03_illegal_edge.qasm   (gates=2 legal=false confined=false)
+ACCEPT  examples/04_ok_ring_chain.qasm  (gates=8 legal=true  confined=true)
 ```
 
 `legal` is `hardwareLegal` and `confined` is `policyConfined`. Sample 02 is the
@@ -194,26 +194,26 @@ the committed results stay untouched.
 
 | stage | script | what it produces |
 |---|---|---|
-| B1 | `eval-scripts/run_optlevel.py` | transpiles the suite at optimization levels 0–3 |
-| B2 | `eval-scripts/run_e5b.py` | validator verdicts per level → 18 / 53 / 71 / 71 % violation |
-| B3 | `eval-scripts/fuzz_e3.py` | generates the 1120-mutant corpus, seed 7 |
-| B4 | `eval-scripts/fuzz_certify.py` | old lexer 269 false accepts, sound lexer 0 |
-| B5 | `eval-scripts/run_buffered.py` | sweeps the buffered policy over k |
-| B6 | `eval-scripts/run_buffered_alloc.py` | operability: zero false rejects when the allocation respects the buffer |
-| B7 | `eval-scripts/run_qcec.py` | external equivalence checker, for capability context only |
+| B1 | `benchmarks/run_optlevel.py` | transpiles the suite at optimization levels 0–3 |
+| B2 | `benchmarks/run_e5b.py` | validator verdicts per level → 18 / 53 / 71 / 71 % violation |
+| B3 | `benchmarks/fuzz_e3.py` | generates the 1120-mutant corpus, seed 7 |
+| B4 | `benchmarks/fuzz_certify.py` | old lexer 269 false accepts, sound lexer 0 |
+| B5 | `benchmarks/run_buffered.py` | sweeps the buffered policy over k |
+| B6 | `benchmarks/run_buffered_alloc.py` | operability: zero false rejects when the allocation respects the buffer |
+| B7 | `benchmarks/run_qcec.py` | external equivalence checker, for capability context only |
 
 To run one alone, set the two paths the scripts read:
 
 ```bash
 export ARTIFACT_ROOT="$PWD" QASMBENCH_SMALL=/path/to/QASMBench/small
 export AXIS2_OUT="$PWD/artifact-run/axis2-out" FUZZ_OUT="$PWD/artifact-run/fuzz-out"
-.venv/bin/python harness/eval-scripts/run_optlevel.py
+.venv/bin/python harness/benchmarks/run_optlevel.py
 ```
 
 B1 must run before B2, B3, B5 and B6. B3 must run before B4.
 
 The fresh outputs of B2 and B4 are byte-identical to the committed
-`harness/eval-scripts/e5_results.json` and `fuzz_results.json`. B5 differs only
+`harness/benchmarks/e5_results.json` and `fuzz_results.json`. B5 differs only
 in its wall-clock fields.
 
 ---

@@ -27,7 +27,7 @@ stayed inside it. Two numbers come out:
                   benchmark circuits stop fitting as a result.
 
 Usage (from the Artifact/ root, after `lake build`):
-    QASMBENCH_SMALL=... AXIS2_OUT=... python3 harness/eval-scripts/run_buffered_alloc.py
+    QASMBENCH_SMALL=... AXIS2_OUT=... python3 harness/benchmarks/run_buffered_alloc.py
 """
 import os, glob, json, pathlib, re, subprocess, argparse
 from qiskit.qasm2 import load, dumps, LEGACY_CUSTOM_INSTRUCTIONS

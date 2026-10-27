@@ -5,7 +5,7 @@ certify_qasm.py — real-circuit coverage harness, driver side (paper question E
 This script does two jobs.
 
   1. `--samples`  : Certify the shipped basis-subset sample circuits. This
-                    option calls the Lean entry point CertifyQASM.lean. This
+                    option calls the Lean entry point CertifyQASMSafe.lean. This
                     job is fully reproducible here, with no extra dependencies.
 
   2. `--transpile`: (OPTIONAL, and you run it yourself) Transpile
@@ -45,7 +45,7 @@ def certify(qasm_paths):
 
 
 def run_samples():
-    samples = sorted(glob.glob(os.path.join(HERE, "samples", "*.qasm")))
+    samples = sorted(glob.glob(os.path.join(ROOT, "examples", "*.qasm")))
     print(f"# certifying {len(samples)} shipped sample circuits\n")
     return certify([os.path.relpath(p, ROOT) for p in samples])
 

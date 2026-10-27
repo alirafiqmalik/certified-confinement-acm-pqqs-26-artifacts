@@ -36,7 +36,7 @@ Two names are historical and do not mean what they look like:
 | question | what it asks | where in this repo | how to run it |
 |---|---|---|---|
 | **E1** | how often does realistic transpiler output violate the policy? | `harness/axis2-results/`, `harness/fuzz-results.md`, `QpuCompiler/EvalWitnesses.lean`, `QpuCompiler/AdvWitnesses.lean` | stages B1–B4, B6 |
-| **E2** | is the validator practical? | `harness/Timing.lean`, `harness/TimingBuffered.lean`, `harness/eval-scripts/timing_buffered.csv` | stages A6, B5 |
+| **E2** | is the validator practical? | `harness/Timing.lean`, `harness/TimingBuffered.lean`, `harness/benchmarks/timing_buffered.csv` | stages A6, B5 |
 | **E3** | does validation scale across devices? | `harness/devices/`, `QpuCompiler/DeviceCorpus.lean`, `QpuCompiler/DeviceLib.lean` | stage A4 |
 | **E4** | is the chosen policy physically motivated? | `harness/ibm-hardware/`, `QpuCompiler/HeronMarrakesh.lean` | stage A9 offline, tiers C and D live |
 | **E5** | what does the buffer cost, and can a tenant apply it? | `harness/ibm-hardware/k-ablation.md`, `harness/axis2-results/RESULTS-BUFFERED.md`, `harness/sim/BLIND-EMULATION.md` | stages B5, B6, A7 (T9) |
@@ -48,9 +48,9 @@ question. The names that survive:
 | name | paper question |
 |---|---|
 | `harness/axis2-results/` | E1 and E5 |
-| `harness/eval-scripts/run_e5b.py`, `e5_results.json` | E1, the violation rates |
+| `harness/benchmarks/run_e5b.py`, `e5_results.json` | E1, the violation rates |
 | `harness/transpile_axis2.py` | E1 |
-| `harness/eval-scripts/timing_e2c.lean` | E2 |
+| `harness/benchmarks/timing_e2c.lean` | E2 |
 
 ---
 
@@ -128,12 +128,12 @@ file.
 
 | paper | value | where |
 |---|---|---|
-| violation rate by optimization level | 18 / 53 / 71 / 71 % | `harness/eval-scripts/e5_results.json`, stage B2 |
+| violation rate by optimization level | 18 / 53 / 71 / 71 % | `harness/benchmarks/e5_results.json`, stage B2 |
 | circuits per level | n = 38 | same |
 | every violating circuit is hardware-legal | yes | same |
-| buffer operability, false rejects | 0 at every k and every level | `harness/eval-scripts/buffered_alloc_results.json`, stage B6 |
+| buffer operability, false rejects | 0 at every k and every level | `harness/benchmarks/buffered_alloc_results.json`, stage B6 |
 | circuits that fit as k grows | 31 → 23 → 6 → 0 | same |
-| fuzz corpus | 1120 mutants, seed 7 | `harness/eval-scripts/fuzz_results.json`, stage B4 |
+| fuzz corpus | 1120 mutants, seed 7 | `harness/benchmarks/fuzz_results.json`, stage B4 |
 | unsound accepts, old lexer | 269 | same |
 | unsound accepts, sound lexer | 0 | same |
 
@@ -142,7 +142,7 @@ file.
 | paper | value | where |
 |---|---|---|
 | `checkerSteps` on an n-gate line circuit | exactly n+1 | stage A6 |
-| plain check at 10⁴ gates | about 6 ms | `harness/eval-scripts/timing_buffered.csv` |
+| plain check at 10⁴ gates | about 6 ms | `harness/benchmarks/timing_buffered.csv` |
 | naive buffered check at k=1 | about 0.9 s | same |
 | naive buffered check at k=2 | about 140 s | same |
 | memoized buffered check | within noise of the plain check, flat in k | same |

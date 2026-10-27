@@ -11,10 +11,10 @@ Reproduce (from the Artifact/ root, after `lake build`):
 ```bash
 export QASMBENCH_SMALL=/path/to/QASMBench/small     # external, not shipped
 export AXIS2_OUT=/path/to/scratch/axis2-out
-python3 harness/eval-scripts/run_optlevel.py        # transpile corpus
-python3 harness/eval-scripts/run_e5b.py             # baseline (unbuffered)
-python3 harness/eval-scripts/run_buffered.py        # E-B1
-python3 harness/eval-scripts/run_buffered_alloc.py  # E-B2
+python3 harness/benchmarks/run_optlevel.py        # transpile corpus
+python3 harness/benchmarks/run_e5b.py             # baseline (unbuffered)
+python3 harness/benchmarks/run_buffered.py        # E-B1
+python3 harness/benchmarks/run_buffered_alloc.py  # E-B2
 lake env lean --run harness/TimingBuffered.lean     # E-B3
 ```
 

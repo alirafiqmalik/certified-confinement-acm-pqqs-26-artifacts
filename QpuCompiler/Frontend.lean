@@ -106,7 +106,7 @@ version cut any `//` comment that contained a `;`, and left the tail of the
 comment looking like a statement.
 
 That version made `parseQASMSafe` reject
-`samples/01_ok_confined.qasm`, whose comment reads `… slot A = {0..5}; all cz are
+`examples/01_ok_confined.qasm`, whose comment reads `… slot A = {0..5}; all cz are
 ring edges.`. The fragment `all cz are ring edges.` is an unrecognized
 support-bearing token, so the sound lexer refused the whole file. The rejection
 was in the safe direction, but it was a false reject on a positive sample. -/

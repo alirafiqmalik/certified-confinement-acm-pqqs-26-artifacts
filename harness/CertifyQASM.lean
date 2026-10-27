@@ -16,7 +16,7 @@ stays in the repository only to reproduce the §E7/W2 before-and-after compariso
 
 Run (from qpu-compiler/ project root, after `lake build`):
   lake env lean --run harness/CertifyQASM.lean \
-    harness/samples/*.qasm
+    examples/*.qasm
 -/
 import QpuCompiler
 open QpuCompiler

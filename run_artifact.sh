@@ -205,19 +205,19 @@ else
   # These scripts write some outputs next to the working directory, so run them
   # from artifact-run/. The results this repository ships stay untouched.
   stage B1 "transpile the benchmark suite at optimisation levels 0-3" \
-    in_out "$PY" "$HERE/harness/eval-scripts/run_optlevel.py"
+    in_out "$PY" "$HERE/harness/benchmarks/run_optlevel.py"
   stage B2 "validate every transpiled circuit (E1 verdicts)" \
-    in_out "$PY" "$HERE/harness/eval-scripts/run_e5b.py"
+    in_out "$PY" "$HERE/harness/benchmarks/run_e5b.py"
   stage B3 "generate the 1120-mutant fuzz corpus" \
-    in_out "$PY" "$HERE/harness/eval-scripts/fuzz_e3.py"
+    in_out "$PY" "$HERE/harness/benchmarks/fuzz_e3.py"
   stage B4 "fuzz both lexers and count false accepts" \
-    in_out "$PY" "$HERE/harness/eval-scripts/fuzz_certify.py"
+    in_out "$PY" "$HERE/harness/benchmarks/fuzz_certify.py"
   stage B5 "sweep the buffered policy over k" \
-    "$PY" harness/eval-scripts/run_buffered.py --out "$OUT/buffered_results.json"
+    "$PY" harness/benchmarks/run_buffered.py --out "$OUT/buffered_results.json"
   stage B6 "test whether the buffered policy is operable" \
-    "$PY" harness/eval-scripts/run_buffered_alloc.py --out "$OUT/buffered_alloc_results.json"
+    "$PY" harness/benchmarks/run_buffered_alloc.py --out "$OUT/buffered_alloc_results.json"
   stage B7 "compare with an external equivalence checker" \
-    in_out "$PY" "$HERE/harness/eval-scripts/run_qcec.py"
+    in_out "$PY" "$HERE/harness/benchmarks/run_qcec.py"
 fi
 
 # ======================================================== tier C: hardware

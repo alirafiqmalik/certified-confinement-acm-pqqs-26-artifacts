@@ -10,7 +10,7 @@
 #   qiskit-ibm-runtime  IBM backend access, and the offline "fake backend" topology
 #                       and calibration snapshots used by harness/devices/ (this
 #                       path needs no account and no token)
-#   mqt.qcec            only for harness/eval-scripts/run_qcec.py (the capability
+#   mqt.qcec            only for harness/benchmarks/run_qcec.py (the capability
 #                       comparison table against an external equivalence checker).
 #                       This dependency is heavier than the others. If you want
 #                       only the core reproduction path, skip it.

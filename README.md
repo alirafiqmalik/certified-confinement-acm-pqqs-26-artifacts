@@ -1,88 +1,174 @@
-# Certified Confinement (artifact)
+# Certified Qubit Confinement
 
-A tenant-side **validator** for untrusted quantum-cloud transpiler output, with a
-kernel-checked soundness proof in Lean 4.
+**Lean 4–verified confinement checks for quantum-cloud circuits.**
 
-Given the device coupling graph, a forbidden region, and the circuit the
-transpiler emitted, the validator decides two structural predicates: the circuit
-is hardware-legal, and no non-identity gate touches the forbidden region or its
-`k`-hop neighbourhood. It never simulates quantum state.
+[Quick start](#quick-start) · [How it works](#how-it-works) · [Results](#results-and-evidence) · [Setup](docs/SETUP.md) · [Reproduction guide](docs/USAGE.md) · [Paper → code](docs/PAPER.md)
 
-## Run it
+A quantum circuit can obey every device connectivity rule and still touch another
+tenant’s qubits. This research artifact validates untrusted transpiler output
+against both the device graph and a tenant-defined forbidden region, with a
+soundness theorem checked by the Lean kernel.
+
+![The sample circuit uses legal edge 5–6 on a 12-node ring, but qubit 6 belongs to the forbidden region, so the validator rejects it.](docs/assets/confinement.svg)
+
+*Drawn from [sample 02](examples/02_cotenant_touch.qasm), the
+[`heavyHex` ring](QpuCompiler/CompileHH.lean), and
+[`tenantF` policy](QpuCompiler/Confine.lean). Despite its historical name,
+`heavyHex` is a 12-node cycle; the repository also includes real device topologies.*
+
+## Quick start
+
+With [Lean / elan](docs/SETUP.md) and Python installed, run from the repository root:
 
 ```bash
-bash run_artifact.sh
+git clone https://github.com/alirafiqmalik/certified-confinement-acm-pqqs-26-artifacts.git
+cd certified-confinement-acm-pqqs-26-artifacts
+bash setup.sh
+lake build
+bash run_artifact.sh --core-only
 ```
 
-One command. No IBM account and no quantum hardware. About **3 minutes** after
-the Lean library is built. Results go to `artifact-run/SUMMARY.md`.
+The core run checks **9 stages**: proofs, axiom dependencies, device topologies,
+sample verdicts, timing, simulation, and reconciliation of the published hardware
+counts. It needs no IBM account or QPU access. Initial setup downloads dependencies;
+the first Lean build can take 30 minutes or more. Subsequent runs reuse the build.
 
-If `lake` or the Python environment is missing, read [SETUP.md](SETUP.md) first.
+Read `artifact-run/SUMMARY.md` for the outcome and `artifact-run/logs/` for details.
+To also reproduce the external benchmark tier:
 
-## What passes
+```bash
+bash run_artifact.sh --fetch-benchmarks
+```
 
-A complete offline run reports **18 stages, 0 failures**. The stages that carry
-the paper's numbers:
+This downloads QASMBench. The default runner also retrieves IBM job records when
+an account configuration exists; `--core-only` skips that tier. New QPU jobs require
+an explicit `--submit-qpu` flag. See [all stages and options](docs/USAGE.md).
 
-| stage | check | expected |
+## A circuit that is legal—and rejected
+
+The executable statements in [sample 02](examples/02_cotenant_touch.qasm) are:
+
+```qasm
+x q[0];
+cz q[4], q[5];
+cz q[5], q[6];
+```
+
+Edge `5–6` exists in the device graph, but qubit `6` lies in the forbidden region
+`F = {6, …, 11}`. Run all four examples after building:
+
+```bash
+.venv/bin/python harness/certify_qasm.py --samples
+```
+
+```text
+ACCEPT  examples/01_ok_confined.qasm    (gates=7 legal=true  confined=true)
+REJECT  examples/02_cotenant_touch.qasm (gates=3 legal=true  confined=false)
+REJECT  examples/03_illegal_edge.qasm   (gates=2 legal=false confined=false)
+ACCEPT  examples/04_ok_ring_chain.qasm  (gates=8 legal=true  confined=true)
+```
+
+The sample driver uses a fixed 12-node ring and partition. The underlying Lean
+validator is parameterized by the device graph and forbidden region.
+
+## How it works
+
+```mermaid
+flowchart LR
+    Q[Untrusted QASM subset] --> P[parseQASMSafe]
+    P -->|Unsupported statement| R[REJECT-PARSE]
+    P -->|Gate list via ofList| V[certifySecurity]
+    G[Device coupling graph] --> V
+    F[Forbidden region F] --> B[Optional k-hop buffer]
+    G --> B
+    B --> V
+    V --> H[Hardware legality]
+    V --> C[Support confinement]
+    H --> D[ACCEPT only if both pass]
+    C --> D
+```
+
+The [front end](QpuCompiler/Frontend.lean) conservatively rejects unsupported
+support-bearing statements. The [validator](QpuCompiler/Confine.lean) checks
+hardware legality and that no non-identity gate touches the forbidden region.
+[Buffered policies](QpuCompiler/Buffer.lean) expand that region by `k` graph hops
+before applying the same check. Validation does not simulate quantum states.
+
+The central theorem, directly from [Confine.lean](QpuCompiler/Confine.lean):
+
+```lean
+theorem certifySecurity_sound {n : ℕ} (g : Coupling n) (F : ℕ → Bool) (ext : UCom n)
+    (h : (certifySecurity g F ext).accepted = true) :
+    HWF g ext ∧ confinedb (fun x => !F x) ext = true := by
+  simp only [CertResult.accepted, certifySecurity, Bool.and_eq_true, decide_eq_true_eq] at h
+  exact h
+```
+
+An accepted result entails both predicates for the represented circuit.
+The theorem uses only `propext`; the runner checks its axiom dependencies.
+The repository also proves properties of its own routing and optimization pipeline;
+see the [claim-to-symbol map](docs/PAPER.md).
+
+## Results and evidence
+
+![Confinement violations in the committed benchmark: 7 of 38 circuits at level 0, 20 of 38 at level 1, and 27 of 38 at levels 2 and 3.](docs/assets/benchmark.svg)
+
+*Generated from [the committed safe-parser results](harness/benchmarks/e5_results.json).
+Each level uses 38 circuits from the QASMBench-small subset that fits the 12-node
+ring. Parse rejections are separate from confinement violations. These are results
+for this experimental configuration, not a general rate across quantum workloads.*
+
+| Evidence | Recorded result | Inspect or reproduce |
 |---|---|---|
-| A2 | axiom base | `certifySecurity_sound` rests on `[propext]` alone |
-| A4 | 11 real device topologies | `ALL 11 DEVICES PASS (44 verdicts recomputed independently)` |
-| A5 | 4 sample circuits | 2 ACCEPT, 2 REJECT |
-| A7 | offline regression suite | `9/9 tests passed` |
-| A9 | published hardware numbers | `8/8` sweep and `8/8` repeat cells reproduce from raw counts |
-| B2 | QASMBench sweep | violation rate 18 / 53 / 71 / 71 % at optimization levels 0–3 |
-| B4 | front-end fuzzing | old lexer 269 false accepts, sound lexer 0 |
+| Device coverage | 11 topologies; 44 independently recomputed verdicts | [Corpus](harness/devices/DEVICE-CORPUS.md) · stage A4 |
+| Sample circuits | 2 accepted, 2 rejected | [Examples](examples/) · stage A5 |
+| Offline regression | 9 tests | [Test suite](harness/sim/test_e2e.py) · stage A7 |
+| Hardware audit | 8/8 sweep and 8/8 repeat cells reproduce from raw counts | [Provenance](harness/ibm-hardware/PROVENANCE.md) · stage A9 |
+| Transpiler evaluation | 7/38, 20/38, 27/38, 27/38 confinement violations | [Analysis](harness/axis2-results/optlevel-results.md) · stages B1–B2 |
+| Front-end fuzzing | 1,120 mutants; 269 false accepts with the old parser, 0 with the safe parser | [Data](harness/benchmarks/fuzz_results.json) · stages B3–B4 |
+| Buffered allocation | 0 confinement false rejects in the recorded allocation sweep | [Data](harness/benchmarks/buffered_alloc_results.json) · stage B6 |
 
-Stage A5 is the shortest way to see the point of the work:
+The repository keeps published evidence under `harness/`; reproduction outputs go
+to the ignored `artifact-run/` directory. Live hardware submission backs up the
+published records before replacing them.
 
-```
-ACCEPT  harness/samples/01_ok_confined.qasm    (gates=7 legal=true  confined=true)
-REJECT  harness/samples/02_cotenant_touch.qasm (gates=3 legal=true  confined=false)
-REJECT  harness/samples/03_illegal_edge.qasm   (gates=2 legal=false confined=false)
-ACCEPT  harness/samples/04_ok_ring_chain.qasm  (gates=8 legal=true  confined=true)
-```
+## Repository map
 
-Sample 02 is hardware-legal and still rejected: it places the tenant's qubits
-next to a forbidden co-tenant region. A hardware-legality check alone cannot see
-that.
-
-Stage A9 audits every hardware number in the paper **offline**, from raw
-bitstring counts. No account, no QPU, no network.
-
-## The other documents
-
-| file | what is in it |
-|---|---|
-| [SETUP.md](SETUP.md) | toolchains, build times, optional benchmark suite, IBM credentials |
-| [USAGE.md](USAGE.md) | every stage, how to run it alone, and what it prints |
-| [PAPER.md](PAPER.md) | how each claim of the paper maps to a file and a symbol |
-
-## Layout
-
-```
-run_artifact.sh        one entry point for every result
-setup.sh               creates the Python environment
-QpuCompiler/           the Lean 4 / Mathlib library (22 files)
+```text
+QpuCompiler/              Lean semantics, routing, confinement, and proofs
+QpuCompiler.lean          public library imports
+examples/                 four OpenQASM circuits with known verdicts
 harness/
-  samples/             4 QASM circuits with known verdicts
-  devices/             11 real device topologies and an independent re-verifier
-  eval-scripts/        QASMBench sweep, fuzzing, buffered-policy sweeps
-  axis2-results/       committed results of the benchmark run
-  sim/                 offline forward model and the 9-test suite
-  ibm-hardware/        IBM submission and collection scripts, and the measurements
+  CertifyQASMSafe.lean     safe-parser executable
+  certify_qasm.py         sample and file-validation driver
+  benchmarks/             benchmark and fuzz scripts, reference data
+  axis2-results/          benchmark reports and verdict records
+  devices/                real device corpus and independent verification
+  sim/                    offline model, regression suite, blind predictions
+  ibm-hardware/           hardware workflows, measurements, provenance
+docs/                     setup, reproduction, and paper-to-code guides
+  assets/                 generated README figures
+scripts/                  figure regeneration
+run_artifact.sh           staged reproduction entry point
+setup.sh                  Python environment setup
 ```
 
-Every `.md` file under `harness/` reports one set of results and states its own
-limits.
+[Layout and maintenance guide](docs/STRUCTURE.md) explains directory ownership,
+path changes, and how to regenerate the figures.
 
-## Two things to know
+## Scope and interpretation
 
-**The repository ships the results the paper reports.** A new run writes to
-`artifact-run/` and leaves them alone. Only `--submit-qpu` replaces them, and it
-backs them up first.
+- **Structural guarantee.** Acceptance proves hardware legality and support
+  confinement for the represented circuit. It does not bound physical crosstalk.
+- **Restricted input language.** The driver handles an OpenQASM subset, not the
+  complete language. The old parser is retained as an experimental counterexample.
+- **Empirical hardware evidence.** Measurements motivate the policy; they are not
+  part of the mathematical proof. The simulator injects a ZZ interaction, and its
+  fitted-model agreement is a self-consistency check.
+- **Reproduction boundaries.** Lean and Mathlib are pinned; Python dependencies
+  are currently unpinned. Fresh benchmark timings and results can vary by environment.
 
-**The proof covers structure, not physics.** An accepted certificate says no
-gate of the circuit touches the forbidden region or a qubit within `k` hops of
-it. It is not a bound on the magnitude of crosstalk. [PAPER.md](PAPER.md) states
-the full scope.
+For a specific claim, start with [Paper → code](docs/PAPER.md). For reproduction
+help, use the [setup guide](docs/SETUP.md) and [stage reference](docs/USAGE.md).
+Report issues with the command, toolchain versions, and relevant stage log in
+[GitHub Issues](https://github.com/alirafiqmalik/certified-confinement-acm-pqqs-26-artifacts/issues).

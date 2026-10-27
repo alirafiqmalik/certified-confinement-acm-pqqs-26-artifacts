@@ -9,7 +9,7 @@ k=0 must reproduce run_e5b.py exactly (`bufferK g F 0 = F`). The script asserts
 this fact.
 
 Usage (from the Artifact/ root, after `lake build` and run_optlevel.py):
-    AXIS2_OUT=/path/to/axis2-out python3 harness/eval-scripts/run_buffered.py [--kmax 3]
+    AXIS2_OUT=/path/to/axis2-out python3 harness/benchmarks/run_buffered.py [--kmax 3]
 """
 import glob, subprocess, os, pathlib, re, json, argparse, time
 
